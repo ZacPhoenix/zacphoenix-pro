@@ -341,24 +341,34 @@
         .world li,
         .hex-content li {
             position: relative;
-            padding: 0.5rem 0.85rem 0.5rem 2rem;
+            padding: 0;
             margin-bottom: 0.45rem;
-            border-radius: 999px;
         }
 
         .world li::before {
             content: "⚡";
             position: absolute;
-            left: 0.8rem;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
             color: var(--orange);
         }
 
+        .world li span {
+            display: inline-block;
+            padding: 0.28rem 0.65rem 0.28rem 1.9rem;
+            border-radius: 999px;
+        }
+
         .world-day li {
-            background: rgba(255,255,255,0.94);
             color: #5b4637;
         }
 
-        .world-night li {
+        .world-day li span {
+            background: rgba(255,255,255,0.94);
+        }
+
+        .world-night li span {
             background: rgba(10, 10, 14, 0.94);
         }
 
@@ -700,24 +710,24 @@
                     <section class="world world-day">
                         <h2><span>☀️</span> The day job</h2>
                         <ul>
-                            <li>Certified PMP &amp; PMI-ACP</li>
-                            <li>Project Manager at Cushman &amp; Wakefield</li>
-                            <li>Leading enterprise IT initiatives</li>
-                            <li>Servant leadership without corporate mush</li>
-                            <li>Whiteboards, operating models, and real delivery</li>
-                            <li>Building teams that don’t hate the process</li>
+                            <li><span>Certified PMP &amp; PMI-ACP</span></li>
+                            <li><span>Project Manager at Cushman &amp; Wakefield</span></li>
+                            <li><span>Leading enterprise IT initiatives</span></li>
+                            <li><span>Servant leadership without corporate mush</span></li>
+                            <li><span>Whiteboards, operating models, and real delivery</span></li>
+                            <li><span>Building teams that don’t hate the process</span></li>
                         </ul>
                     </section>
 
                     <section class="world world-night">
                         <h2><span>🌙</span> The night lab</h2>
                         <ul>
-                            <li>Agentic coding experiments</li>
-                            <li>Building with Claude &amp; Codex</li>
-                            <li>AI-powered product development</li>
-                            <li>Workflow design and automation</li>
-                            <li>Prototypes, iterations, and public learning</li>
-                            <li>Founder of Hexappic, an AI-staffed microcompany</li>
+                            <li><span>Agentic coding experiments</span></li>
+                            <li><span>Building with Claude &amp; Codex</span></li>
+                            <li><span>AI-powered product development</span></li>
+                            <li><span>Workflow design and automation</span></li>
+                            <li><span>Prototypes, iterations, and public learning</span></li>
+                            <li><span>Founder of Hexappic, an AI-staffed microcompany</span></li>
                         </ul>
                     </section>
                 </div>
