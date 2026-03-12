@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zac Phoenix - Building Dreams While You Sleep 🚀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --sunset-orange: #FF6B00;
+            --bright-orange: #FF8C00;
+            --warm-yellow: #FFB84D;
+            --sunshine: #FFD700;
+            --dark-brown: #2C1810;
+            --rich-brown: #4A3020;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #FFF9F0 0%, #FFE5B4 30%, #FFD700 70%, #FFA500 100%);
+            background-attachment: fixed;
+            color: var(--dark-brown);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 140, 0, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+            25% { transform: translateY(-100px) translateX(50px) rotate(90deg); }
+            50% { transform: translateY(-50px) translateX(-50px) rotate(180deg); }
+            75% { transform: translateY(-150px) translateX(100px) rotate(270deg); }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Quirky header with bounce */
+        header {
+            text-align: center;
+            padding: 3rem 0;
+            animation: bounceIn 1s ease;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .avatar-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 8px solid var(--bright-orange);
+            box-shadow: 
+                0 0 0 4px var(--warm-yellow),
+                0 0 30px rgba(255, 107, 0, 0.5),
+                0 20px 60px rgba(0, 0, 0, 0.15);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+        }
+        
+        .avatar:hover {
+            transform: rotate(360deg) scale(1.1);
+            border-color: var(--sunshine);
+            box-shadow: 
+                0 0 0 4px var(--sunset-orange),
+                0 0 50px rgba(255, 140, 0, 0.8),
+                0 30px 80px rgba(0, 0, 0, 0.2);
+        }
+        
+        .status-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #00FF88, #00CC66);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .status-badge::before {
+            content: "⚡";
+            margin-right: 0.3rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--sunset-orange), var(--bright-orange), var(--warm-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 8px rgba(255, 107, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "🔥";
+            position: absolute;
+            right: -60px;
+            top: -10px;
+            font-size: 2rem;
+            animation: flicker 3s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: rotate(0deg); }
+            50% { opacity: 0.7; transform: rotate(15deg); }
+        }
+        
+        .tagline {
+            font-size: 1.6rem;
+            color: var(--rich-brown);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sub-tagline {
+            font-size: 1.1rem;
+            color: #996633;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--bright-orange), var(--warm-yellow));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-links a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .social-links a:hover::before {
+            left: 100%;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.6);
+        }
+        
+        .intro {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            margin: 3rem 0;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+            border: 3px solid var(--warm-yellow);
+            position: relative;
+            overflow: hidden;
+            animation: slideInUp 0.8s ease 0.2s both;
+        }
+        
+        .intro::before {
+            content: "☕";
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.1;
+            transform: rotate(-15deg);
+        }
+        
+        .intro p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro p strong {
+            color: var(--sunset-orange);
+            font-weight: 700;
+        }
+        
+        .fun-fact {
+            background: linear-gradient(135deg, #FFF4E6, #FFE8CC);
+            padding: 1.5rem;
+            border-left: 6px solid var(--bright-orange);
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .fun-fact::before {
+            content: "💡 Fun Fact: ";
+            font-weight: 700;
+            color: var(--sunset-orange);
+            font-style: normal;
+        }
+        
+        .two-worlds {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+            animation: slideInUp 0.8s ease 0.4s both;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .world {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .world::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.05) 0%, transparent 70%);
+            transition: transform 0.6s ease;
+        }
+        
+        .world:hover::before {
+            transform: translate(-25%, -25%);
+        }
+        
+        .world:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+        }
+        
+        .world h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .world.day h2 {
+            color: var(--sunset-orange);
+        }
+        
+        .world.night h2 {
+            color: var(--bright-orange);
+        }
+        
+        .world-icon {
+            font-size: 2.5rem;
+            animation: wobble 3s ease-in-out infinite;
+        }
+        
+        @keyframes wobble {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .world ul {
+            list-style: none;
+            padding-left: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .world li {
+            padding: 0.7rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+        
+        .world li:hover {
+            color: var(--sunset-orange);
+            transform: translateX(5px);
+        }
+        
+        .world li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: var(--bright-orange);
+            transition: transform 0.3s ease;
+        }
+        
+        .world li:hover::before {
+            transform: scale(1.3) rotate(15deg);
+        }
+        
+        .contact {
+            text-align: center;
+            padding: 4rem 0;
+            animation: fadeInZoom 0.8s ease 0.6s both;
+        }
+        
+        @keyframes fadeInZoom {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            color: var(--sunset-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .email-link {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, var(--sunset-orange), var(--bright-orange));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .email-link::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .email-link:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .email-link:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 36px rgba(255, 107, 0, 0.6);
+        }
+        
+        .email-link span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: #996633;
+            font-size: 0.95rem;
+        }
+        
+        footer::before {
+            content: "✨";
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h1::after {
+                right: -40px;
+                font-size: 1.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .two-worlds {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-direction: column;
+            }
+            
+            .avatar {
+                width: 160px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating particles -->
+    <div class="particles">
+        <div class="particle" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+        <div class="particle" style="top: 60%; left: 20%; animation-delay: 4s;"></div>
+        <div class="particle" style="top: 80%; left: 70%; animation-delay: 6s;"></div>
+        <div class="particle" style="top: 40%; left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="avatar-container">
+                <img src="zac-avatar.png" alt="Zac Phoenix" class="avatar">
+                <div class="status-badge">Building Now</div>
+            </div>
+            <h1>Zac Phoenix</h1>
+            <p class="tagline">PM by day. Dev by night.</p>
+            <p class="sub-tagline">Powered by caffeine, curiosity, and Claude</p>
+            <div class="social-links">
+                <a href="https://x.com/ZacPhoenix_Pro" target="_blank">
+                    <span>𝕏</span> Let's talk AI
+                </a>
+                <a href="https://linkedin.com/in/zac-phoenix" target="_blank">
+                    <span>in</span> Connect professionally
+                </a>
+                <a href="mailto:zac@zacphoenix.pro">
+                    <span>✉️</span> Say hi!
+                </a>
+            </div>
+        </header>
+        
+        <section class="intro">
+            <p>👋 <strong>Hey there!</strong> I'm the guy who turns complex business puzzles into elegant solutions with a digital whiteboard in one hand and way too much coffee in the other.</p>
+            
+            <p>By day, I'm a <strong>certified IT Project Manager</strong> (PMP, PMI-ACP) at Cushman & Wakefield, where I guide talented teams through the beautiful chaos of enterprise software delivery. I love the art of bringing out the best in people and celebrating wins together.</p>
+            
+            <p>By night? That's when things get <strong>really</strong> interesting. I'm building apps with an army of AI coding agents — Claude, Codex, and whatever new AI drops this week. Because who needs sleep when you can ship code? 🚀</p>
+            
+            <div class="fun-fact">
+                I made my first app while literally sleeping. No joke. Set up the agents before bed, woke up to working code. The future is wild.
+            </div>
+        </section>
+        
+        <div class="two-worlds">
+            <div class="world day">
+                <h2><span class="world-icon">☀️</span> The Day Job</h2>
+                <ul>
+                    <li>PMP & PMI-ACP certified</li>
+                    <li>Leading enterprise IT at C&W</li>
+                    <li>Servant leadership enthusiast</li>
+                    <li>Whiteboard wizard</li>
+                    <li>Team motivator & culture builder</li>
+                    <li>Continuous improvement advocate</li>
+                    <li>Professional puzzle-solver</li>
+                </ul>
+            </div>
+            
+            <div class="world night">
+                <h2><span class="world-icon">🌙</span> The Night Lab</h2>
+                <ul>
+                    <li>Agentic coding experiments</li>
+                    <li>Claude & Codex collaborator</li>
+                    <li>Building apps while sleeping</li>
+                    <li>AI workflow automation</li>
+                    <li>Sharing the journey on X</li>
+                    <li>Obsessed with what's next</li>
+                    <li>Sci-fi novel fuel</li>
+                </ul>
+            </div>
+        </div>
+        
+        <section class="contact">
+            <h2>Let's Build Something</h2>
+            <p>Got a project? A question? Just want to geek out about AI?</p>
+            <a href="mailto:zac@zacphoenix.pro" class="email-link">
+                <span>Drop me a line →</span>
+            </a>
+        </section>
+        
+        <footer>
+            <p>© 2026 Zac Phoenix · Fueled by caffeine & curiosity · Built with enthusiasm</p>
+        </footer>
+    </div>
+</body>
+</html>

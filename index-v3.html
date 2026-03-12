@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zac Phoenix - PM by Day, Dev by Night</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --burnt-orange: #D97642;
+            --warm-terracotta: #E08E5D;
+            --soft-peach: #F4C9A0;
+            --cream: #FAF3E8;
+            --charcoal: #2C2420;
+            --warm-gray: #6B5D56;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        /* Hero Section - Asymmetric Split */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            align-items: center;
+            gap: 4rem;
+            padding: 2rem 4rem;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--soft-peach) 0%, var(--cream) 100%);
+            z-index: 0;
+        }
+        
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .avatar-large {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            border: 12px solid var(--burnt-orange);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.15),
+                0 0 0 20px rgba(217, 118, 66, 0.1);
+            transition: all 0.6s ease;
+            object-fit: cover;
+        }
+        
+        .avatar-large:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.2),
+                0 0 0 20px rgba(217, 118, 66, 0.2);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding-right: 2rem;
+        }
+        
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(76, 175, 80, 0.1);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: #4CAF50;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--burnt-orange);
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            color: var(--warm-gray);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .intro-text {
+            font-size: 1.15rem;
+            color: var(--warm-gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .cta-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-primary {
+            background: var(--burnt-orange);
+            color: white;
+            box-shadow: 0 4px 16px rgba(217, 118, 66, 0.3);
+        }
+        
+        .cta-primary:hover {
+            background: var(--warm-terracotta);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(217, 118, 66, 0.4);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: var(--burnt-orange);
+            border: 2px solid var(--burnt-orange);
+        }
+        
+        .cta-secondary:hover {
+            background: var(--burnt-orange);
+            color: white;
+        }
+        
+        /* Dual World Section - Flipped Layout */
+        .dual-world {
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 55% 45%;
+            align-items: center;
+            gap: 4rem;
+            padding: 4rem;
+            position: relative;
+            background: white;
+        }
+        
+        .dual-world::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 45%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-peach) 100%);
+            z-index: 0;
+        }
+        
+        .worlds-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .world {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .world:hover {
+            border-color: var(--burnt-orange);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+        }
+        
+        .world-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .world h2 {
+            font-size: 1.8rem;
+            color: var(--burnt-orange);
+            margin-bottom: 1rem;
+        }
+        
+        .world ul {
+            list-style: none;
+        }
+        
+        .world li {
+            padding: 0.5rem 0;
+            color: var(--warm-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .world li::before {
+            content: "→";
+            color: var(--burnt-orange);
+            font-weight: 700;
+        }
+        
+        .visual-element {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .stat {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--burnt-orange);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+        
+        /* Contact Section - Full Width Hero */
+        .contact {
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--soft-peach) 0%, var(--warm-terracotta) 100%);
+            color: white;
+        }
+        
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+        
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .contact-link {
+            background: white;
+            color: var(--burnt-orange);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            background: var(--charcoal);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        
+        .scroll-indicator::before {
+            content: "↓";
+            font-size: 2rem;
+            color: var(--burnt-orange);
+            opacity: 0.5;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .hero, .dual-world {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                min-height: auto;
+            }
+            
+            .hero::before, .dual-world::before {
+                display: none;
+            }
+            
+            .avatar-large {
+                width: 280px;
+                height: 280px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .worlds-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact h2 {
+                font-size: 2rem;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                order: 2;
+            }
+            
+            .hero-image {
+                order: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-image">
+            <img src="zac-avatar.png" alt="Zac Phoenix" class="avatar-large">
+        </div>
+        
+        <div class="hero-content">
+            <div class="status">
+                <span>Available for interesting projects</span>
+            </div>
+            
+            <h1>Zac Phoenix</h1>
+            <p class="tagline">PM by day. Dev by night.</p>
+            
+            <p class="intro-text">
+                I turn complex business puzzles into elegant solutions, then build apps with AI while I sleep. 
+                Certified project manager by profession, AI experimenter by obsession.
+            </p>
+            
+            <div class="cta-links">
+                <a href="mailto:zac@zacphoenix.pro" class="cta-primary">
+                    <span>✉️</span> Let's talk
+                </a>
+                <a href="https://x.com/ZacPhoenix_Pro" target="_blank" class="cta-secondary">
+                    <span>𝕏</span> Follow the journey
+                </a>
+                <a href="https://linkedin.com/in/zac-phoenix" target="_blank" class="cta-secondary">
+                    <span>in</span> Connect
+                </a>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator"></div>
+    </section>
+    
+    <!-- Dual World Section -->
+    <section class="dual-world">
+        <div class="worlds-content">
+            <div class="world">
+                <span class="world-icon">☀️</span>
+                <h2>Day Job</h2>
+                <ul>
+                    <li>PMP & PMI-ACP certified</li>
+                    <li>Leading IT at C&W</li>
+                    <li>Servant leadership</li>
+                    <li>Team development</li>
+                    <li>Continuous improvement</li>
+                </ul>
+            </div>
+            
+            <div class="world">
+                <span class="world-icon">🌙</span>
+                <h2>Night Lab</h2>
+                <ul>
+                    <li>Agentic coding</li>
+                    <li>Claude & Codex</li>
+                    <li>Building while sleeping</li>
+                    <li>AI automation</li>
+                    <li>Sharing on X</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="visual-element">
+            <div class="stat-grid">
+                <div class="stat">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Years PM Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Coffee Consumed</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Certifications</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">AI Building</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section class="contact">
+        <h2>Let's Build Something</h2>
+        <p>Got a project, question, or just want to geek out about AI?</p>
+        
+        <div class="contact-links">
+            <a href="mailto:zac@zacphoenix.pro" class="contact-link">
+                <span>✉️</span> zac@zacphoenix.pro
+            </a>
+            <a href="https://x.com/ZacPhoenix_Pro" target="_blank" class="contact-link">
+                <span>𝕏</span> @ZacPhoenix_Pro
+            </a>
+            <a href="https://linkedin.com/in/zac-phoenix" target="_blank" class="contact-link">
+                <span>in</span> LinkedIn
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2026 Zac Phoenix · Built with curiosity and a lot of caffeine</p>
+    </footer>
+</body>
+</html>

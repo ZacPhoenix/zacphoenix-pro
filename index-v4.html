@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zac Phoenix - PM by Day, Dev by Night</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF4E6 0%, #FFE5B4 50%, #FFD700 100%);
+            color: #2C1810;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            padding: 3rem 0;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Asymmetric header - avatar offset left */
+        .header-content {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 6px solid #FF8C00;
+            box-shadow: 0 8px 24px rgba(255, 140, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+        
+        .header-text {
+            text-align: left;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #FF6B00;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            color: #CC5500;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
+        }
+        
+        /* Intro - full width, offset content */
+        .intro {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-left: 6px solid #FF8C00;
+            max-width: 85%;
+            margin-left: auto;
+        }
+        
+        .intro p {
+            font-size: 1.1rem;
+            color: #4A4A4A;
+            margin-bottom: 1rem;
+        }
+        
+        .intro p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Two worlds - asymmetric widths */
+        .two-worlds {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .world {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .world:hover {
+            transform: translateY(-4px);
+        }
+        
+        .world h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #FF8C00;
+        }
+        
+        .world-icon {
+            font-size: 2rem;
+        }
+        
+        .world ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .world li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+        
+        .world li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #FF8C00;
+        }
+        
+        /* Contact - offset opposite direction */
+        .contact {
+            text-align: left;
+            padding: 3rem 0;
+            max-width: 85%;
+        }
+        
+        .contact h2 {
+            font-size: 2rem;
+            color: #FF6B00;
+            margin-bottom: 1rem;
+        }
+        
+        .contact p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .email-link {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #FF6B00, #FF8C00);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+        }
+        
+        .email-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(255, 107, 0, 0.6);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #996633;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            
+            .header-text {
+                text-align: center;
+            }
+            
+            .avatar {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .two-worlds {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro, .contact {
+                max-width: 100%;
+                margin-left: 0;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <img src="zac-avatar.png" alt="Zac Phoenix" class="avatar">
+                
+                <div class="header-text">
+                    <h1>Zac Phoenix</h1>
+                    <p class="tagline">PM by day, aspiring Dev by night</p>
+                    
+                    <div class="social-links">
+                        <a href="https://x.com/ZacPhoenix_Pro" target="_blank">
+                            <span>𝕏</span> @ZacPhoenix_Pro
+                        </a>
+                        <a href="https://linkedin.com/in/zac-phoenix" target="_blank">
+                            <span>in</span> LinkedIn
+                        </a>
+                        <a href="mailto:zac@zacphoenix.pro">
+                            <span>✉️</span> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <section class="intro">
+            <p>👋 Hey there! I'm a certified IT Project Manager (PMP, PMI-ACP) who thrives on turning complex business ideas into reality through careful planning, grit, and servant leadership.</p>
+            
+            <p>By day, I'm guiding teams at Cushman & Wakefield through the science and art of project management - organizing and motivating talented developers, solution architects, and business SMEs to deliver results that impress.</p>
+            
+            <p>By night? I'm experimenting with agentic coding, Claude, Codex, and building things with an army of AI coding agents at my side. Because why sleep when you can ship code? 🚀</p>
+        </section>
+        
+        <div class="two-worlds">
+            <div class="world">
+                <h2><span class="world-icon">☀️</span> The Day Job</h2>
+                <ul>
+                    <li>Certified PMP & PMI-ACP</li>
+                    <li>Project Manager at Cushman & Wakefield</li>
+                    <li>Leading enterprise IT initiatives</li>
+                    <li>Servant leadership & team development</li>
+                    <li>Digital whiteboards & coffee enthusiast</li>
+                    <li>Culture of continuous improvement</li>
+                </ul>
+            </div>
+            
+            <div class="world">
+                <h2><span class="world-icon">🌙</span> The Night Lab</h2>
+                <ul>
+                    <li>Agentic coding experiments</li>
+                    <li>Building with Claude & Codex</li>
+                    <li>AI-powered development</li>
+                    <li>Sharing the journey</li>
+                    <li>Creating apps while I sleep</li>
+                    <li>Obsessed with automation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <section class="contact">
+            <h2>Let's Connect</h2>
+            <p>Whether you want to talk project management, AI development, or just say hi...</p>
+            <a href="mailto:zac@zacphoenix.pro" class="email-link">Drop me a line →</a>
+        </section>
+        
+        <footer>
+            <p>© 2026 Zac Phoenix · Built with enthusiasm and a lot of caffeine</p>
+        </footer>
+    </div>
+</body>
+</html>
