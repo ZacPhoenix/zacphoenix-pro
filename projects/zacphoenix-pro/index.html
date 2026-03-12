@@ -511,12 +511,23 @@
         }
 
         .hex-capabilities li {
-            padding: 0.45rem 0.75rem;
+            position: relative;
+            padding: 0.45rem 0.75rem 0.45rem 1.7rem;
             border-radius: 999px;
             background: rgba(8, 15, 31, 0.56);
             color: rgba(226,232,240,0.94);
             font-size: 0.93rem;
             line-height: 1.45;
+        }
+
+        .hex-capabilities li::before {
+            content: "⚝";
+            position: absolute;
+            left: 0.7rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f472b6;
+            font-size: 0.9rem;
         }
 
         .hex-content li::before {
