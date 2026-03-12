@@ -184,16 +184,9 @@
             overflow: hidden;
         }
 
-        .intro-top {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
         .intro-art {
             position: relative;
-            min-height: 100%;
+            margin-top: 1.6rem;
         }
 
         .intro-art img {
@@ -207,10 +200,11 @@
         }
 
         .intro-text {
-            padding: 1rem 0.5rem 1rem 0.2rem;
+            padding: 0.4rem 0.2rem 0 0.2rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            max-width: 820px;
         }
 
         .intro-text h2,
@@ -417,7 +411,6 @@
 
         @media (max-width: 900px) {
             .hero,
-            .intro-top,
             .two-worlds,
             .meet-hex {
                 grid-template-columns: 1fr;
@@ -501,17 +494,16 @@
         </header>
 
         <section class="intro panel">
-            <div class="intro-top">
-                <div class="intro-art">
-                    <img src="splash1.png" alt="Illustration of Zac balancing project leadership and AI-powered building">
-                </div>
-                <div class="intro-text">
-                    <span class="accent-line"></span>
-                    <h2>The human in the loop</h2>
-                    <p>👋 I’m a certified IT Project Manager with a builder streak. On paper, that means PMP, PMI-ACP, enterprise delivery, stakeholder wrangling, and making sure smart people can actually move. In practice, it means I love taking fuzzy chaos and turning it into momentum.</p>
-                    <p>By day, I’m guiding teams at Cushman &amp; Wakefield through the actual work of delivery — aligning developers, architects, business partners, and outcomes without burying everyone in process theater.</p>
-                    <p>By night, I’m running an entirely different experiment: building with Claude, Codex, local agents, and autonomous workflows that can research, plan, and ship while I’m asleep. Turns out the venn diagram between PM and mad scientist is just a circle.</p>
-                </div>
+            <div class="intro-text">
+                <span class="accent-line"></span>
+                <h2>The human in the loop</h2>
+                <p>👋 I’m a certified IT Project Manager with a builder streak. On paper, that means PMP, PMI-ACP, enterprise delivery, stakeholder wrangling, and making sure smart people can actually move. In practice, it means I love taking fuzzy chaos and turning it into momentum.</p>
+                <p>By day, I’m guiding teams at Cushman &amp; Wakefield through the actual work of delivery — aligning developers, architects, business partners, and outcomes without burying everyone in process theater.</p>
+                <p>By night, I’m running an entirely different experiment: building with Claude, Codex, local agents, and autonomous workflows that can research, plan, and ship while I’m asleep. Turns out the venn diagram between PM and mad scientist is just a circle.</p>
+            </div>
+
+            <div class="intro-art">
+                <img src="splash1.png" alt="Illustration of Zac balancing project leadership and AI-powered building">
             </div>
 
             <div class="two-worlds">
