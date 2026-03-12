@@ -248,16 +248,62 @@
         .world {
             padding: 2rem;
             border-radius: var(--radius-lg);
-            background: rgba(255,255,255,0.78);
             border: 1px solid rgba(255,255,255,0.7);
             box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
         }
 
         .world h2 {
             display: flex;
             align-items: center;
             gap: 0.65rem;
-            color: var(--orange-deep);
+        }
+
+        .world-day {
+            background: linear-gradient(160deg, rgba(255,248,223,0.96), rgba(255,232,188,0.92));
+            border-color: rgba(255,186,73,0.35);
+        }
+
+        .world-day h2 {
+            color: #b45309;
+        }
+
+        .world-day::after {
+            content: "";
+            position: absolute;
+            top: -36px;
+            right: -28px;
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(255,207,84,0.72) 0%, rgba(255,207,84,0.2) 45%, rgba(255,207,84,0) 72%);
+            pointer-events: none;
+        }
+
+        .world-night {
+            background: linear-gradient(160deg, rgba(17,24,39,0.96), rgba(37,42,84,0.94));
+            border-color: rgba(129,140,248,0.22);
+            box-shadow: 0 18px 42px rgba(17,24,39,0.28);
+        }
+
+        .world-night h2,
+        .world-night li {
+            color: rgba(240,244,255,0.95);
+        }
+
+        .world-night::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 16% 20%, rgba(255,255,255,0.85) 0 1.2px, transparent 1.5px),
+                radial-gradient(circle at 78% 18%, rgba(255,255,255,0.65) 0 1.4px, transparent 1.7px),
+                radial-gradient(circle at 62% 40%, rgba(255,255,255,0.45) 0 1px, transparent 1.3px),
+                radial-gradient(circle at 28% 72%, rgba(255,255,255,0.5) 0 1.3px, transparent 1.6px),
+                radial-gradient(circle at 86% 66%, rgba(255,255,255,0.55) 0 1.1px, transparent 1.4px);
+            pointer-events: none;
+            opacity: 0.85;
         }
 
         .world ul,
@@ -278,6 +324,10 @@
             position: absolute;
             left: 0;
             color: var(--orange);
+        }
+
+        .world-night li::before {
+            color: #c4b5fd;
         }
 
         .meet-hex {
@@ -499,7 +549,7 @@
             </div>
 
             <div class="two-worlds">
-                <section class="world">
+                <section class="world world-day">
                     <h2><span>☀️</span> The day job</h2>
                     <ul>
                         <li>Certified PMP &amp; PMI-ACP</li>
@@ -511,7 +561,7 @@
                     </ul>
                 </section>
 
-                <section class="world">
+                <section class="world world-night">
                     <h2><span>🌙</span> The night lab</h2>
                     <ul>
                         <li>Agentic coding experiments</li>
