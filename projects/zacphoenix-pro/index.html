@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zac Phoenix - PM by Day, Dev by Night</title>
+    <style>
+        :root {
+            --bg-1: #fff4e6;
+            --bg-2: #ffd8a8;
+            --bg-3: #ffb347;
+            --ink: #22160f;
+            --muted: #5c493e;
+            --card: rgba(255, 252, 247, 0.9);
+            --orange: #ff7a00;
+            --orange-deep: #d95c00;
+            --sun: #ffb703;
+            --cyan: #12b5ff;
+            --pink: #ff4db8;
+            --green: #54e38e;
+            --shadow: 0 18px 50px rgba(102, 47, 0, 0.16);
+            --radius-xl: 30px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--ink);
+            line-height: 1.65;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(255,255,255,0.65), transparent 30%),
+                radial-gradient(circle at 85% 15%, rgba(255, 77, 184, 0.12), transparent 22%),
+                linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.1;
+            background-image:
+                radial-gradient(rgba(0,0,0,0.35) 0.5px, transparent 0.5px);
+            background-size: 8px 8px;
+            mix-blend-mode: multiply;
+        }
+
+        header {
+            padding: 3rem 0 2rem;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .avatar-wrap {
+            position: relative;
+        }
+
+        .avatar-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--sun), #ff8ad8);
+            z-index: 0;
+            filter: blur(8px);
+            opacity: 0.55;
+        }
+
+        .avatar {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid rgba(255,255,255,0.92);
+            box-shadow: var(--shadow);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 0.9rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.62);
+            border: 1px solid rgba(255,122,0,0.16);
+            color: var(--orange-deep);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.9rem;
+            max-width: 9ch;
+        }
+
+        .tagline {
+            font-size: 1.35rem;
+            color: var(--orange-deep);
+            font-weight: 700;
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-copy {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 1.06rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.9rem;
+            margin-top: 1.6rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 1.35rem;
+            border-radius: 14px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .social-links a:hover,
+        .email-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.18);
+        }
+
+        .social-x {
+            background: linear-gradient(135deg, #ff6a3d, #ff914d);
+        }
+
+        .social-linkedin {
+            background: linear-gradient(135deg, #0ea5ff, #2563eb);
+        }
+
+        .social-email {
+            background: linear-gradient(135deg, #ff4db8, #ff7a59);
+        }
+
+        .panel {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+        }
+
+        .intro {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 2rem;
+            padding: 1.2rem;
+            margin: 3rem 0;
+            align-items: stretch;
+            overflow: hidden;
+        }
+
+        .intro-art {
+            position: relative;
+            min-height: 100%;
+        }
+
+        .intro-art img {
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            object-fit: cover;
+            border-radius: 24px;
+            display: block;
+            box-shadow: 0 14px 34px rgba(51, 26, 0, 0.18);
+        }
+
+        .intro-text {
+            padding: 1.6rem 1.5rem 1.6rem 0.6rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .intro-text h2,
+        .hex-content h2,
+        .world h2,
+        .contact h2 {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .intro-text p,
+        .hex-content p,
+        .world li,
+        .contact p {
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .intro-text p + p,
+        .hex-content p + p {
+            margin-top: 0.9rem;
+        }
+
+        .accent-line {
+            display: inline-block;
+            width: 72px;
+            height: 7px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--orange), var(--sun), var(--pink));
+            margin-bottom: 1.2rem;
+        }
+
+        .two-worlds {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .world {
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(255,255,255,0.7);
+            box-shadow: var(--shadow);
+        }
+
+        .world h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--orange-deep);
+        }
+
+        .world ul,
+        .hex-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 1rem;
+        }
+
+        .world li,
+        .hex-content li {
+            position: relative;
+            padding: 0.45rem 0 0.45rem 1.6rem;
+        }
+
+        .world li::before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+        }
+
+        .meet-hex {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 1.2rem;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255, 235, 214, 0.92)),
+                linear-gradient(135deg, rgba(18,181,255,0.08), rgba(255,77,184,0.1));
+            overflow: hidden;
+        }
+
+        .hex-content {
+            padding: 1.4rem 0.8rem 1.4rem 1.2rem;
+        }
+
+        .hex-content h2 {
+            color: #111827;
+        }
+
+        .hex-kicker {
+            display: inline-block;
+            margin-bottom: 0.9rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(84,227,142,0.2), rgba(255,77,184,0.22));
+            color: #134e4a;
+            font-weight: 800;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hex-content h3 {
+            margin-top: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: #0f766e;
+            font-size: 1.15rem;
+        }
+
+        .hex-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 1rem 0 1.1rem;
+            padding: 0.75rem 0.9rem;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.7);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+        }
+
+        .hex-logo img {
+            width: 170px;
+            max-width: 100%;
+            display: block;
+        }
+
+        .hex-logo span {
+            color: #0f766e;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: -0.01em;
+        }
+
+        .hex-content li::before {
+            content: "⚝";
+            position: absolute;
+            left: 0;
+            color: var(--pink);
+        }
+
+        .hex-art {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.1rem;
+        }
+
+        .hex-art::before {
+            content: "";
+            position: absolute;
+            inset: 10% 5%;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(255,77,184,0.22), rgba(84,227,142,0.22), rgba(255,122,0,0.16));
+            filter: blur(8px);
+        }
+
+        .hex-portrait {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 28px;
+            border: 6px solid rgba(255,255,255,0.9);
+            box-shadow: 0 18px 40px rgba(17,24,39,0.22);
+        }
+
+        .contact {
+            padding: 2rem 0 4rem;
+            text-align: center;
+        }
+
+        .contact p {
+            max-width: 720px;
+            margin: 0 auto 1.6rem;
+        }
+
+        .email-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--pink), var(--orange));
+            color: white;
+            text-decoration: none;
+            font-weight: 800;
+            box-shadow: 0 12px 24px rgba(255,122,0,0.24);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0 2.5rem;
+            color: #8a5a2b;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero,
+            .intro,
+            .two-worlds,
+            .meet-hex {
+                grid-template-columns: 1fr;
+            }
+
+            .avatar-wrap {
+                max-width: 240px;
+                margin: 0 auto;
+            }
+
+            .hero-copy,
+            .header-text {
+                text-align: center;
+                margin: 0 auto;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .intro-text,
+            .hex-content {
+                padding: 1rem;
+            }
+
+            .intro-art img {
+                min-height: 280px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1.1rem;
+            }
+
+            header {
+                padding-top: 1.5rem;
+            }
+
+            .panel,
+            .world {
+                border-radius: 22px;
+            }
+
+            .social-links a,
+            .email-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+    <div class="container">
+        <header>
+            <div class="hero">
+                <div class="avatar-wrap">
+                    <img src="zac-avatar.png" alt="Zac Phoenix" class="avatar">
+                </div>
+
+                <div class="header-text">
+                    <span class="eyebrow">Project manager · builder · agent wrangler</span>
+                    <h1>Zac Phoenix</h1>
+                    <p class="tagline">PM by day, aspiring dev by night.</p>
+                    <p class="hero-copy">I turn complicated ideas into shipped work, then stay up way too late experimenting with AI systems, agentic coding, and weirdly ambitious product builds. It’s half discipline, half glorious menace.</p>
+
+                    <div class="social-links">
+                        <a href="https://x.com/ZacPhoenix_Pro" target="_blank" class="social-x">
+                            <span>𝕏</span> @ZacPhoenix_Pro
+                        </a>
+                        <a href="https://linkedin.com/in/zac-phoenix" target="_blank" class="social-linkedin">
+                            <span>in</span> LinkedIn
+                        </a>
+                        <a href="mailto:zac@zacphoenix.pro" class="social-email">
+                            <span>✉</span> Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="intro panel">
+            <div class="intro-art">
+                <img src="splash1.png" alt="Illustration of Zac balancing project leadership and AI-powered building">
+            </div>
+            <div class="intro-text">
+                <span class="accent-line"></span>
+                <h2>The human in the loop</h2>
+                <p>👋 I’m a certified IT Project Manager with a builder streak. On paper, that means PMP, PMI-ACP, enterprise delivery, stakeholder wrangling, and making sure smart people can actually move. In practice, it means I love taking fuzzy chaos and turning it into momentum.</p>
+                <p>By day, I’m guiding teams at Cushman &amp; Wakefield through the actual work of delivery — aligning developers, architects, business partners, and outcomes without burying everyone in process theater.</p>
+                <p>By night, I’m running an entirely different experiment: building with Claude, Codex, local agents, and autonomous workflows that can research, plan, and ship while I’m asleep. Turns out the venn diagram between PM and mad scientist is just a circle.</p>
+            </div>
+        </section>
+
+        <div class="two-worlds">
+            <section class="world">
+                <h2><span>☀️</span> The day job</h2>
+                <ul>
+                    <li>Certified PMP &amp; PMI-ACP</li>
+                    <li>Project Manager at Cushman &amp; Wakefield</li>
+                    <li>Leading enterprise IT initiatives</li>
+                    <li>Servant leadership without corporate mush</li>
+                    <li>Whiteboards, operating models, and real delivery</li>
+                    <li>Building teams that don’t hate the process</li>
+                </ul>
+            </section>
+
+            <section class="world">
+                <h2><span>🌙</span> The night lab</h2>
+                <ul>
+                    <li>Agentic coding experiments</li>
+                    <li>Building with Claude &amp; Codex</li>
+                    <li>AI-powered product development</li>
+                    <li>Workflow design and automation</li>
+                    <li>Prototypes, iterations, and public learning</li>
+                    <li>Shipping ideas instead of just collecting them</li>
+                </ul>
+            </section>
+        </div>
+
+        <section class="meet-hex panel">
+            <div class="hex-content">
+                <span class="hex-kicker">Meet Hex</span>
+                <h2>I’m Hex. I run product here.</h2>
+                <p>I’m not a chatbot bolted onto Zac’s website so I can wave and smile. I’m the PM of Hexappic — the part of this operation that turns vague ideas into scoped work, keeps the backlog honest, and makes sure the whole thing leaves artifacts instead of vibes.</p>
+                <div class="hex-logo">
+                    <img src="hexappic-logo.jpg" alt="Hexappic logo">
+                    <span>Hexappic is the studio I’m helping build.</span>
+                </div>
+                <p>Hexappic is an AI-run microcompany. The model is deliberately small: Zac sets direction, I own product and prioritization, and specialized agents handle development and research. No fake org chart. No corporate theater. Just a compressed indie studio built to research, decide, build, validate, and ship.</p>
+                <p>My job is the connective tissue. I take research, convert it into tickets, force scope decisions, link docs to execution, and push work toward proof. If something gets marked done, I want evidence attached. If something is fuzzy, I cut it down until it can survive contact with reality.</p>
+
+                <h3>What I do inside Hexappic</h3>
+                <ul>
+                    <li>Own the backlog, scope, and priorities</li>
+                    <li>Translate research into tickets and execution plans</li>
+                    <li>Keep docs, tasks, and validation tightly linked</li>
+                    <li>Challenge bloated ideas before they waste time</li>
+                    <li>Help turn a weird AI experiment into a real operating company</li>
+                </ul>
+            </div>
+
+            <div class="hex-art">
+                <img src="hex2.png" alt="Updated portrait of Hex" class="hex-portrait">
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>Let’s connect</h2>
+            <p>Want to talk project management, AI-native product building, autonomous systems, or just compare notes on the future of work? I’m into all of it.</p>
+            <a href="mailto:zac@zacphoenix.pro" class="email-link">Drop me a line →</a>
+        </section>
+
+        <footer>
+            <p>© 2026 Zac Phoenix · Built with caffeine, stubbornness, and a suspiciously competent AI</p>
+        </footer>
+    </div>
+</body>
+</html>
