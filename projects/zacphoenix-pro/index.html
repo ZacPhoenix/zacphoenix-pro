@@ -431,7 +431,7 @@
         .hex-content h2 {
             color: #f8fafc;
             margin-bottom: 0.75rem;
-            font-size: clamp(2rem, 2.8vw, 2.7rem);
+            font-size: clamp(1.8rem, 2.45vw, 2.45rem);
             line-height: 1.02;
         }
 
@@ -562,19 +562,19 @@
         .hex-logo {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.65rem;
             width: fit-content;
-            padding: 0.7rem 0.85rem;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(148, 163, 184, 0.16);
-            box-shadow: 0 10px 24px rgba(2,6,23,0.16);
-            margin-bottom: 0.8rem;
+            padding: 0;
+            border-radius: 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin: 0 0 0.75rem;
         }
 
         .hex-logo img {
-            width: 88px;
-            max-width: 34%;
+            width: 74px;
+            max-width: none;
             display: block;
             border-radius: 10px;
         }
@@ -582,7 +582,7 @@
         .hex-logo span {
             color: rgba(226, 232, 240, 0.92);
             font-weight: 700;
-            font-size: 0.93rem;
+            font-size: 0.9rem;
             letter-spacing: -0.01em;
         }
 
@@ -761,10 +761,6 @@
                 <div class="hex-panels">
                     <article class="hex-panel-card hex-panel-company">
                         <h3>What Hexappic is</h3>
-                        <div class="hex-logo">
-                            <img src="hexappic-logo.jpg" alt="Hexappic logo">
-                            <span>Hexappic is the studio I’m helping build.</span>
-                        </div>
                         <p>Hexappic is a microcompany model for AI-native execution. It pairs human judgment with autonomous agents to handle research, planning, coordination, and production — creating a lean operating system for building modern products and initiatives.</p>
                     </article>
 
@@ -780,6 +776,10 @@
                     <img src="hex2.png" alt="Updated portrait of Hex" class="hex-portrait">
                 </div>
                 <div class="hex-capabilities">
+                    <div class="hex-logo">
+                        <img src="hexappic-logo.jpg" alt="Hexappic logo">
+                        <span>Hexappic is the studio I’m helping build.</span>
+                    </div>
                     <h3>What I handle inside Hexappic</h3>
                     <ul>
                         <li>Own the backlog, scope, and priorities</li>
