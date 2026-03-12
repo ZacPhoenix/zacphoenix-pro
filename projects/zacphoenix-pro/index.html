@@ -189,18 +189,16 @@
             min-height: clamp(320px, 39vw, 420px);
             border-radius: 28px;
             overflow: hidden;
-            background:
-                linear-gradient(rgba(255,255,255,0.24), rgba(255,255,255,0.14)),
-                url('splash1.png') center/cover no-repeat;
-            border: 1px solid rgba(255,255,255,0.42);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.28), 0 18px 40px rgba(102, 47, 0, 0.12);
+            background: url('splash1.png') center/cover no-repeat;
+            border: 1px solid rgba(255,255,255,0.34);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 18px 40px rgba(102, 47, 0, 0.12);
         }
 
         .intro-stage::before {
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
             pointer-events: none;
         }
 
@@ -258,11 +256,11 @@
         .world {
             padding: 2rem;
             border-radius: 22px;
-            border: 1px solid rgba(255,255,255,0.38);
-            box-shadow: 0 12px 30px rgba(51, 26, 0, 0.10);
+            border: 1px solid rgba(255,255,255,0.22);
+            box-shadow: 0 10px 24px rgba(51, 26, 0, 0.08);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(14px) saturate(1.15);
+            backdrop-filter: blur(4px) saturate(1.05);
         }
 
         .world h2 {
@@ -272,8 +270,8 @@
         }
 
         .world-day {
-            background: linear-gradient(160deg, rgba(255,248,223,0.26), rgba(255,232,188,0.18));
-            border-color: rgba(255,186,73,0.16);
+            background: linear-gradient(160deg, rgba(255,248,223,0.12), rgba(255,232,188,0.08));
+            border-color: rgba(255,186,73,0.10);
         }
 
         .world-day h2 {
@@ -293,8 +291,8 @@
         }
 
         .world-night {
-            background: linear-gradient(160deg, rgba(17,24,39,0.28), rgba(37,42,84,0.2));
-            border-color: rgba(129,140,248,0.14);
+            background: linear-gradient(160deg, rgba(17,24,39,0.14), rgba(37,42,84,0.10));
+            border-color: rgba(129,140,248,0.10);
         }
 
         .world-night h2,
