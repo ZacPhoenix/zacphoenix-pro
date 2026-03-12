@@ -192,16 +192,16 @@
 
         .intro-stage-inner {
             position: relative;
-            min-height: 640px;
+            min-height: 980px;
             transform-style: preserve-3d;
         }
 
         .intro-art {
             position: sticky;
-            top: 10vh;
+            top: 18vh;
             z-index: 3;
             transform-origin: center center;
-            transition: transform 0.95s cubic-bezier(.22,.8,.24,1), opacity 0.7s ease, filter 0.7s ease;
+            transition: box-shadow 0.35s ease;
             will-change: transform, opacity;
         }
 
@@ -270,8 +270,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
-            margin: -6.5rem 0 0;
-            padding: 7.6rem 1rem 1rem;
+            margin: -5.2rem 0 0;
+            padding: 8.4rem 1rem 1rem;
             position: relative;
             z-index: 1;
             border-radius: 28px;
@@ -344,10 +344,10 @@
         }
 
         .intro-art {
-            --flip-progress: 0;
-            transform: rotateX(calc(var(--flip-progress) * 78deg)) scale(calc(1 - (var(--flip-progress) * 0.06))) translateY(calc(var(--flip-progress) * -56px));
-            opacity: calc(1 - (var(--flip-progress) * 0.82));
-            filter: blur(calc(var(--flip-progress) * 2px));
+            --reveal-progress: 0;
+            transform: translateY(calc(var(--reveal-progress) * -220px)) scale(calc(1 - (var(--reveal-progress) * 0.08)));
+            opacity: calc(1 - (var(--reveal-progress) * 0.96));
+            filter: blur(calc(var(--reveal-progress) * 3px));
             pointer-events: none;
         }
 
@@ -619,7 +619,7 @@
             }
 
             .intro-art {
-                --flip-progress: 0;
+                --reveal-progress: 0;
                 transform: none;
                 opacity: 1;
                 filter: none;
@@ -810,19 +810,25 @@
             const art = intro?.querySelector('.intro-art');
             if (!intro || !art || window.matchMedia('(max-width: 900px)').matches) return;
 
-            const updateFlip = () => {
+            const updateReveal = () => {
                 const rect = intro.getBoundingClientRect();
                 const viewport = window.innerHeight || document.documentElement.clientHeight;
-                const start = viewport * 0.18;
-                const travel = Math.max(rect.height - viewport * 0.28, 240);
-                const raw = (start - rect.top) / travel;
-                const progress = Math.max(0, Math.min(1, raw));
-                art.style.setProperty('--flip-progress', progress.toFixed(3));
+                const stickyTop = viewport * 0.18;
+                const holdDistance = viewport * 0.34;
+                const revealDistance = viewport * 0.34;
+                const passed = stickyTop - rect.top;
+
+                let progress = 0;
+                if (passed > holdDistance) {
+                    progress = Math.min(1, (passed - holdDistance) / revealDistance);
+                }
+
+                art.style.setProperty('--reveal-progress', progress.toFixed(3));
             };
 
-            updateFlip();
-            window.addEventListener('scroll', updateFlip, { passive: true });
-            window.addEventListener('resize', updateFlip);
+            updateReveal();
+            window.addEventListener('scroll', updateReveal, { passive: true });
+            window.addEventListener('resize', updateReveal);
         })();
     </script>
 </body>
