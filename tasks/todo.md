@@ -19,3 +19,5 @@ Wake Zac up to a local-first, evidence-based multi-agent app studio called Hexap
 - [x] Tooling implementation
 - [x] Test validation
 - [ ] Documentation / handoff
+- [x] Desktop cockpit stub created
+- [ ] Interactive desktop UI deferred until website is finished

@@ -31,3 +31,21 @@
 - Validation result: `Validation OK`
 - Generated readout: `projects/hexappic/platform/reports/phase-2-readout.md`
 - Starter tickets HX-001 through HX-003 marked done with linked evidence
+
+### 13:46 CDT — Desktop cockpit app stub created and parked
+- Built native macOS viewer app source: `projects/hexappic/HexappicDesktopApp.swift`
+- Built desktop app bundle: `~/Desktop/Hexappic.app`
+- Current capabilities:
+  - Overview
+  - Board
+  - Readout
+  - Operating Model
+  - Workflow
+  - Validate
+  - Open Folder
+- Current limitation: read-oriented cockpit, not yet an interactive operating surface
+- Deferred by request while finishing the website first
+- Next return point:
+  1. replace plain text panes with card-based dashboard UI
+  2. add ticket create/edit/move actions
+  3. expose validation + evidence links more cleanly
