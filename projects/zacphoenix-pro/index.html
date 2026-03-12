@@ -274,6 +274,14 @@
             font-size: clamp(1.6rem, 2.3vw, 2.15rem);
         }
 
+        .world-night {
+            text-align: right;
+        }
+
+        .world-night h2 {
+            margin-left: auto;
+        }
+
         .world-day {
             background: transparent;
         }
@@ -363,6 +371,10 @@
             font-size: 0.96rem;
         }
 
+        .world-night li span {
+            padding: 0.2rem 1.7rem 0.2rem 0.55rem;
+        }
+
         .world-day li {
             color: #5b4637;
         }
@@ -376,6 +388,8 @@
         }
 
         .world-night li::before {
+            left: auto;
+            right: 0.68rem;
             color: #c4b5fd;
         }
 
@@ -723,7 +737,7 @@
                     </section>
 
                     <section class="world world-night">
-                        <h2><span>🌙</span> The night lab</h2>
+                        <h2>The night lab <span>🌙</span></h2>
                         <ul>
                             <li><span>Agentic coding experiments</span></li>
                             <li><span>Building with Claude &amp; Codex</span></li>
