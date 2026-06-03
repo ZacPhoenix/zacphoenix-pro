@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "client": "Acme Plumbing Supplies",
+    "engagementDate": "2026-06-03",
+    "consultant": "",
+    "sourceFiles": ["sample-transcript.md", "current-sop.pdf"],
+    "irVersion": 1
+  },
+  "processes": [
+    {
+      "id": "proc_order_to_cash",
+      "name": "Order to Cash",
+      "description": "From customer order received to payment cleared.",
+      "steps": [
+        {
+          "id": "step_001",
+          "name": "Receive order (email/phone)",
+          "role": "Sales admin",
+          "description": "Orders captured from email, phone, and a web form, then re-keyed into the ERP.",
+          "metrics": { "processTimeMin": 8, "waitTimeMin": 240, "pctCompleteAccurate": 70, "fte": 1, "demandPerDay": 35 },
+          "painPoints": ["Orders arrive in 3 channels, manually re-keyed", "~30% have at least one error"],
+          "isValueAdded": true
+        },
+        {
+          "id": "step_002",
+          "name": "Check stock availability",
+          "role": "Warehouse",
+          "metrics": { "processTimeMin": 10, "waitTimeMin": 120, "pctCompleteAccurate": 85 },
+          "painPoints": [],
+          "isValueAdded": true
+        },
+        {
+          "id": "step_003",
+          "name": "Quote approval",
+          "role": "Manager",
+          "metrics": { "processTimeMin": 15, "waitTimeMin": 480, "pctCompleteAccurate": 90 },
+          "painPoints": ["Every quote waits for manager sign-off, even small ones"],
+          "isValueAdded": false
+        },
+        {
+          "id": "step_004",
+          "name": "Pick & pack",
+          "role": "Warehouse",
+          "metrics": { "processTimeMin": 30, "waitTimeMin": 60, "pctCompleteAccurate": 95 },
+          "painPoints": [],
+          "isValueAdded": true
+        },
+        {
+          "id": "step_005",
+          "name": "Invoice & collect payment",
+          "role": "Finance",
+          "metrics": { "processTimeMin": 12, "waitTimeMin": 1440, "pctCompleteAccurate": 60 },
+          "painPoints": ["Invoices re-typed from the order; ~40% need correction"],
+          "isValueAdded": true
+        }
+      ],
+      "flows": [
+        { "id": "flow_001", "fromStepId": "step_001", "toStepId": "step_002", "type": "sequential" },
+        { "id": "flow_002", "fromStepId": "step_002", "toStepId": "step_003", "type": "conditional", "label": "if quote needed" },
+        { "id": "flow_003", "fromStepId": "step_003", "toStepId": "step_004", "type": "sequential" },
+        { "id": "flow_004", "fromStepId": "step_004", "toStepId": "step_005", "type": "sequential" },
+        { "id": "flow_005", "fromStepId": "step_005", "toStepId": "step_001", "type": "rework-loop", "label": "billing dispute" }
+      ]
+    },
+    {
+      "id": "proc_supplier_restock",
+      "name": "Supplier Restock",
+      "description": "From low-stock detection to purchase order raised.",
+      "steps": [
+        {
+          "id": "step_006",
+          "name": "Detect low stock",
+          "role": "Warehouse",
+          "metrics": { "processTimeMin": 5, "waitTimeMin": 2880, "pctCompleteAccurate": 50 },
+          "painPoints": ["No automatic reorder point; spotted by eye on the shelf"],
+          "isValueAdded": false
+        },
+        {
+          "id": "step_007",
+          "name": "Raise purchase order",
+          "role": "Purchasing",
+          "metrics": { "processTimeMin": 20, "waitTimeMin": 480, "pctCompleteAccurate": 80 },
+          "painPoints": [],
+          "isValueAdded": true
+        }
+      ],
+      "flows": [
+        { "id": "flow_006", "fromStepId": "step_006", "toStepId": "step_007", "type": "sequential" }
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp_001",
+      "targetStepIds": ["step_001"],
+      "title": "Unify order intake",
+      "problem": "Orders are re-keyed from three channels; about 30% carry an error into the rest of the process.",
+      "improvementType": "eliminate-waste",
+      "deliverableType": "no-code-automation",
+      "ladderRung": 3,
+      "proposedSolution": "An Airtable intake form plus automations that consolidate email/phone/web orders into one validated queue feeding the ERP.",
+      "aiViability": {
+        "existingFeature": "No suitable intake-dedup feature in the current ERP.",
+        "noCodeAi": "An LLM step in the automation can classify and normalise free-text/phone-noted orders before they hit the ERP.",
+        "customAgent": "A bespoke agent is overkill at ~35 orders/day.",
+        "selected": "noCodeAi",
+        "rationale": "Lowest rung that reliably handles three messy intake channels."
+      },
+      "rejectedAlternatives": ["custom-claude-build: order volume too low to justify a bespoke agent plus its maintenance."],
+      "estimatedImpact": { "waitTimeDeltaMin": -180, "pctCompleteAccurateDelta": 25, "processTimeDeltaMin": -5 },
+      "complexity": "S",
+      "roiToComplexity": "high",
+      "sellBack": { "build": "Airtable base + intake automations + ERP sync", "ongoing": "Monthly support & iteration retainer" }
+    },
+    {
+      "id": "opp_002",
+      "targetStepIds": ["step_003"],
+      "title": "Auto-approve small quotes",
+      "problem": "Every quote waits for manager sign-off, adding ~8h of queue even for trivial amounts.",
+      "improvementType": "reduce-wait",
+      "deliverableType": "config-or-feature-toggle",
+      "ladderRung": 1,
+      "proposedSolution": "Enable the ERP's existing approval-threshold setting so quotes under a value auto-approve.",
+      "aiViability": {
+        "existingFeature": "The ERP already supports approval thresholds — no AI needed.",
+        "noCodeAi": "Not required.",
+        "customAgent": "Not required.",
+        "selected": "none",
+        "rationale": "A configuration toggle the client already owns solves it outright."
+      },
+      "rejectedAlternatives": ["no-code-automation: unnecessary when the ERP can do this natively."],
+      "estimatedImpact": { "waitTimeDeltaMin": -420 },
+      "complexity": "S",
+      "roiToComplexity": "high",
+      "sellBack": { "build": "Threshold configuration + approval-policy workshop", "ongoing": "Light advisory" }
+    },
+    {
+      "id": "opp_003",
+      "targetStepIds": ["step_005"],
+      "title": "Automate invoicing",
+      "problem": "Invoices are re-typed from the order and ~40% need correction, delaying payment by a day or more.",
+      "improvementType": "automate-manual",
+      "deliverableType": "integration",
+      "ladderRung": 4,
+      "proposedSolution": "Connect the order system to the accounting package so invoices generate from the confirmed order.",
+      "aiViability": {
+        "existingFeature": "Accounting package has e-invoicing but it isn't connected to orders.",
+        "noCodeAi": "An AI step could reconcile mismatched line items during migration.",
+        "customAgent": "Not warranted for standard invoice generation.",
+        "selected": "existingFeature",
+        "rationale": "The data plumbing is the real fix; existing e-invoicing covers the rest."
+      },
+      "rejectedAlternatives": ["custom-claude-build: standard invoice generation needs no bespoke AI."],
+      "estimatedImpact": { "waitTimeDeltaMin": -1200, "pctCompleteAccurateDelta": 30, "processTimeDeltaMin": -8 },
+      "complexity": "M",
+      "roiToComplexity": "medium",
+      "sellBack": { "build": "Order↔accounting integration + reconciliation rules", "ongoing": "Monitoring & maintenance retainer" }
+    },
+    {
+      "id": "opp_004",
+      "targetStepIds": ["step_006"],
+      "title": "Automatic reorder points",
+      "problem": "Low stock is spotted by eye, so restock can wait up to two days before anyone notices.",
+      "improvementType": "automate-manual",
+      "deliverableType": "off-the-shelf-product",
+      "ladderRung": 2,
+      "proposedSolution": "Adopt an inventory tool with reorder-point alerts that watches stock levels and flags items to reorder.",
+      "aiViability": {
+        "existingFeature": "Off-the-shelf inventory tools include demand-forecasting AI in higher tiers.",
+        "noCodeAi": "Optional later; not needed for basic reorder thresholds.",
+        "customAgent": "Overkill.",
+        "selected": "existingFeature",
+        "rationale": "A standard inventory product solves detection without any custom work."
+      },
+      "rejectedAlternatives": ["custom-claude-build: a mature SaaS category already exists."],
+      "estimatedImpact": { "waitTimeDeltaMin": -2400, "pctCompleteAccurateDelta": 30 },
+      "complexity": "S",
+      "roiToComplexity": "high",
+      "sellBack": { "build": "Inventory tool selection + setup + reorder rules", "ongoing": "Admin & support" }
+    },
+    {
+      "id": "opp_005",
+      "targetStepIds": ["step_001"],
+      "title": "AI order-triage agent",
+      "problem": "Free-text and phoned-in orders need interpretation that a simple form can't capture.",
+      "improvementType": "augment-with-ai",
+      "deliverableType": "custom-claude-build",
+      "ladderRung": 5,
+      "proposedSolution": "A custom Claude agent that reads any inbound order, extracts structured line items, and queries the customer for missing detail.",
+      "aiViability": {
+        "existingFeature": "No off-the-shelf feature handles this client's idiosyncratic phone orders.",
+        "noCodeAi": "A no-code LLM step covers the common cases (see opp_001).",
+        "customAgent": "Justified only if volume and edge-case complexity grow well beyond today.",
+        "selected": "customAgent",
+        "rationale": "Reserved for the Transform scenario; not recommended at current volume."
+      },
+      "rejectedAlternatives": ["Included only to show the high-complexity option that opp_001 deliberately avoids today."],
+      "estimatedImpact": { "waitTimeDeltaMin": -210, "pctCompleteAccurateDelta": 28, "processTimeDeltaMin": -6 },
+      "complexity": "L",
+      "roiToComplexity": "low",
+      "sellBack": { "build": "Custom Claude order-triage agent", "ongoing": "Usage-based support + model maintenance" }
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "scn_quick_wins",
+      "name": "Quick Wins",
+      "narrative": "Low-effort changes deliverable in 2–3 weeks: a configuration the client already owns, a standard inventory tool, and a consolidated intake form.",
+      "opportunityIds": ["opp_002", "opp_004", "opp_001"]
+    },
+    {
+      "id": "scn_automate_core",
+      "name": "Automate the Core",
+      "narrative": "Builds on the quick wins by connecting orders to accounting, removing the largest single source of delay and rework.",
+      "opportunityIds": ["opp_001", "opp_002", "opp_003", "opp_004"]
+    },
+    {
+      "id": "scn_transform",
+      "name": "Transform",
+      "narrative": "The full programme, including a bespoke AI order-triage agent — recommended only if order volume and complexity grow.",
+      "opportunityIds": ["opp_001", "opp_002", "opp_003", "opp_004", "opp_005"]
+    }
+  ]
+}
