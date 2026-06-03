@@ -56,7 +56,9 @@ This is the commercial heart of the product. When Cartographer identifies an imp
 | **Off-the-shelf product adoption** | Recommend and integrate an existing SaaS product that fits the need | Selection/integration fee + ongoing admin/support |
 | **Integration / data plumbing** | Connect systems that don't currently talk to each other | Build fee + maintenance |
 
-**Every improvement opportunity Cartographer surfaces must be tagged with one of these deliverable types** (see §12). The report then frames each opportunity as something the consultant delivers — implementation plus ongoing support — with an ROI justification drawn from the process metrics (see §11). In effect, the report's "Opportunities" section is a menu of follow-on engagements the consultant can sell.
+**Every improvement opportunity Cartographer surfaces must be tagged with one of these deliverable types** (see §12, which formalises them as an ascending complexity ladder and adds a low rung for *enabling a feature/config the client already owns*). The report then frames each opportunity as something the consultant delivers — implementation plus ongoing support — with an ROI justification drawn from the process metrics (see §11). In effect, the report's "Opportunities" section is a menu of follow-on engagements the consultant can sell.
+
+**The overriding rule for choosing among these (the MVS principle — §12):** always recommend the *minimal viable solution* — lowest complexity, lowest risk, highest ROI — that solves the problem, climbing to a more sophisticated/expensive deliverable only when a simpler one genuinely can't deliver. Counter-intuitively for a sales motion, proposing the *smallest* credible fix is what builds the trust that wins the larger follow-on relationship.
 
 ### 2.3 Why a live workshop tool (and not a static deliverable)
 
@@ -82,8 +84,9 @@ The consultant already pays for a Claude Pro/Max subscription. Building this as 
 - G4. Compute classic value-stream metrics deterministically for the current state and each scenario.
 - G5. Generate 2–3 named, consultant-editable future-state scenarios.
 - G6. **Identify and tag improvement opportunities by sellable deliverable type, with ROI justification.**
-- G7. Produce a single self-contained HTML report that doubles as a soft proposal.
-- G8. Run entirely as a Claude Code skill on the consultant's subscription, local-first.
+- G7. **For every opportunity, recommend the *minimal viable solution* (lowest complexity / lowest risk / highest ROI) by researching up a complexity ladder and assessing AI viability at every altitude (§12.4).**
+- G8. Produce a single self-contained HTML report that doubles as a soft proposal.
+- G9. Run entirely as a Claude Code skill on the consultant's subscription, local-first.
 
 ### 3.2 Non-goals (explicitly out of scope for v1)
 
@@ -245,14 +248,26 @@ All of this runs on the consultant's local machine / LAN. No client data leaves 
       "title": "Unify order intake",
       "problem": "Orders re-keyed from 3 channels; 30% have errors.",
       "improvementType": "eliminate-waste",   // see §12.1
-      "deliverableType": "no-code-automation", // see §12.2 — what consultant sells
+      "deliverableType": "no-code-automation", // see §12.2 ladder — the MVS-selected rung
+      "ladderRung": 3,                          // 0..5, the chosen rung (§12.2)
       "proposedSolution": "Airtable form + automation to consolidate intake.",
+      "aiViability": {                          // §12.4 — assessed at every altitude
+        "existingFeature": "None applicable in current tools.",
+        "noCodeAi": "Optional LLM step to classify free-text orders.",
+        "customAgent": "Overkill at this volume.",
+        "selected": "noCodeAi",
+        "rationale": "Lowest rung that handles the 3-channel intake reliably."
+      },
+      "rejectedAlternatives": [                 // why higher rungs were NOT chosen (credibility)
+        "custom-claude-build: volume too low to justify bespoke agent + maintenance."
+      ],
       "estimatedImpact": {
         "waitTimeDeltaMin": -180,
         "pctCompleteAccurateDelta": +25,
         "processTimeDeltaMin": -5
       },
       "complexity": "S",              // S | M | L — build effort
+      "roiToComplexity": "high",      // ranking key for the report (§12.3 / §13.5)
       "sellBack": {
         "build": "Airtable base + intake automations",
         "ongoing": "Monthly support & iteration retainer"
@@ -379,7 +394,9 @@ All metrics are computed **deterministically** by the engine. Definitions and fo
 
 ## 12. Intervention taxonomy & opportunity mapping (the commercial core — decision 4)
 
-Every opportunity carries **two** tags: an *improvement type* (the lean/operational lens) and a *deliverable type* (what the consultant sells). This dual tagging is what turns analysis into a sales pipeline.
+> **GUIDING PRINCIPLE — Minimal Viable Solution (MVS).** For every opportunity, Cartographer's job is to recommend the **lowest-complexity, lowest-risk, highest-ROI** solution that actually solves the problem — *not* the most sophisticated one. Cleverness is a liability here: a recommendation should climb the complexity ladder only when a simpler rung genuinely cannot deliver the outcome. This principle governs all of §12 and §13, ranks every recommendation, and protects the consultant's credibility (you don't want to propose a custom AI agent where a $20/mo SaaS toggle would do). When two solutions tie on outcome, the simpler/cheaper/lower-risk one wins.
+
+Every opportunity carries **two** tags: an *improvement type* (the lean/operational lens) and a *deliverable type* (what the consultant sells). This dual tagging is what turns analysis into a sales pipeline. Both are ranked and selected under the MVS principle above.
 
 ### 12.1 Improvement type (operational lens)
 
@@ -391,24 +408,54 @@ Every opportunity carries **two** tags: an *improvement type* (the lean/operatio
 - `reorder` — resequence steps for better flow.
 - `augment-with-ai` — add an LLM/Claude capability to a judgement-heavy step.
 
-### 12.2 Deliverable type (the sellable lens — see §2.2)
+### 12.2 Deliverable type — the complexity ladder (the sellable lens — see §2.2)
 
-- `process-change` — advisory only, no tech.
-- `no-code-automation` — Airtable / Zapier / Make / n8n / Apps Script.
-- `custom-claude-build` — bespoke app/agent/skill.
-- `off-the-shelf-product` — recommend & integrate existing SaaS.
-- `integration` — connect existing systems.
+Deliverable types are an **ascending complexity/risk ladder**. Under the MVS principle, solution research starts at the bottom rung and only climbs when a lower rung cannot deliver the outcome. The report should make the chosen rung — and *why a lower rung was rejected* — explicit.
+
+| Rung | Deliverable type | What it is | Complexity / risk |
+|---|---|---|---|
+| 0 | `process-change` | Advisory only — reorder/eliminate steps, no tech | Lowest |
+| 1 | `config-or-feature-toggle` | A capability the client's **existing tools already have**, just unused/unconfigured (incl. an AI feature already in their SaaS) | Very low |
+| 2 | `off-the-shelf-product` | Adopt/integrate an existing SaaS (incl. one whose **built-in AI** fits the need) | Low–medium |
+| 3 | `no-code-automation` | Airtable / Zapier / Make / n8n / Apps Script wiring | Medium |
+| 4 | `integration` | Connect existing systems / data plumbing | Medium–high |
+| 5 | `custom-claude-build` | Bespoke app, automation, or **custom AI agent** built with Claude Code | Highest |
+
+The ladder doubles as the search order in §12.4.
+
+### 12.4 Solution research & AI viability (run per opportunity, offline)
+
+For each opportunity, Cartographer runs **solution research** to populate `proposedSolution`, `deliverableType`, `complexity`, and the rejected-alternatives note. Research **must sweep the ladder bottom-up** and stop at the lowest rung that solves the problem (MVS):
+
+1. **Process-only (rung 0)** — can reordering/eliminating steps fix it with no tooling at all?
+2. **Already-owned capability (rung 1)** — does a tool the client *already pays for* have an unused feature (including an **AI feature**) that addresses this? Lowest cost, lowest risk, often invisible to the client.
+3. **Off-the-shelf SaaS (rung 2)** — is there an established product that fits? Note pricing tier, integration effort, and lock-in.
+4. **No-code / low-code automation (rung 3)** — can Airtable/Zapier/Make/n8n/Apps Script wire existing tools together to remove the toil?
+5. **Integration (rung 4)** — does the fix mainly require connecting systems that don't talk?
+6. **Custom Claude-coded tooling (rung 5)** — only when the rungs above can't deliver: a small bespoke app or **custom AI agent** built with Claude Code.
+
+**AI viability assessment (a required, explicit lens at multiple altitudes).** For every opportunity, Cartographer separately assesses where AI could apply, evaluated *across the whole ladder* — not jumping straight to "build an agent":
+
+- **(a) Existing AI features** — "Which tool the client already has, or which off-the-shelf SaaS, has an **AI feature that applies here**?" (rungs 1–2). This is the default and usually the MVS answer.
+- **(b) AI inside no-code** — Can an AI step inside a no-code automation (e.g. an LLM action in Make/Zapier, or Claude called from Apps Script) handle the judgement? (rung 3–4).
+- **(c) Custom AI agent** — "**Where would a custom AI agent make the most sense?**" Reserve for genuinely judgement-heavy, high-volume, or bespoke steps where (a) and (b) fall short (rung 5).
+
+The AI viability output names the **best-fit AI approach at each altitude**, then states which one MVS selects and why the higher-complexity options were *not* chosen. Record this on the opportunity (e.g. an `aiViability` field: `{ existingFeature, noCodeAi, customAgent, selected, rationale }`).
+
+**Research execution.** v1 may do this research inline with Claude (web search where available). Off-the-shelf and AI-feature claims should be **cross-checked** rather than asserted from memory (products and their feature sets change fast). See §16 for running this research stage as an optional dynamic workflow with adversarial cross-checking. Where a claim can't be verified, mark it as an estimate/assumption in the report appendix.
 
 ### 12.3 The opportunity → proposal mapping
 
 For each opportunity, the report must present:
 - The **problem** (from the map/annotations).
-- The **proposed solution** and its **deliverable type**.
+- The **recommended (MVS) solution** and its **deliverable type / ladder rung** (§12.2).
+- The **AI viability** summary (§12.4): the best-fit AI approach at each altitude and which was selected.
+- **Rejected alternatives** — the higher-complexity rungs considered and *why they were not chosen* (this is what makes the MVS recommendation credible).
 - The **quantified impact** (metric deltas → ROI).
-- The **complexity** (S/M/L) as a rough effort signal.
+- The **complexity** (S/M/L) and an implicit risk read from the chosen rung.
 - The **sell-back framing**: what the consultant *builds* and what *ongoing support/maintenance* looks like.
 
-The report deliberately leaves **pricing blank** (N5) — the consultant fills it in. Cartographer's job is to make every opportunity look like a concrete, justified, buildable engagement.
+Opportunities should be **ranked by ROI-to-complexity** (the MVS ordering), so the highest-leverage, lowest-effort wins surface first. The report deliberately leaves **pricing blank** (N5) — the consultant fills it in. Cartographer's job is to make every opportunity look like a concrete, justified, *minimal* buildable engagement.
 
 ---
 
@@ -420,7 +467,7 @@ A **single self-contained `.html` file**, `mermaid.js` inlined so it renders off
 2. **Current-state map** — Mermaid diagram of the current value stream(s), with the baseline metrics table (per §11) and PCE called out.
 3. **Pain points** — the bottlenecks/rework/manual-toil identified, drawn from the workshop annotations.
 4. **Future-state scenarios** — for each of the 2–3 named scenarios (decision 8): a Mermaid diagram of that future state, a **before/after metrics comparison table**, and the narrative.
-5. **Opportunities / recommended solutions** — the heart of the proposal. For each opportunity: problem, proposed solution + deliverable type, quantified impact (ROI), complexity, and the sell-back framing (build + ongoing support). Grouped/orderable by scenario.
+5. **Opportunities / recommended solutions** — the heart of the proposal. **Ranked by ROI-to-complexity (MVS ordering — §12).** For each opportunity: problem, the recommended minimal-viable solution + its ladder rung (§12.2), the AI-viability summary, the rejected higher-complexity alternatives and why, quantified impact (ROI), complexity/risk, and the sell-back framing (build + ongoing support). Grouped/orderable by scenario.
 6. **Next steps** — a soft call to action inviting the client to engage the consultant to implement, with space for pricing/scoping the consultant adds.
 7. **Appendix** — assumptions, data gaps/estimates, source files.
 
@@ -497,10 +544,25 @@ Everything runs on the consultant's machine/LAN. Client process data (often comm
 2. **M2 — Ingest.** Transcript + PDF + docx → IR via Claude (`ingest.ts`, SKILL.md stage 1). Prove: sample transcript → reasonable IR.
 3. **M3 — Excalidraw out.** IR → canvas elements, push via MCP (`excalidraw.ts` project half, FR-5–8).
 4. **M4 — Excalidraw back (the spike).** Read board → deterministic diff + Claude interpretation → updated IR (FR-10–14, §10). *Highest risk; isolate and prove early.*
-5. **M5 — Opportunity tagging + sell-back framing.** Dual tags (§12), report Opportunities section (§13.5).
+5. **M5 — Opportunity tagging + solution research + sell-back framing.** Dual tags (§12.1/12.2), MVS solution research up the ladder + AI viability (§12.4), report Opportunities section ranked by ROI-to-complexity (§13.5).
 6. **M6 — End-to-end + review safety valve.** Wire Stage 5 review (FR-15), full pipeline, polish report.
 
 > Suggested order if de-risking: do the **M4 Excalidraw round-trip spike** early (even before M1 is polished) since it is the single biggest unknown.
+
+### 16.1 Post-v1 enhancement — optional dynamic-workflow for solution research (offline only)
+
+Claude Code's **dynamic workflows** (research preview; requires Claude Code ≥ v2.1.154; toggleable in `/config`) orchestrate many subagents from a script and can have agents **adversarially cross-check each other's findings**. This is *not* the product's backbone — the live pipeline is sequential and human-gated, and workflows forbid mid-run user input — but it is a strong fit for **two offline stages**, and **must never run during the live workshop** (a many-agent run can hit plan rate limits mid-session — the exact failure you don't want in front of a client; see §14.1 on running on the subscription).
+
+Where a workflow helps:
+
+1. **Opportunity generation + scenario design (Stage 4, §12).** Fan out candidate-opportunity generation across several agents, then adversarially cross-check the proposed solutions and ROI estimates before any reach the report — directly mitigating **R5 (over-promising)**.
+2. **Solution research & AI viability (§12.4).** This is the best fit. For each opportunity, sweep the complexity ladder bottom-up (process → already-owned feature → off-the-shelf SaaS → no-code → integration → custom Claude build) and run a `/deep-research`-style, cross-checked investigation of:
+   - which **existing/SaaS tools have an AI feature** that applies (the MVS-default AI answer),
+   - whether an **AI step inside a no-code automation** suffices,
+   - and only then **where a custom AI agent** is genuinely warranted.
+   Cross-checking matters because product/feature claims go stale fast; unverifiable claims are flagged as assumptions in the report appendix.
+
+Constraints to honour: keep it **optional** (feature is preview and org-disable-able); use it only on the **offline prep / report path**, never the in-room path; and remember workflow runs **count toward the plan's usage and rate limits**, so gate large runs and prefer a smaller model for routine research stages. The deterministic engine (metrics, layout, diff, rendering — §7.2) is unaffected; workflows touch only the LLM-judgment stages.
 
 ---
 
@@ -555,7 +617,10 @@ These are intentionally left to implementation judgement (none block the build):
 - **Scenario** — a named future-state bundle of opportunities (e.g. "Quick Wins").
 - **Sell-back** — the consulting motion of identifying a solution, then selling its implementation + ongoing support to the client.
 - **MCP (Model Context Protocol)** — the protocol by which Claude Code talks to external tools/products (here, Excalidraw).
-- **Deliverable type** — the kind of thing the consultant sells to realise an opportunity (process change, no-code automation, custom Claude build, off-the-shelf product, integration).
+- **Deliverable type** — the kind of thing the consultant sells to realise an opportunity, organised as an ascending complexity ladder (§12.2): process change → enable an owned feature/config → off-the-shelf product → no-code automation → integration → custom Claude build.
+- **MVS (Minimal Viable Solution)** — the guiding principle: the lowest-complexity, lowest-risk, highest-ROI solution that actually solves the problem. Recommendations climb the complexity ladder only when a simpler rung can't deliver.
+- **AI viability** — the per-opportunity assessment of where AI applies, at every altitude: existing/SaaS AI features → AI inside no-code automations → a purpose-built custom AI agent; with the MVS-selected option and a rationale for rejecting higher-complexity ones.
+- **Dynamic workflow** — a Claude Code feature (research preview) that orchestrates many subagents from a script with adversarial cross-checking; used optionally and offline-only for solution research/opportunity generation (§16.1), never in the live workshop.
 
 ---
 
@@ -563,6 +628,7 @@ These are intentionally left to implementation judgement (none block the build):
 
 - Excalidraw MCP — official: <https://github.com/excalidraw/excalidraw-mcp> · Claude Code skill build: <https://github.com/yctimlin/mcp_excalidraw> · Excalidraw+ MCP docs: <https://plus.excalidraw.com/docs/mcp>
 - Anthropic Agent SDK overview (the third-party subscription-auth restriction, §14.1): <https://code.claude.com/docs/en/agent-sdk/overview>
+- Claude Code dynamic workflows (optional solution-research orchestration, §16.1): <https://code.claude.com/docs/en/workflows>
 - Claude Code authentication: <https://code.claude.com/docs/en/authentication>
 - Claude PDF / document support (native PDF ingestion, §14.3): <https://platform.claude.com/docs/en/vision/pdf-support>
 - Mermaid (report rendering): <https://mermaid.js.org/>
