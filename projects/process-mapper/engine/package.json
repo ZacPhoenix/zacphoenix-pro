@@ -1,0 +1,27 @@
+{
+  "name": "cartographer-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic Node/TS engine for Cartographer — IR, VSM metrics, scenarios, Mermaid, Excalidraw round-trip, and self-contained HTML report.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "sample": "tsx src/cli/build-sample.ts"
+  },
+  "dependencies": {
+    "mermaid": "^11.4.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}
