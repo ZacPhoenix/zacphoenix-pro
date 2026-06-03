@@ -16,10 +16,10 @@ and maintain for recurring revenue.
 |---|---|---|
 | M1 | IR + metrics + scenarios + Mermaid + HTML report (standalone) | ✅ done, tested |
 | M4-logic | Excalidraw round-trip **logic** (project + reconcile diff) vs fixtures | ✅ done, tested |
-| M5 | Opportunity tagging + MVS research + sell-back framing in report | ✅ schema + report; research is LLM-driven via SKILL.md |
-| M3 (transport) | Live MCP push/read | ⏳ logic ready; live wiring on the consultant's machine |
-| M2 | Ingest (transcript/PDF/docx → IR) | ⏳ schema + SKILL.md stage; `ingest.ts` pending |
-| M6 | End-to-end CLIs + Stage 5 review wiring | ⏳ pending |
+| M5 | Opportunity tagging + MVS research + sell-back framing in report | ✅ schema + report contract tested; research is LLM-driven via SKILL.md |
+| M2 | Ingest file-handling (transcript/PDF/docx) | ✅ `ingest.ts` done, tested; LLM extraction via SKILL.md |
+| M6 | Offline pipeline CLIs (`project`/`reconcile`/`report`) | ✅ done, verified end-to-end |
+| M3 (transport) | Live MCP push/read | ⏳ logic + offline FileTransport ready; live MCP wiring on the consultant's machine |
 
 The Excalidraw **transport** is deferred to a local machine (this engine was built in a
 cloud session with no live Excalidraw MCP); the lossy/risky reconciliation **logic** is
@@ -30,11 +30,20 @@ fully unit-tested here. See `docs/ARCHITECTURE.md` → "Why this de-risking".
 ```bash
 cd engine
 npm install
-npm test          # 30 tests: metrics (hand-worked), scenarios, reconciliation
+npm test          # metrics (hand-worked), scenarios, reconciliation, ingest, report
 npm run sample    # renders ../samples/sample-report.html (mermaid inlined, offline)
 ```
 
 Open `samples/sample-report.html` in a browser — it renders fully offline.
+
+Offline pipeline (no MCP needed):
+
+```bash
+npm run project   -- ../samples/sample-ir.json   # → .excalidraw scene + .idmap.json
+# (consultant edits the scene in Excalidraw, exports it back)
+npm run reconcile -- ../samples/sample-ir.json <edited>.excalidraw
+npm run report    -- <reconciled>.json           # → offline .report.html
+```
 
 ## Layout
 
