@@ -12,9 +12,13 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "sample": "tsx src/cli/build-sample.ts"
+    "sample": "tsx src/cli/build-sample.ts",
+    "project": "tsx src/cli/project.ts",
+    "reconcile": "tsx src/cli/reconcile.ts",
+    "report": "tsx src/cli/report.ts"
   },
   "dependencies": {
+    "mammoth": "^1.12.0",
     "mermaid": "^11.4.0",
     "zod": "^3.23.8"
   },

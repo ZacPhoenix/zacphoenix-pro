@@ -5,24 +5,16 @@
  * for a UMD build of mermaid in node_modules; if none is found, still writes the
  * report (diagrams as source) and warns. Usage: `npm run sample`.
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { parseIR } from "../ir.js";
 import { renderReport } from "../report.js";
+import { findMermaid } from "./mermaid-bundle.js";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "../.."); // engine/
 const samples = join(root, "../samples");
-
-function findMermaid(): string | undefined {
-  const candidates = [
-    join(root, "node_modules/mermaid/dist/mermaid.min.js"),
-    join(root, "node_modules/mermaid/dist/mermaid.js"),
-  ];
-  for (const p of candidates) if (existsSync(p)) return readFileSync(p, "utf8");
-  return undefined;
-}
 
 const ir = parseIR(readFileSync(join(samples, "sample-ir.json"), "utf8"));
 const mermaidJs = findMermaid();
