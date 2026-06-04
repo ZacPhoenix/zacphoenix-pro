@@ -19,11 +19,9 @@ and maintain for recurring revenue.
 | M5 | Opportunity tagging + MVS research + sell-back framing in report | ✅ schema + report contract tested; research is LLM-driven via SKILL.md |
 | M2 | Ingest file-handling (transcript/PDF/docx) | ✅ `ingest.ts` done, tested; LLM extraction via SKILL.md |
 | M6 | Offline pipeline CLIs (`project`/`reconcile`/`report`) | ✅ done, verified end-to-end |
-| M3 (transport) | Live MCP push/read | ⏳ logic + offline FileTransport ready; live MCP wiring on the consultant's machine |
+| M3 (transport) | Live MCP push/read | ✅ done, smoke-tested live (2026-06-04) |
 
-The Excalidraw **transport** is deferred to a local machine (this engine was built in a
-cloud session with no live Excalidraw MCP); the lossy/risky reconciliation **logic** is
-fully unit-tested here. See `docs/ARCHITECTURE.md` → "Why this de-risking".
+All milestones complete. 44/44 tests passing. Next: end-to-end pilot on a real workshop transcript — see `docs/PILOT_PLAYBOOK.md`.
 
 ## Quickstart
 
