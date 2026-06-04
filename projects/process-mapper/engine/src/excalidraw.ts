@@ -257,7 +257,12 @@ export interface ReconcileResult {
 }
 
 function center(el: ExcalidrawElement): { x: number; y: number } {
-  return { x: el.x + el.width / 2, y: el.y + el.height / 2 };
+  return { x: el.x + (el.width ?? 0) / 2, y: el.y + (el.height ?? 0) / 2 };
+}
+
+/** Read element text from either the top-level `text` field or the MCP `label.text` format. */
+function elementText(el: ExcalidrawElement): string | undefined {
+  return el.text ?? (el.label as { text?: string } | undefined)?.text;
 }
 
 function distance(a: { x: number; y: number }, b: { x: number; y: number }): number {
@@ -317,16 +322,21 @@ export function reconcileBoard(
 
     if (before) {
       // Position change (tracked deterministically; report layout stays engine-owned).
+      // Skip flow/arrow moves — arrows auto-route to their bound elements; position is not meaningful.
       if (
-        Math.abs(before.x - el.x) > MOVE_EPSILON ||
-        Math.abs(before.y - el.y) > MOVE_EPSILON
+        kind !== "flow" &&
+        (Math.abs(before.x - el.x) > MOVE_EPSILON ||
+          Math.abs(before.y - el.y) > MOVE_EPSILON)
       ) {
         change.moved = { from: { x: before.x, y: before.y }, to: { x: el.x, y: el.y } };
       }
       // Text change → parse known metric patterns; ambiguous text noted for Claude.
-      if (kind === "step" && el.text !== undefined && el.text !== before.text) {
-        const parsed = parseStepText(el.text);
-        change.textEdited = { from: before.text ?? "", to: el.text, parsed };
+      // Read text from either el.text (file transport) or el.label.text (MCP export format).
+      const elText = elementText(el);
+      const beforeText = elementText(before);
+      if (kind === "step" && elText !== undefined && elText !== beforeText) {
+        const parsed = parseStepText(elText);
+        change.textEdited = { from: beforeText ?? "", to: elText, parsed };
         if (parsed.unparsed.length > 0 && parsed.name === undefined)
           change.ambiguous = `unrecognised label content: ${parsed.unparsed.join(" | ")}`;
       }
@@ -373,7 +383,7 @@ function classifyAddition(
   const base: UntrackedAddition = {
     elementId: el.id,
     type: el.type,
-    text: el.text,
+    text: elementText(el),
     position: pos,
     guess: "note",
     nearestStepIrId: nearest?.irId,
@@ -381,8 +391,13 @@ function classifyAddition(
   };
 
   if (el.type === "arrow" || el.type === "line") {
-    const from = el.startBinding ? irIdForElement(idMap, el.startBinding.elementId) : undefined;
-    const to = el.endBinding ? irIdForElement(idMap, el.endBinding.elementId) : undefined;
+    // Support both file-transport format (startBinding.elementId) and MCP export format (start.id).
+    const startEl = (el.startBinding as { elementId?: string } | undefined)?.elementId
+      ?? (el.start as { id?: string } | undefined)?.id;
+    const endEl = (el.endBinding as { elementId?: string } | undefined)?.elementId
+      ?? (el.end as { id?: string } | undefined)?.id;
+    const from = startEl ? irIdForElement(idMap, startEl) : undefined;
+    const to = endEl ? irIdForElement(idMap, endEl) : undefined;
     return {
       ...base,
       guess: "new-flow",

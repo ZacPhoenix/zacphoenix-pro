@@ -1,0 +1,265 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "cartographer",
+  "elements": [
+    {
+      "id": "el_proc_order_to_cash",
+      "type": "frame",
+      "x": 24,
+      "y": 24,
+      "width": 1412,
+      "height": 162,
+      "text": "Order to Cash",
+      "customData": {
+        "kind": "process",
+        "irId": "proc_order_to_cash",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_step_001",
+      "type": "rectangle",
+      "x": 40,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "text": "Receive order (email/phone)\nSales admin\nPT 8m · WT 4h · %C&A 70",
+      "customData": {
+        "kind": "step",
+        "irId": "step_001",
+        "irVersion": 1
+      },
+      "backgroundColor": "#fde2e2"
+    },
+    {
+      "id": "el_step_002",
+      "type": "rectangle",
+      "x": 330,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "text": "Check stock availability\nWarehouse\nPT 10m · WT 2h · %C&A 85",
+      "customData": {
+        "kind": "step",
+        "irId": "step_002",
+        "irVersion": 1
+      },
+      "backgroundColor": "#fde2e2"
+    },
+    {
+      "id": "el_step_003",
+      "type": "rectangle",
+      "x": 620,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "text": "Quote approval\nManager\nPT 15m · WT 1d · %C&A 90",
+      "customData": {
+        "kind": "step",
+        "irId": "step_003",
+        "irVersion": 1
+      },
+      "backgroundColor": "#fde2e2"
+    },
+    {
+      "id": "el_step_004",
+      "type": "rectangle",
+      "x": 910,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "text": "Pick & pack\nWarehouse\nPT 30m · WT 1h · %C&A 95",
+      "customData": {
+        "kind": "step",
+        "irId": "step_004",
+        "irVersion": 1
+      },
+      "backgroundColor": "transparent"
+    },
+    {
+      "id": "el_step_005",
+      "type": "rectangle",
+      "x": 1200,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "text": "Invoice & collect payment\nFinance\nPT 12m · WT 3d · %C&A 60",
+      "customData": {
+        "kind": "step",
+        "irId": "step_005",
+        "irVersion": 1
+      },
+      "backgroundColor": "#fde2e2"
+    },
+    {
+      "id": "el_proc_supplier_restock",
+      "type": "frame",
+      "x": 24,
+      "y": 274,
+      "width": 542,
+      "height": 162,
+      "text": "Supplier Restock",
+      "customData": {
+        "kind": "process",
+        "irId": "proc_supplier_restock",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_step_006",
+      "type": "rectangle",
+      "x": 40,
+      "y": 330,
+      "width": 220,
+      "height": 90,
+      "text": "Detect low stock\nWarehouse\nPT 5m · WT 6d · %C&A 50",
+      "customData": {
+        "kind": "step",
+        "irId": "step_006",
+        "irVersion": 1
+      },
+      "backgroundColor": "#fde2e2"
+    },
+    {
+      "id": "el_step_007",
+      "type": "rectangle",
+      "x": 330,
+      "y": 330,
+      "width": 220,
+      "height": 90,
+      "text": "Raise purchase order\nPurchasing\nPT 20m · WT 1d · %C&A 80",
+      "customData": {
+        "kind": "step",
+        "irId": "step_007",
+        "irVersion": 1
+      },
+      "backgroundColor": "#fde2e2"
+    },
+    {
+      "id": "el_flow_001",
+      "type": "arrow",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "startBinding": {
+        "elementId": "el_step_001"
+      },
+      "endBinding": {
+        "elementId": "el_step_002"
+      },
+      "customData": {
+        "kind": "flow",
+        "irId": "flow_001",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_flow_002",
+      "type": "arrow",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "text": "if quote needed",
+      "startBinding": {
+        "elementId": "el_step_002"
+      },
+      "endBinding": {
+        "elementId": "el_step_003"
+      },
+      "customData": {
+        "kind": "flow",
+        "irId": "flow_002",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_flow_003",
+      "type": "arrow",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "startBinding": {
+        "elementId": "el_step_003"
+      },
+      "endBinding": {
+        "elementId": "el_step_004"
+      },
+      "customData": {
+        "kind": "flow",
+        "irId": "flow_003",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_flow_004",
+      "type": "arrow",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "startBinding": {
+        "elementId": "el_step_004"
+      },
+      "endBinding": {
+        "elementId": "el_step_005"
+      },
+      "customData": {
+        "kind": "flow",
+        "irId": "flow_004",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_flow_005",
+      "type": "arrow",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "text": "billing dispute",
+      "startBinding": {
+        "elementId": "el_step_005"
+      },
+      "endBinding": {
+        "elementId": "el_step_001"
+      },
+      "customData": {
+        "kind": "flow",
+        "irId": "flow_005",
+        "irVersion": 1
+      }
+    },
+    {
+      "id": "el_flow_006",
+      "type": "arrow",
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "startBinding": {
+        "elementId": "el_step_006"
+      },
+      "endBinding": {
+        "elementId": "el_step_007"
+      },
+      "customData": {
+        "kind": "flow",
+        "irId": "flow_006",
+        "irVersion": 1
+      }
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  },
+  "files": {}
+}

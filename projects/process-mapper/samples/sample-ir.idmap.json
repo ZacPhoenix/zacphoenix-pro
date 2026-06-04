@@ -1,0 +1,37 @@
+{
+  "irVersion": 1,
+  "irToElement": {
+    "proc_order_to_cash": "el_proc_order_to_cash",
+    "step_001": "el_step_001",
+    "step_002": "el_step_002",
+    "step_003": "el_step_003",
+    "step_004": "el_step_004",
+    "step_005": "el_step_005",
+    "proc_supplier_restock": "el_proc_supplier_restock",
+    "step_006": "el_step_006",
+    "step_007": "el_step_007",
+    "flow_001": "el_flow_001",
+    "flow_002": "el_flow_002",
+    "flow_003": "el_flow_003",
+    "flow_004": "el_flow_004",
+    "flow_005": "el_flow_005",
+    "flow_006": "el_flow_006"
+  },
+  "elementToIr": {
+    "el_proc_order_to_cash": "proc_order_to_cash",
+    "el_step_001": "step_001",
+    "el_step_002": "step_002",
+    "el_step_003": "step_003",
+    "el_step_004": "step_004",
+    "el_step_005": "step_005",
+    "el_proc_supplier_restock": "proc_supplier_restock",
+    "el_step_006": "step_006",
+    "el_step_007": "step_007",
+    "el_flow_001": "flow_001",
+    "el_flow_002": "flow_002",
+    "el_flow_003": "flow_003",
+    "el_flow_004": "flow_004",
+    "el_flow_005": "flow_005",
+    "el_flow_006": "flow_006"
+  }
+}

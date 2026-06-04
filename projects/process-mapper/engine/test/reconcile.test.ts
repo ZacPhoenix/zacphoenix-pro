@@ -117,6 +117,44 @@ describe("reconcileBoard (BACK, §10.2) — the round-trip", () => {
   });
 });
 
+describe("MCP export format compatibility (label.text, auto-routed arrows, missing dimensions)", () => {
+  const { elements, idMap } = projectIR(ir);
+
+  it("detects a text edit when text is in label.text (MCP export format)", () => {
+    const board = clone(elements);
+    const s1 = find(board, "el_step_001");
+    // MCP stores text in label.text, not text
+    delete (s1 as Record<string, unknown>).text;
+    (s1 as Record<string, unknown>).label = { text: "Take order\nSales admin\nPT 8m · WT 2h · %C&A 70" };
+    const result = reconcileBoard(ir, idMap, board);
+    const edit = result.trackedChanges.find((c) => c.irId === "step_001");
+    expect(edit?.textEdited?.parsed.name).toBe("Take order");
+    expect(edit?.textEdited?.parsed.waitTimeMin).toBe(120);
+  });
+
+  it("does not flag arrow position as a move (auto-routed arrows, MCP export format)", () => {
+    const board = clone(elements);
+    // MCP sets actual routed positions on arrows — should not appear as "moved"
+    const f1 = find(board, "el_flow_001");
+    f1.x = 268;
+    f1.y = 125;
+    const result = reconcileBoard(ir, idMap, board);
+    const flowChange = result.trackedChanges.find((c) => c.irId === "flow_001");
+    expect(flowChange?.moved).toBeUndefined();
+  });
+
+  it("computes center for text elements missing width/height without NaN", () => {
+    const board = clone(elements);
+    // Text elements from MCP have no width/height
+    board.push({ id: "txt_mcp", type: "text", x: 100, y: 200, width: undefined as unknown as number, height: undefined as unknown as number, text: "a note" });
+    const result = reconcileBoard(ir, idMap, board);
+    const note = result.untrackedAdditions.find((a) => a.elementId === "txt_mcp");
+    expect(note).toBeDefined();
+    expect(Number.isFinite(note!.position.x)).toBe(true);
+    expect(Number.isFinite(note!.position.y)).toBe(true);
+  });
+});
+
 describe("parseDuration / parseStepText (Q2 — parse well-formed, defer ambiguity)", () => {
   it("parses durations with units", () => {
     expect(parseDuration("8m")).toBe(8);

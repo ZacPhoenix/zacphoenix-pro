@@ -1,0 +1,350 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "mcp-excalidraw-server",
+  "elements": [
+    {
+      "id": "el_proc_order_to_cash",
+      "type": "rectangle",
+      "x": 24,
+      "y": 24,
+      "width": 1412,
+      "height": 162,
+      "backgroundColor": "transparent",
+      "strokeColor": "#868e96",
+      "strokeStyle": "dashed",
+      "label": {
+        "text": "Order to Cash"
+      },
+      "fontSize": 18,
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_step_001",
+      "type": "rectangle",
+      "x": 40,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#fde2e2",
+      "label": {
+        "text": "Receive order (email/phone)\nSales admin\nPT 8m · WT 4h · %C&A 70"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_step_002",
+      "type": "rectangle",
+      "x": 330,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#fde2e2",
+      "label": {
+        "text": "Check stock availability\\nWarehouse\\nPT 10m · WT 30m · %C&A 92"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:49.742Z",
+      "version": 2
+    },
+    {
+      "id": "el_step_003",
+      "type": "rectangle",
+      "x": 650,
+      "y": 110,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#fde2e2",
+      "label": {
+        "text": "Quote approval\nManager\nPT 15m · WT 1d · %C&A 90"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:48.003Z",
+      "version": 2
+    },
+    {
+      "id": "el_step_004",
+      "type": "rectangle",
+      "x": 910,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "transparent",
+      "label": {
+        "text": "Pick & pack\nWarehouse\nPT 30m · WT 1h · %C&A 95"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_step_005",
+      "type": "rectangle",
+      "x": 1200,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#fde2e2",
+      "label": {
+        "text": "Invoice & collect payment\nFinance\nPT 12m · WT 3d · %C&A 60"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_proc_supplier_restock",
+      "type": "rectangle",
+      "x": 24,
+      "y": 274,
+      "width": 542,
+      "height": 162,
+      "backgroundColor": "transparent",
+      "strokeColor": "#868e96",
+      "strokeStyle": "dashed",
+      "label": {
+        "text": "Supplier Restock"
+      },
+      "fontSize": 18,
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_step_006",
+      "type": "rectangle",
+      "x": 40,
+      "y": 330,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#fde2e2",
+      "label": {
+        "text": "Detect low stock\nWarehouse\nPT 5m · WT 6d · %C&A 50"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_step_007",
+      "type": "rectangle",
+      "x": 330,
+      "y": 330,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#fde2e2",
+      "label": {
+        "text": "Raise purchase order\nPurchasing\nPT 20m · WT 1d · %C&A 80"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_flow_001",
+      "type": "arrow",
+      "x": 268,
+      "y": 125,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          54,
+          1.4210854715202004e-14
+        ]
+      ],
+      "start": {
+        "id": "el_step_001"
+      },
+      "end": {
+        "id": "el_step_002"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_flow_002",
+      "type": "arrow",
+      "x": 558,
+      "y": 125,
+      "width": 0,
+      "height": 0,
+      "label": {
+        "text": "if quote needed"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          54,
+          1.4210854715202004e-14
+        ]
+      ],
+      "start": {
+        "id": "el_step_002"
+      },
+      "end": {
+        "id": "el_step_003"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_flow_003",
+      "type": "arrow",
+      "x": 848,
+      "y": 125,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          54,
+          1.4210854715202004e-14
+        ]
+      ],
+      "start": {
+        "id": "el_step_003"
+      },
+      "end": {
+        "id": "el_step_004"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_flow_004",
+      "type": "arrow",
+      "x": 1138,
+      "y": 125,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          54,
+          1.4210854715202004e-14
+        ]
+      ],
+      "start": {
+        "id": "el_step_004"
+      },
+      "end": {
+        "id": "el_step_005"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_flow_005",
+      "type": "arrow",
+      "x": 1192,
+      "y": 125.00000000000001,
+      "width": 0,
+      "height": 0,
+      "label": {
+        "text": "billing dispute"
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -924,
+          -1.4210854715202004e-14
+        ]
+      ],
+      "start": {
+        "id": "el_step_005"
+      },
+      "end": {
+        "id": "el_step_001"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "el_flow_006",
+      "type": "arrow",
+      "x": 268,
+      "y": 375,
+      "width": 0,
+      "height": 0,
+      "text": "",
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          54,
+          0
+        ]
+      ],
+      "start": {
+        "id": "el_step_006"
+      },
+      "end": {
+        "id": "el_step_007"
+      },
+      "createdAt": "2026-06-04T03:36:33.177Z",
+      "updatedAt": "2026-06-04T03:36:33.177Z",
+      "version": 1
+    },
+    {
+      "id": "mpyy1u5gm3rkjql3cp",
+      "type": "text",
+      "x": 55,
+      "y": 185,
+      "text": "Pain point: emails lost in inbox",
+      "fontSize": 13,
+      "createdAt": "2026-06-04T03:36:51.175Z",
+      "updatedAt": "2026-06-04T03:36:51.175Z",
+      "version": 1
+    },
+    {
+      "id": "mpyy1vjg84oz0hg4onu",
+      "type": "rectangle",
+      "x": 1480,
+      "y": 80,
+      "width": 220,
+      "height": 90,
+      "backgroundColor": "#d0ebff",
+      "label": {
+        "text": "Archive order\\nFinance\\nPT 5m · WT 10m · %C&A 99"
+      },
+      "createdAt": "2026-06-04T03:36:52.973Z",
+      "updatedAt": "2026-06-04T03:36:52.973Z",
+      "version": 1
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "gridSize": null
+  }
+}

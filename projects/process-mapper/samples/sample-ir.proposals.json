@@ -1,0 +1,49 @@
+{
+  "note": "Human additions + ambiguous changes for Stage 5 review. NOT applied automatically.",
+  "untrackedAdditions": [
+    {
+      "elementId": "mpyy1u5gm3rkjql3cp",
+      "type": "text",
+      "text": "Pain point: emails lost in inbox",
+      "position": {
+        "x": 55,
+        "y": 185
+      },
+      "guess": "pain-point",
+      "nearestStepIrId": "step_001",
+      "nearestDistance": 112
+    },
+    {
+      "elementId": "mpyy1vjg84oz0hg4onu",
+      "type": "rectangle",
+      "text": "Archive order\\nFinance\\nPT 5m · WT 10m · %C&A 99",
+      "position": {
+        "x": 1590,
+        "y": 125
+      },
+      "guess": "new-step",
+      "nearestStepIrId": "step_005",
+      "nearestDistance": 280
+    }
+  ],
+  "ambiguous": [
+    {
+      "irId": "step_002",
+      "elementId": "el_step_002",
+      "kind": "step",
+      "textEdited": {
+        "from": "Check stock availability\nWarehouse\nPT 10m · WT 2h · %C&A 85",
+        "to": "Check stock availability\\nWarehouse\\nPT 10m · WT 30m · %C&A 92",
+        "parsed": {
+          "unparsed": [
+            "Check stock availability\\nWarehouse\\nPT 10m"
+          ],
+          "waitTimeMin": 30,
+          "pctCompleteAccurate": 92
+        }
+      },
+      "ambiguous": "unrecognised label content: Check stock availability\\nWarehouse\\nPT 10m"
+    }
+  ],
+  "deletedIrIds": []
+}
