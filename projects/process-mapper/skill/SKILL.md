@@ -22,9 +22,11 @@ yourself** — always call the engine.
 The IR (`../engine/src/ir.ts`) is the single source of truth. Validate it with the
 engine after every change you make.
 
-> Engine entry points: `cli/build-sample.ts` exists today (M1). `ingest`, `project`,
-> `reconcile`, and `report` CLIs are added in M2/M3/M6; until then, drive the engine
-> modules directly or via `npx tsx`.
+> Engine entry points (npm scripts in `../engine`): `npm run project -- <ir.json>`
+> (→ `.excalidraw` + `.idmap.json`), `npm run reconcile -- <ir.json> <board.excalidraw>`
+> (→ reconciled IR + `.proposals.json`), `npm run report -- <ir.json>` (→ offline HTML),
+> `npm run sample`. Stage-1 ingest file-handling lives in `src/ingest.ts`. For the live
+> canvas, drive the Excalidraw MCP tools directly (Stage 2/4). See `../docs/LOCAL_SETUP.md`.
 
 ## Stage 1 — Ingest (your judgment → IR)
 1. Read every input file in the engagement folder. PDFs: read natively (document
