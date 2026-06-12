@@ -42,6 +42,8 @@ Run in the workshop, deepened in the audit. For every recurring task, capture on
 
 **Elicitation technique:** "Walk me through Tuesday" beats "what are your problems?" People don't report friction they've normalized. Listen for: "we always have to...", "I just retype it...", "I chase him every week for...", "only Dave knows how to...". Each is a census row.
 
+**The second probe that earns its keep** (stolen verbatim from [@Timur_Yessenov's reply to @lukepierceops](https://x.com/lukepierceops)): **"Where does work currently die here - somebody's inbox, a spreadsheet, a CRM field, or waiting on an approval?"** The four options make it answerable on the spot, and the answer does double duty: *where* it dies points at the job to be done, and *what it dies in* tells you the client's delivery mode (§4b). The answer is very often the first pilot.
+
 ---
 
 ## §3. Triage: the time-math and the Opportunity Scorecard
@@ -113,6 +115,33 @@ For each capability gap, start at rung 0 and **justify every step up in writing.
 | "Scheduling is chaos" | Coordination | Rung 3 (mature SaaS category, don't build) |
 | "Only Dave knows" | Knowledge concentration | Rung 1 (document it) → rung 5 (retrieval/Q&A) later |
 | "We just don't have enough hands" | Capacity | Not an automation conversation - hiring/outsourcing/pricing. Say so |
+
+---
+
+## §4b. The whole menu: four jobs, three delivery modes
+
+A practitioner heuristic worth adopting wholesale - from [@lukepierceops](https://x.com/lukepierceops) (June 2026, after "systems for 85+ companies"): *"People starting AI agencies think they need to learn 50 different services... You're only ever doing 4 things for a client... 4 services with 3 delivery modes. That's the entire menu. The complexity people are scared of doesn't exist."* It compresses everything Edge Waypoint sells into a grid you can hold in your head mid-conversation.
+
+### The four jobs (the order IS the methodology)
+
+| # | Job | In Pierce's words | Ladder rungs | Edge Waypoint fit |
+|---|---|---|---|---|
+| 1 | **Process improvement** | "Find what's broken, fix it before touching a tool" | 0-1 | Workshop + Map findings; often the free advice in the Brief |
+| 2 | **Workflow automation** | "Remove the manual steps that eat your team's week" | 2-4 | The bread-and-butter Edge Pilot |
+| 3 | **Data structure** | "Centralize everything so the business has one source of truth" | the §6 gate, *promoted to a service* | A billable fixed-price engagement in its own right - see below |
+| 4 | **AI integration** | "Layer intelligence on top of the clean foundation you built" | 5-6 | Only pilots that pass §5, and never before jobs 1-3 are sound |
+
+**The upgrade this gives the kit:** §6 treats data readiness as a *gate* - a precondition that blocks pilots. The menu reframes it as a *product*. When the gate fails, don't bury it as a caveat in the readout - **quote it**. Data-structure work (centralizing the job records, deduplicating the customer list, making the spreadsheet-that-acts-like-a-system into an actual system) is low-risk, visibly valuable on its own (the owner finally gets one source of truth), and it makes every later automation and AI engagement both possible and stickier. For messy-systems clients it is usually the correct *first paid project*, ahead of any automation.
+
+### The three delivery modes (classify every client during the Map)
+
+| Mode | You'll recognize it by | Scoping and sequencing implication |
+|---|---|---|
+| **Full custom** | Still on Excel sheets and shared folders | Greenfield: discovery is fast (nothing to untangle) but jobs 1-3 all need doing before job 4 is discussable. Longest roadmap; start with the smallest win |
+| **Fix and implement** | Infrastructure exists but it's messy | This is where §6's 2-3x discovery multiplier lives. Job 3 (data structure) is the natural first engagement; automation rides on the cleaned foundation |
+| **AI layer** | Stack is solid, data is clean | The rare client where a rung-5 pilot is a legitimate first project. Fastest payback, shortest engagement - and the easiest mode to misdiagnose, so verify the foundation before believing the owner's description of it |
+
+The mode drives price as much as scope: full-custom clients buy a sequence, fix-and-implement clients buy cleanup-then-build, AI-layer clients buy speed. Saying the mode out loud in the readout ("you're a fix-and-implement shop - the honest first project is the data, not the robot") is itself a credibility move: it tells the owner you've seen enough businesses to know the pattern theirs fits.
 
 ---
 

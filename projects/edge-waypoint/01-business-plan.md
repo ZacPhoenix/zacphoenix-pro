@@ -55,6 +55,13 @@ Each rung is productized, fixed-price, and exists to de-risk the next rung. Name
 - Never bundle vaguely. Buyers are now explicitly coached to refuse retainers with vague deliverables and strategy decks without implementation. Every line item has a named artifact.
 - One pilot at a time per client. Tool sprawl kills pilots; ship one before starting the next.
 
+**The menu behind the products (orientation for you, not for the website).** Everything you will ever sell is one of **four jobs** - process improvement, workflow automation, data structure, AI integration, in that order of precedence - delivered in one of **three modes**: full custom (they're on spreadsheets and shared folders), fix-and-implement (systems exist, but messy), or AI layer (clean stack, genuinely ready for intelligence). Practitioner shorthand from [@lukepierceops](https://x.com/lukepierceops), after 85+ client systems: "4 services with 3 delivery modes. That's the entire menu. The complexity people are scared of doesn't exist." Two operating consequences:
+
+1. **Data-structure work is a product, not a disclaimer.** When the data readiness gate fails during a Map, quote the cleanup as its own fixed-price engagement (price it like a pilot). For fix-and-implement clients - the majority of SMBs - it's usually the correct first paid project, and it makes every later engagement stickier.
+2. **Classify every Map client into a mode**, because mode drives price and sequence: full-custom clients buy a sequence of small wins, fix-and-implement clients buy cleanup-then-build, AI-layer clients (rare) are the only ones where an AI pilot legitimately comes first.
+
+Full mapping of jobs and modes onto the Solution Ladder: frameworks doc §4b.
+
 ## 4. Go-to-market: the local funnel
 
 The motion: **get in rooms → run workshops → convert to Maps → convert to Pilots → harvest referrals.**

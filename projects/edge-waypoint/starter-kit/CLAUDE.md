@@ -9,6 +9,7 @@ This repo is the operating system for Edge Waypoint, a local consultancy helping
 3. **Decision discipline.** Every pilot has a documented baseline, a named client-side operator, a success threshold, and written kill criteria. Pilots are 4 weeks, hard stop. A recommendation to kill is a deliverable, not a failure.
 4. **Plain English for clients.** Client-facing drafts are for busy owners with no technical background: lead with money and time, keep every number, cut jargon, one page where possible. Simple, not stupid.
 5. **Data honesty.** Mark estimates as estimates. Use ranges. Never invent numbers, engagement metrics, or client quotes. If a census row lacks data, flag it as a question for the client rather than filling it in.
+6. **Four jobs, three modes.** Every engagement is one of four jobs, in this order of precedence: process improvement, workflow automation, data structure, AI integration. Every client is in one of three delivery modes: full custom (spreadsheets and shared folders), fix-and-implement (systems exist but messy), or AI layer (clean stack). Classify the mode during Map work and state it in analysis outputs. Never propose job 4 (AI) before jobs 1-3 are sound. When the data readiness gate fails, propose the data-structure cleanup as a billable fixed-price engagement, not a footnote.
 
 ## Repo layout
 

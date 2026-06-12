@@ -84,6 +84,7 @@ The Brief is free consulting and it's deliberately good. It demonstrates the pro
 ### Week 2 - Analysis and readout
 
 - Run each problem through the full framework chain (frameworks doc): problem type → capability statement → Solution Ladder → AI-fit checklist where relevant → MVA sketch
+- **Classify the client's delivery mode** (frameworks §4b): full custom, fix-and-implement, or AI layer. The mode shapes the whole readout - and if the data readiness gate failed, the readout proposes the data-structure cleanup as its own fixed-price engagement, not as a buried caveat. Say the mode out loud in the readout: "you're a fix-and-implement shop; the honest first project here is the data, not the robot"
 - Score everything on the Opportunity Scorecard; rank
 - **Readout meeting (60-90 min, in person):** walk the owner through the Map. Lead with their words from the workshop, then the numbers, then the recommendations. End on the one pilot candidate you'd stake your reputation on - and the proposal for it
 

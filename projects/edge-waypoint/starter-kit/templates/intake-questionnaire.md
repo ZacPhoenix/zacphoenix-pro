@@ -8,7 +8,7 @@
 
 3. **What's the recurring task or process that most reliably irritates you or your team?** (The thing someone complains about every week.)
 
-4. **Where does work most often get stuck waiting?** (Waiting on a person, an approval, information from another system, a callback...)
+4. **Where does work most often die?** (Somebody's inbox, a spreadsheet, a CRM field, waiting on an approval, a callback that never comes...)
 
 5. **List the main software/tools the business pays for today.** (Best guess is fine - accounting, scheduling, CRM, industry-specific tools, spreadsheets that act like systems.)
 
