@@ -1,0 +1,33 @@
+{
+  "_source": "EPA SDWIS / Envirofacts WATER_SYSTEM + VIOLATION tables",
+  "_urls": [
+    "https://data.epa.gov/efservice/WATER_SYSTEM/PWSID/GA1030107/JSON",
+    "https://data.epa.gov/efservice/VIOLATION/PWSID/GA1030107/JSON"
+  ],
+  "_date_pulled": "2026-06-18",
+  "_note": "Likely PWSID serving Southern Hills Plantation. County 'Water Providers by Subdivision' PDF lists Southern Hills system at 100 Hodgeville Rd, operated by Coastal Water Co (White Bluff), 'also services South Pointe'. Only matching SDWIS record is South Pointe Subdivision. CONFIRM exact PWSID with operator/EPD before relying.",
+  "system": {
+    "PWSID": "GA1030107",
+    "PWS_NAME": "SOUTH POINTE SUBDIVISION",
+    "PWS_TYPE_CODE": "CWS (Community Water System)",
+    "OWNER_TYPE_CODE": "P (Private)",
+    "PWS_ACTIVITY_CODE": "A (Active)",
+    "PRIMARY_SOURCE_CODE": "GW (Groundwater)",
+    "POPULATION_SERVED_COUNT": 491,
+    "SERVICE_CONNECTIONS_COUNT": 207,
+    "ADMIN_ORG": "ABBOTT, ANTHONY H",
+    "MAILING": "119 W. Oglethorpe Ave, Savannah, GA 31401",
+    "PHONE": "912-233-3254",
+    "EMAIL": "pamonte1@msn.com",
+    "PRIMACY_AGENCY": "Georgia EPD",
+    "OUTSTANDING_PERFORMER": "Yes (eff 2021-02-12)",
+    "SOURCE_WATER_PROTECTION": "Yes (eff 2017-09-25)"
+  },
+  "violations_summary": {
+    "total": 11,
+    "health_based": 0,
+    "types": "Recurring monitoring/reporting (codes 71/52/23/4G); contaminant codes 7000/5000/3100/5200 (administrative, not MCL exceedances)",
+    "most_recent_begin": "2024-10-17",
+    "interpretation": "No MCL / health-based violations on record. Administrative monitoring/reporting only — common for small private CWS."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "_source": "FEMA National Flood Hazard Layer (NFHL), public ArcGIS REST MapServer",
+  "_query_flood_zone": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/28/query (point -81.254227,32.21248, EPSG:4326)",
+  "_query_panel": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer/3/query (same point)",
+  "_date_pulled": "2026-06-18",
+  "flood_hazard_area": {
+    "DFIRM_ID": "13103C",
+    "FLD_AR_ID": "13103C_6265",
+    "FLD_ZONE": "X",
+    "ZONE_SUBTY": "AREA OF MINIMAL FLOOD HAZARD",
+    "SFHA_TF": "F",
+    "STATIC_BFE": -9999.0
+  },
+  "firm_panel": {
+    "FIRM_PAN": "13103C0360E",
+    "PANEL": "0360",
+    "SUFFIX": "E",
+    "EFF_DATE": "2015-03-16"
+  }
+}
