@@ -12,7 +12,35 @@
 > South Pointe / 31326 closed sales (last 6 mo, 1,900–2,500 sqft, built 1998–2010) is a
 > required human action (see 07).
 
-## Comparable sales pulled (ESTIMATED — aggregator data)
+## Same-street / same-subdivision sales — VERIFIED (Redfin public-records, pulled 2026-06-19)
+
+These are arm's-length sales **on Peachtree Drive, Southern Hills Plantation (Rincon)** — the
+most directly comparable set available. *(Note: most are 2021–2022 "rate-boom" sales; clean
+2025–26 closed comps are MLS-only — see freshness caveat.)*
+
+| Address | Sold | Price | Bd/Ba | Note |
+|---|---|---|---|---|
+| **426 Peachtree (SUBJECT)** | **9/2/2022** | **$427,000** | 4/3 | The single best comp — this house, this street |
+| 433 Peachtree | 6/2022 | $510,000 | 4/4.5 | Larger / higher-end (more baths) |
+| 425 Peachtree | 10/2021 | $415,000 | 5/3.5 | |
+| 414 Peachtree | 4/2022 | $410,000 | 4/2 | |
+| 412 Peachtree | 11/2021 | $320,000 | 4/2 | Smaller / lower finish |
+| 451 Peachtree | 6/2013 | $290,500 | 3/3.5 | Stale (2013) |
+| 424 Peachtree | 2/2023 | $65,000 | — | **Excluded** — lot/non-arm's-length |
+
+Source: Redfin public-records pages for each address (e.g.
+`https://www.redfin.com/GA/Rincon/433-Peachtree-Dr-31326/home/129974879`). Two "Southern Hills
+Plantation" subdivisions exist in GA — the **$223,500 average is the *Hawkinsville* one** (vacant
+lots) and is **not** applicable here (confirmed via Fickling & Co. subdivision page).
+
+**Read:** Comparable 4–5 bd Peachtree Dr homes traded **$410k–$510k in 2021–22**, with the
+subject's own **$427k (2022)** mid-pack. Going from $427k (2022) to the **$454,900** current ask
+implies only **~1.7%/yr** appreciation — modest, and not unreasonable on its face. So the
+same-street data **supports a ~$430–460k range** and neither condemns nor fully justifies
+$454,900; the deciding factors are (1) the apartment's legal status and (2) whether *recent*
+same-vintage resales clear $200+/sqft.
+
+## Comparable sales — aggregator data (ESTIMATED, mostly new construction)
 
 | Address | Sold | Bd/Ba | SqFt | Built | $/sqft | Implied price |
 |---|---|---|---|---|---|---|
@@ -21,18 +49,22 @@
 | 113 Fraser Ln | 2025-05-27 | 4/2.5 | 2,174 | 2025 | $169 | ~$367,400 |
 | 535 Plantation Dr | 2025-11-14 | n/a | n/a | n/a | $102 | — |
 
-Source: `https://www.homes.com/rincon-ga/31326/sold/` and subpages (pulled 2026-06-18).
-Subdivision reference (treat skeptically): a ByOwner page cited a Southern Hills Plantation
-trailing-12-mo **avg sale ≈ $223,500** — almost certainly mixes lots/older/ smaller stock or
-is stale; not used for valuation. `https://www.byowner.com/southern-hills-plantation/rincon/georgia`
+Source: `https://www.homes.com/rincon-ga/31326/sold/` (pulled 2026-06-18). 31326 median **list**
+price ≈ $353k (smaller/newer mix). RealtyTrac resale figures (~$324–461k for 2,100–2,300 sqft)
+appear AVM-flavored — low confidence.
+
+> **Freshness caveat:** Redfin/Zillow/Realtor.com/Movoto/Estately all block automated access,
+> so I could not pull a clean set of **2025–26 closed sales of 2000s-era brick homes**. That set
+> exists only in the MLS — your buyer's agent must produce it (see request in 07-F). The
+> verified same-street sales above are the best public-record substitute.
 
 ## $/sqft read
 
-- 31326 closed $/sqft spans roughly **$102–$198**; **new construction (2024–25) clusters
-  $169–$198/sqft.**
-- Subject at **$209.50/sqft is above even new-build comps** on a pure main-house basis.
+- 31326 **new construction (2024–25) clusters $169–$198/sqft.**
+- Subject at **$454,900 ÷ 2,194 SF = ~$207/sqft (main house)** — above even new-build comps.
 - The premium is being asked for non-$/sqft attributes: **0.48-ac lot, all-brick, paid-off
-  solar (eliminates most electric), and the detached 24×30 (~720 sqft) garage-apartment.**
+  solar, and the detached building** — but that building is recorded as a **$13k garage**, not
+  living area, so it should not carry an apartment/income premium.
 
 ## Hard valuation anchors — VERIFIED (qPublic, 2026-06-19)
 
