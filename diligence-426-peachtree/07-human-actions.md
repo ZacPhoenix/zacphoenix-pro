@@ -11,7 +11,10 @@ tracker item in `06-diligence-tracker.md`.
 
 ## 07-A. Open-records request — BUILDING PERMITS (Tracker #1, #5)
 
-**To:** Effingham County Building & Code Enforcement / Permitting Dept.
+**Online first:** OpenGov portal `https://effinghamcountyga.portal.opengov.com/` (search
+parcel 0435A084 / 426 Peachtree Dr). **To:** Effingham County Building & Code Enforcement,
+804 S. Laurel St., Springfield · 912-754-2128 · buildinginspections@effinghamcounty.org ·
+Building Official Joshua Moody (JMoody@effinghamcounty.org).
 **Re:** Georgia Open Records Act (O.C.G.A. § 50-18-70 et seq.) request — Parcel 0435A084
 
 > Dear Records Custodian,

@@ -8,6 +8,19 @@
 > JS-gated). Items below that could not be machine-pulled are marked **UNAVAILABLE** with a
 > ready-to-send request or call script in **07-human-actions.md**. Nothing here is invented.
 
+## A0. Confirmed parcel identity — VERIFIED (qPublic pull, 2026-06-18)
+
+| Field | Value |
+|---|---|
+| Owner of record | **SHIELDS, EDISON AND JENNIFER** |
+| MBL | **435A-84** (= Parcel 0435A084) ✓ |
+| Zoning | **R-1 (single-family residential)** — see §E |
+| Deed | **Book 2808, Page 544** |
+| Plat | **B104 E** |
+| Water (county field) | **"UNKNOWN"** — county left blank; does not contradict the regulated community-water finding in `03-water-system.md` |
+| Building Type code | 16125 (assessor code; meaning not decoded) |
+| Year built / Lot area / Occupancy | blank on the pulled record |
+
 ## A. Assessment & taxes
 
 | Item | Status | Value / Note |
@@ -28,14 +41,15 @@ Sources: `https://qpublic.schneidercorp.com/Application.aspx?App=EffinghamCounty
 > **Note on reassessment:** GA reassesses near sale price. Budget property tax off the
 > **purchase price** (model does this), not the seller's current (lower) assessed value.
 
-## B. Deed & sale history — **UNAVAILABLE**
+## B. Deed & sale history — **PARTIAL** (refs VERIFIED; documents still to pull)
 
-- Owner of record, vesting deed (book/page), prior sale price/date, open liens/UCC, and any
-  recorded **water-service covenant / shared-well or utility easement** and **HOA covenants
-  (CC&Rs)** for Southern Hills Plantation: all in the **GSCCCA** real-estate index, which
-  requires a (free) login. `https://search.gsccca.org`
-- Action: pull deed + plat + restrictive covenants for parcel 0435A084 / Southern Hills
-  Plantation (open-records or GSCCCA account). See 07.
+- **Vesting deed: Book 2808, Page 544** · **Plat: B104 E** · Owners **Edison & Jennifer
+  Shields** (VERIFIED via qPublic). Use these to pull the actual instruments on GSCCCA.
+- Still **UNAVAILABLE** (need the documents themselves): prior sale price/date, open
+  liens/security deeds/UCC, and any recorded **water-service covenant / shared-well or
+  utility easement** and **HOA covenants (CC&Rs)** for Southern Hills Plantation. **GSCCCA**
+  real-estate index (free login): `https://search.gsccca.org` — pull Deed Book 2808/544 and
+  Plat B104 E. See 07.
 
 ## C. Permits — **UNAVAILABLE** (Tier-1 red flags #1 & #5)
 
@@ -44,6 +58,13 @@ Sources: `https://qpublic.schneidercorp.com/Application.aspx?App=EffinghamCounty
 | Is the **24×30 detached garage → apartment** conversion permitted (building, electrical, plumbing for kitchenette + full bath)? | **UNAVAILABLE** | Effingham County Building & Code Enforcement permit history for 0435A084. |
 | Was the structure permitted as a garage only, or as a dwelling/accessory unit? | **UNAVAILABLE** | Same. |
 | **Roof** — any reroof permit (age clue)? | **UNAVAILABLE** | Same + assessor "year built / effective year" + a roofer's certification. House built **2002**; if original architectural shingles, roof is **~24 yrs old → likely at/over end of life** (VA appraiser may require a roof cert / remaining-life statement). |
+
+**Online check first:** Effingham permits run through the **OpenGov portal —
+`https://effinghamcountyga.portal.opengov.com/`** (search address / parcel 0435A084). Also
+check the **qPublic property card** for how the detached building is classified ("GARAGE" vs
+living/accessory area) and whether it shows heated/finished sqft — if it's carried as a
+garage with no heated area, the county does not recognize it as living space. Building Dept:
+912-754-2128, buildinginspections@effinghamcounty.org, Building Official Joshua Moody.
 
 Action: open-records request to Effingham County Building/Permitting for the full permit
 history on the parcel (07). This is the single most important paper to obtain — an
@@ -63,17 +84,23 @@ apartment's kitchen/bath effectively add a 5th-bedroom-equivalent load. GA EH ap
 needed to legally connect added fixtures. VA appraisal may condition on EH sign-off.
 Action: open-records request to Effingham County Environmental Health (07).
 
-## E. Zoning & home-occupation — **UNAVAILABLE** (Tier-1 red flag #5)
+## E. Zoning & home-occupation — **PARTIAL** (Tier-1 red flag #5)
 
-| Question | Status | Where |
+| Question | Status | Where / finding |
 |---|---|---|
-| Zoning class of 0435A084 (likely **R-1 / AR** residential) | **UNAVAILABLE** | Effingham County Planning & Zoning / GIS. |
-| Are **accessory dwelling units / second kitchens** allowed; can the apartment be rented? | **UNAVAILABLE** | County zoning ordinance (ADU + home-occupation rules). |
-| Home-occupation rules (if buyer works from home) | **UNAVAILABLE** | Same. |
+| Zoning class of 0435A084 | **VERIFIED** | **R-1 (single-family residential)** per qPublic. |
+| Are **accessory dwelling units / second kitchens** allowed; can the apartment be rented? | **LEANS NO — confirm with P&Z** | Effingham allows up to 2 units/lot incl. one ADU **but that provision carries a 5-acre minimum** (rural/AR table: 50-ft setbacks, 5 ac). Subject lot is **0.48 ac in R-1**, so it almost certainly does not qualify. County defines single-family as **"a single set of kitchen facilities"** — a detached unit with its own kitchen reads as a 2nd dwelling unit. Get the R-1-specific ADU rule from P&Z. |
+| Home-occupation rules (if buyer works from home) | **UNAVAILABLE** | County zoning ordinance, Article V/VI. |
 
-Why it matters: If zoning prohibits a separate dwelling/ADU or rental of the accessory unit,
-the "apartment" can only be used as non-rented in-law space; this caps the income thesis and
-may interact with the permit/septic findings.
+Sources: Effingham zoning ordinance (Municode `library.municode.com/ga/effingham_county`,
+Zoneomics chapter_6); ADU/2-unit amendment (Article III §5.1, 5-ac min) saved to
+`sources/effingham-adu-amendment-art3-sec5.1.pdf`.
+
+Why it matters: On a 0.48-ac R-1 lot, the detached "apartment" most likely **cannot** be a
+legal separate or rentable dwelling; at best it is non-rented in-law/accessory space, and the
+**second kitchen may itself be the zoning issue**. This caps any income thesis and compounds
+the permit (§C) and septic (§D) questions. Confirm exact R-1 ADU rule + this structure's
+status (legal nonconforming vs violation) with Planning & Zoning (07-D).
 
 ## F. Cross-references (VERIFIED elsewhere in this packet)
 

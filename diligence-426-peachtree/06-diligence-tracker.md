@@ -12,10 +12,10 @@ Status key: ✅ VERIFIED · 🟡 ESTIMATED/partial · 🔴 UNAVAILABLE (needs hu
 | 3 | 1 | Community water = regulated public system? operator, fees, violations, agreement? | EPA SDWIS / GA EPD / county PDF | 🟡→✅ | — / Buyer | **Resolved favorably:** regulated CWS (Coastal Water Co), 0 health-based violations. **Confirm exact PWSID** (likely GA1030107) + tariff (07-C). |
 | 4 | 1 | FEMA flood zone | FEMA NFHL | ✅ | — | **Zone X, not SFHA.** No mandatory flood insurance. Panel 13103C0360E (2015-03-16). |
 | 5 | 1 | Roof age / remaining life | Assessor + permits + roof cert | 🔴 | Buyer | House built 2002 → roof likely ~end of life unless reroofed; get roofer cert + reroof permit search (07-A). |
-| 6 | 1 | Zoning class + ADU / rental / home-occupation rules | Effingham Planning & Zoning | 🔴 | Buyer/agent | Confirms whether apartment can be rented (07-D). |
+| 6 | 1 | Zoning class + ADU / rental / home-occupation rules | qPublic + Effingham P&Z | 🟡 | Buyer/agent | **Zoning VERIFIED = R-1 single-family.** ADU/2-unit allowance carries a **5-ac min**; lot is 0.48 ac → likely no legal ADU/rental. Confirm R-1 rule + structure status w/ P&Z (07-D). |
 | 7 | 2 | Assessed value / FMV / current tax bill | qPublic (blocked) | 🔴 | Buyer/agent | Pull parcel 0435A084; replace ESTIMATED tax in model. |
 | 8 | 2 | 2025 millage (exact, all components) | County PT35 / DOR | 🟡 | Buyer | Using ~24 mills (secondary). Get exact for model. |
-| 9 | 2 | Deed, vesting, liens, prior sale price/date | GSCCCA (login) | 🔴 | Buyer/agent | (07-E). |
+| 9 | 2 | Deed, vesting, liens, prior sale price/date | GSCCCA (login) | 🟡 | Buyer/agent | **Refs VERIFIED: Deed Bk 2808/Pg 544, Plat B104 E, owners Shields.** Pull the instruments + liens (07-E). |
 | 10 | 2 | Recorded shared-well/utility easement or water covenant | GSCCCA / plat | 🔴 | Buyer/agent | Confirms no 2-party shared-well obligation. (07-E) |
 | 11 | 2 | HOA existence & dues for Southern Hills Plantation + CC&Rs | GSCCCA / listing agent | 🔴 | Buyer/agent | Model assumes $0 HOA — verify (07-F, 07-E). |
 | 12 | 2 | Appraisal-gap / true market value | Agent CMA + VA appraisal | 🟡 | Buyer/agent/lender | CMA on 1,900–2,500 sqft 1998–2010 closed sales; order VA appraisal post-contract. |
