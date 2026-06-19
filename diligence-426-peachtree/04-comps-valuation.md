@@ -33,12 +33,32 @@ Source: Redfin public-records pages for each address (e.g.
 Plantation" subdivisions exist in GA — the **$223,500 average is the *Hawkinsville* one** (vacant
 lots) and is **not** applicable here (confirmed via Fickling & Co. subdivision page).
 
-**Read:** Comparable 4–5 bd Peachtree Dr homes traded **$410k–$510k in 2021–22**, with the
-subject's own **$427k (2022)** mid-pack. Going from $427k (2022) to the **$454,900** current ask
-implies only **~1.7%/yr** appreciation — modest, and not unreasonable on its face. So the
-same-street data **supports a ~$430–460k range** and neither condemns nor fully justifies
-$454,900; the deciding factors are (1) the apartment's legal status and (2) whether *recent*
-same-vintage resales clear $200+/sqft.
+**Read (corrected for market timing):** These are **2021–22 boom-era sales** (sub-4% rates) and
+are **stale for a 2026 valuation** — an appraiser uses closed sales from the last ~3–6 months.
+They should **not** anchor the offer. Do **not** assume appreciation from the subject's $427k
+(2022) purchase: the local market has *fallen* since then (see current-market section). Treat
+the **2022 $427k as a soft ceiling**, not a floor. Useful only as directional context that
+similar homes on this street are mid-$400s-and-below product, not $500k+ unless larger.
+
+## Current market context (2026) — the data that should drive the offer
+
+| Metric (most recent) | Value | Source |
+|---|---|---|
+| Rincon median **sale** price, Nov 2025 | ~$310k, **−8.9% YoY** | Redfin city housing-market |
+| Effingham County median sale, Nov 2025 | ~$325k, **−9.0% YoY** | Redfin county |
+| Rincon median price, Jan 2026 | ~$357k | Homes.com / Zillow |
+| Savannah metro home values | **−~0.5% YoY; ~7–8% off early-2025 peak** | Zillow / Norada |
+| Days on market (Rincon) | ~84 (up from ~72) | Redfin |
+| 2026 outlook | "rational reset" → **balanced / buyer-favorable** | Norada / AnnieMac |
+
+*(Median = whole-market mix incl. townhomes/new starter builds; it indicates **direction
+(cooling), not the level** for this above-median 2,194 SF brick home. Level still needs recent
+same-vintage closed comps — MLS-only, agent must pull.)*
+
+**Implication:** In a market down ~8–9% YoY and ~7–8% off peak, the **assessor FMV ($413,078)
+is a credible current-value reference**, and new construction clearing **$169–198/sqft** is the
+most relevant live signal. The subject's **$207/sqft ask is above current new-build pricing.**
+All current signals point to **$454,900 being high for today.**
 
 ## Comparable sales — aggregator data (ESTIMATED, mostly new construction)
 
@@ -94,10 +114,10 @@ appraiser is likely to treat an unpermitted conversion:
   $/sqft-of-main-house + modest lot/solar adders. Plausible appraised range
   **~$420,000–$440,000**. Gap risk: **moderate–high ($20k–$40k).**
 
-**Working estimate of market value: ~$427,000–$445,000**, anchored by the 2022 purchase
-($427k) and assessor FMV ($413k) and weighted toward the lower end given the garage-only
-recording of the rear building. A figure near list would require permit confirmation **and**
-strong recent comps.
+**Working estimate of market value: ~$410,000–$440,000**, anchored by the assessor FMV ($413k)
+and a **cooling 2026 market** (local medians down ~8–9% YoY; new-build $/sqft $169–198). The
+2022 purchase ($427k) is treated as a soft ceiling, not a floor. A figure near list would
+require both permit confirmation **and** strong *recent* (last 3–6 mo) same-vintage comps.
 
 ### Why this matters for a $0-down VA buyer
 With $0 down + financed funding fee, the loan is **$469,788** (≈102.15% of price). If the
@@ -110,9 +130,10 @@ at assumed true values of $430k/$440k/$450k.
 
 | Offer | Rationale |
 |---|---|
-| **$430,000–$440,000** (target) | Bracketed by the owners' 2022 purchase ($427k) and assessor FMV ($413k), with credit for ~3.5 yrs appreciation, lot, brick, and owned solar — but **no** premium for the garage-as-apartment. Protects a $0-down buyer from an appraisal-gap cash call. All-in ~$4,035–$4,220/mo (model). |
-| **up to ~$445,000** (stretch) | Justifiable **only** if (a) the permit file proves the apartment is legal living area and (b) a CMA/appraisal supports it. |
-| **$459,900** (list) | Not supported by the 2022 sale, the assessor FMV, or the garage-only recording. Pay only with a VERIFIED permitted apartment + appraisal at/above list, or accept gap-cash risk. 45 DOM + one cut = buyer leverage. |
+| **Open $425,000–$430,000** | Grounded in the assessor FMV ($413k) and the cooling market; explicitly pays **no** appreciation premium off the 2022 price and no premium for the garage-as-apartment. Leaves room to settle in the $430s. |
+| **Settle $430,000–$440,000** (target) | Top of fair for today, pending recent comps; protects a $0-down buyer from an appraisal-gap cash call. All-in ~$4,035–$4,220/mo (model). |
+| **> $440,000** | Justifiable **only** if (a) the permit file proves the apartment is legal living area **and** (b) recent (last 3–6 mo) same-vintage closed comps clear $200+/sqft. |
+| **$454,900 (current list) / $459,900 (orig)** | Not supported by the assessor FMV, the cooling market, new-build $/sqft, or the garage-only recording. 45+ DOM + price cut = buyer leverage. |
 
 **Negotiation leverage:** 45 days on market + one price cut + unresolved permit/septic
 questions = room to negotiate price and/or seller-paid concessions (VA allows seller
