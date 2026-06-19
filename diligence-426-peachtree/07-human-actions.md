@@ -109,7 +109,12 @@ Court, Effingham County.
 
 ---
 
-## 07-F. Call script — LISTING AGENT "Karen" (Tracker #11, #13, #16)
+## 07-F. Call script — LISTING AGENT Karen Miller (Tracker #11, #13, #16)
+
+**VERIFIED contact:** Karen Miller, Next Move Real Estate LLC — **(912) 844-1057** —
+garealtorkaren@gmail.com (she is the SELLER's agent; route seller requests here, ideally via
+your buyer's agent). Note: HOA question already answered (none); focus on permits, septic
+bedroom count, solar lien, and the disclosure contradiction.
 
 > "Hi Karen — I'm seriously interested in **426 Peachtree Drive** and doing my homework
 > before writing an offer. A few questions:

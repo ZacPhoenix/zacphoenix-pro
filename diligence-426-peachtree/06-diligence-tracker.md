@@ -7,7 +7,7 @@ Status key: ✅ VERIFIED · 🟡 ESTIMATED/partial · 🔴 UNAVAILABLE (needs hu
 
 | # | Tier | Question / item | Source | Status | Owner | Notes / next step |
 |---|---|---|---|---|---|---|
-| 1 | 1 | Garage→apartment conversion permitted (bldg/elec/plumb)? | Effingham Building & Code Enf. | 🔴 **presumed NO** | Buyer/agent | **Assessor records it as a GARAGE (zero heated sqft); qPublic Permits = no data.** Pull building file to confirm (07-A). Drives appraisal & legality. |
+| 1 | 1 | Garage→apartment conversion permitted (bldg/elec/plumb)? | Effingham Building & Code Enf. | 🔴 **presumed NO** | Buyer/agent | Assessor = GARAGE (no heated sqft); qPublic Permits empty; **Seller Disclosure 4c/4d attest NO alterations & NO unpermitted work — contradicts MLS "apartment."** Require permits or treat as garage (07-A; 09). |
 | 2 | 1 | Septic permit — # bedrooms approved; apartment legally connected? | Effingham Environmental Health (Coastal Health Dist.) | 🔴 | Buyer/agent | Open-records request (07-B). |
 | 3 | 1 | Community water = regulated public system? operator, fees, violations, agreement? | EPA SDWIS / GA EPD / county PDF | 🟡→✅ | — / Buyer | **Resolved favorably:** regulated CWS (Coastal Water Co), 0 health-based violations. **Confirm exact PWSID** (likely GA1030107) + tariff (07-C). |
 | 4 | 1 | FEMA flood zone | FEMA NFHL | ✅ | — | **Zone X, not SFHA.** No mandatory flood insurance. Panel 13103C0360E (2015-03-16). |
@@ -17,9 +17,10 @@ Status key: ✅ VERIFIED · 🟡 ESTIMATED/partial · 🔴 UNAVAILABLE (needs hu
 | 8 | 2 | Millage (exact) | qPublic | ✅ | — | **VERIFIED 29.526 mills** (Tax District 01-County). Model updated. |
 | 9 | 2 | Deed, vesting, liens, prior sale price/date | GSCCCA (login) | 🟡 | Buyer/agent | **Refs VERIFIED: Deed Bk 2808/Pg 544, Plat B104 E, owners Shields.** Pull the instruments + liens (07-E). |
 | 10 | 2 | Recorded shared-well/utility easement or water covenant | GSCCCA / plat | 🔴 | Buyer/agent | Confirms no 2-party shared-well obligation. (07-E) |
-| 11 | 2 | HOA existence & dues for Southern Hills Plantation + CC&Rs | GSCCCA / listing agent | 🔴 | Buyer/agent | Model assumes $0 HOA — verify (07-F, 07-E). |
+| 11 | 2 | HOA existence & dues + CC&Rs | MLS + Seller Disclosure | ✅ | — | **No HOA, no CC&Rs** (both docs). $0 confirmed. |
+| 11b | 2 | HVAC condition | Seller Disclosure | ✅ | — | **New HVAC May 2025** — positive, low risk. |
 | 12 | 2 | Appraisal-gap / true market value | Agent CMA + VA appraisal | 🟡 **elevated** | Buyer/agent/lender | Anchors: 2022 buy **$427k**, assessor FMV **$413k**, rear bldg = garage only. Est. value **$427–445k** vs $459,900 list. CMA + VA appraisal to confirm. |
-| 13 | 2 | Solar — owned & paid off? system size, age, warranty, transfer, true electric offset | Seller + utility + installer | 🔴 | Buyer | (07-C/07-F). Confirms ~$75/mo electric assumption. |
+| 13 | 2 | Solar — owned/paid off? lien? size/age/offset | Seller Disclosure + UCC + bills | 🟡 | Buyer | **Disclosed owned/paid-off, not leased, conveys.** Still: UCC/lien check + 12-mo bills (07-C/07-F). |
 | 14 | 3 | Homeowners insurance quote (+ wind/hail deductible) | Insurer | 🔴 | Buyer | Inputs in 07-G; model uses $2,500–$3,500. |
 | 15 | 3 | Lender quotes (rate, points, fees, ≥5% down → 1.5% fee) | 2–3 VA lenders | 🔴 | Buyer | Call script 07-H. |
 | 16 | 3 | LP propane — owned vs leased tank; supplier; budget | Seller + propane co | 🔴 | Buyer | Leased tank locks supplier; affects $30/mo. |

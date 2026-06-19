@@ -11,9 +11,16 @@ shows no permits** — so treat it as a **presumed unpermitted conversion** on a
 lot where an ADU likely isn't allowed. Combined with the verified **$427,000 (2022) purchase**,
 **$413,078 assessor FMV**, and the now-**VERIFIED 29.526-mill** tax pushing all-in housing to
 **55–61% of net**, the $459,900 list looks over-priced for a single-income $0-down buyer.
-**Recommended: offer $430,000–$440,000, $0 down, with permit/septic/appraisal contingencies** —
-stretch toward $445k only if the permit file proves the apartment is legal living area and an
-appraisal supports it.
+**Recommended: offer $425,000–$440,000, $0 down (open ~$425–430k), with permit/septic/appraisal
+contingencies** — stretch higher only if the permit file proves the apartment is legal living
+area and recent comps support it.
+
+> **Negotiation lever (from the signed Seller's Disclosure):** the seller attests **NO
+> alterations and NO unpermitted work** (GAR F301 §4c/4d), yet the MLS markets the building as a
+> converted **apartment** and the county lists it as a **garage**. This all but confirms the
+> conversion is unpermitted, protects you on disclosure reliance, and is grounds to demand
+> permits or a price/credit. No HOA, **new HVAC (May 2025)**, and **owned/paid-off solar** are
+> confirmed positives. Listing agent: **Karen Miller, 912-844-1057** (seller's side).
 
 ## Risk dashboard
 

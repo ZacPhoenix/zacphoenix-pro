@@ -1,80 +1,67 @@
 # 08 — Email to Buyer's Agent (ready to send)
 
-**Prepared:** 2026-06-19 · Fill in `[brackets]`. Reflects current (2026) cooling-market data
-and the corrected, lower price band ($425k–$440k). Rationale lives in `04-comps-valuation.md`.
+**Prepared:** 2026-06-19 (rev. after reviewing MLS sheet + Seller's Property Disclosure).
+Fill in `[brackets]`. **Send to YOUR buyer's agent — NOT to Karen Miller, who is the listing
+(seller's) agent.** Rationale: `04-comps-valuation.md` + `09-mls-and-disclosure-review.md`.
 
 ---
 
-**Subject:** 426 Peachtree Dr — our homework + a few gaps before we write the offer
+**Subject:** 426 Peachtree Dr — disclosure review + where we land on price
 
-Hi [Agent's name],
+Hi [Your agent's name],
 
-Thank you again for showing us 426 Peachtree and walking us through the contract — we're
-genuinely excited about this one and want to move toward an offer soon. Before we fill in the
-numbers, we did some homework on the public records and the current market, and we'd love your
-help closing a few gaps so we land on a price that's right for us **and** clears the VA appraisal.
+Thanks again. I've now got the MLS sheet and the **Seller's Property Disclosure**, and reading
+them together cleared up a lot — and raised one inconsistency I'd like your help with before we
+write the offer. (Anything for the seller would route through the listing agent, Karen Miller.)
 
-**Here's what we're seeing:**
+**Good news the docs confirm:** no HOA / no CC&Rs, a **new HVAC (May 2025)**, septic
+**serviced May 2025**, **solar fully owned/paid-off** (not leased) and conveying, and no flood
+history.
 
-- **The market has cooled.** Recent data has the Rincon median sale price **down roughly 9%
-  year-over-year**, the Savannah metro **~7–8% off its early-2025 peak**, and days-on-market
-  rising — a more balanced, buyer-favorable 2026. So we're not comfortable pricing off the
-  2021–22 boom.
-- **Value/basis:** Effingham's 2026 fair-market value is **$413,078**, and the sellers paid
-  **$427,000 in September 2022** — near the top of the market. In a market that's softened
-  since then, that 2022 price is more of a ceiling than a floor, and the $454,900 ask sits
-  ~$42k above the county's value.
-- **Price per sqft:** At $454,900 over 2,194 heated sqft, that's **~$207/sqft — above even the
-  new-construction homes** selling in 31326 right now ($169–198/sqft).
-- **The detached building:** The county assesses it as a **garage (~$13,000, no finished/heated
-  square footage)**, and we don't see permits for the kitchen and bath that were added. We love
-  the space, but we don't want to pay an "apartment/in-law suite" premium for something that may
-  not be permitted or count as living area.
-- **Taxes:** Millage is 29.526, so our bill will run **~$5,000+/yr** once it reassesses to our
-  purchase price.
-- **The good news:** it's in **FEMA Zone X** (no mandatory flood insurance), and the neighborhood
-  water is a **state-regulated community system**, so no private-well issues for our VA loan.
-- **Roof:** original 2001, likely near end of life — something our VA appraiser may flag.
+**The inconsistency we need reconciled — the big one:** the MLS markets the detached 24×30 as
+*"currently being used as an apartment with a kitchenette and full bath,"* but the seller's
+signed disclosure says **no additions/alterations** and **no work done without a required
+permit**, and the county assesses it as a **garage with no finished square footage.** Those
+can't all be true. Before we assign any value to that space as living area, we need the seller
+to either **(a) produce the building/electrical/plumbing permits for the conversion, or (b)
+acknowledge it's an unpermitted garage** and price it accordingly. We're not paying an
+apartment/rental premium for a space the seller's own disclosure says was never altered or
+permitted.
 
-**Where we really need your expertise (the gaps we can't fill ourselves):**
+**Items to button up (through Karen / seller, plus a couple we'll verify):**
+- **Septic:** the seller listed the health-dept approved **bedroom count as "Unknown."** We need
+  the actual septic permit / capacity from **Effingham Environmental Health** — important for a
+  4-bedroom home plus a building with a kitchen and bath.
+- **Water:** the disclosure checks "well" but writes *"serviced by the city,"* while the MLS says
+  "Community Well." Can the seller confirm **who bills them for water** and whether there's any
+  **water-service agreement**? (We believe it's a state-regulated community system.)
+- **Solar:** written confirmation it's **lien-free** (no UCC filing / no solar loan) and ~**12
+  months of electric bills**.
+- **Roof:** disclosed age "Unknown," no repairs during ownership — so likely the **original
+  ~2002 roof**. We'll want a roofer's assessment; the VA appraiser may flag it.
 
-1. **Current MLS closed comps — the big one.** Could you pull **closed sales from the last 3–6
-   months** for **brick homes built ~1998–2008, 2,000–2,400 sqft, in South Effingham** — address,
-   sold price, sold date, sqft, and condition? Recent same-age comps (not the 2021–22 sales or
-   new construction) are what will actually set the value and what the appraiser will use.
-2. **Permits & septic:** Could you ask the listing agent for the **building permits** on the
-   detached structure (and the added kitchen/bath), and the **septic permit** showing how many
-   bedrooms it's approved for — plus the **Seller's Property Disclosure**?
-3. **HOA:** Is there a Southern Hills Plantation HOA, and what are the dues?
-4. **Solar:** Can the sellers confirm it's **fully owned/paid off** (no lease or lien) and share
-   ~12 months of electric bills?
+**The one thing only you can pull:** recent **(last 3–6 months) MLS *closed* sales** of brick
+homes built **~1998–2008, 2,000–2,400 sqft, in South Effingham** — address, sold price, date,
+sqft, condition. That's what sets value and what the appraiser will use.
 
-**On price:** Based on the cooling market, the county value, and the new-construction pricing,
-we're thinking of an offer in the **$425,000–$440,000 range** (likely opening around $425k–$430k),
-zero down. We're explicitly **not** paying an appreciation premium off the 2022 price or paying
-for the garage space until we know it's permitted. With ~45+ days on market and a price cut
-already, we think there's real room. **If your recent closed comps come back strong, we're happy
-to revisit the top of that range** — we just want the number grounded in current sales.
+**On price:** the market has cooled (Rincon median sale down ~9% YoY; Savannah metro ~7–8% off
+peak; days-on-market rising), the county's value is **$413,078**, and the apartment looks
+unpermitted — so we're planning an offer in the **$425,000–$440,000 range** (opening ~$425–430k),
+zero down. We'd like it written with **financing/appraisal, inspection, and permit/records
+contingencies**, the **VA amendatory clause**, and a request for **seller-paid closing costs**
+(up to 4%). If your closed comps come back strong, we'll revisit the top of the range.
 
-**A couple of structure notes:** we'd like the offer written with a **financing/appraisal
-contingency**, an **inspection contingency**, and a contingency tied to the **permit/septic
-records**, plus please confirm the **VA amendatory clause** is included. We'd also like to ask
-for **seller-paid closing costs** (we understand VA allows up to 4%), which helps a lot on a
-zero-down purchase.
-
-We're motivated and ready to write this up quickly once we have the comps and records in hand.
-We'd love your help getting us in at a number that makes sense in today's market and clears the
-appraisal. Thanks so much, [Agent's name] — we really appreciate you working this with us.
+We're motivated and ready to write quickly once we have the comps and the permit answer. Thanks
+so much, [Your agent's name]!
 
 Best,
-[Your names]
-[phone]
+[Your names] · [phone]
 
 ---
 
 ### Optional add-ons
 - If **pre-approved**, add up top: "We're pre-approved with [lender] and ready to move."
-- If she's your **exclusive buyer's agent**, you can be more direct about wanting her to
-  negotiate hard on your behalf.
-- A short text to send first: *"Hi [name] — sent you an email with some homework on 426
-  Peachtree and where we'd like to land on price. Mind taking a look before we write it up?"*
+- Short text to send first: *"Hi [name] — sent an email with our review of the MLS and seller
+  disclosure on 426 Peachtree and where we'd like to land on price. Mind taking a look before we
+  write it up?"*
+- Keep your **walk-away max** to yourself — the band above is your opener, not your ceiling.
