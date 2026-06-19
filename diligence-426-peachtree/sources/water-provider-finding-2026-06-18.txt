@@ -1,0 +1,17 @@
+SOURCE: Effingham County, GA - "Water Providers by Subdivision" PDF
+URL: https://www.effinghamcounty.org/DocumentCenter/View/510/Water-Providers---by-Subdivision-PDF
+Date pulled: 2026-06-18
+Saved: effingham-water-providers-by-subdivision.pdf
+
+EXTRACTED ENTRY (verbatim, de-spaced):
+"SOUTHERN HILLS PLANTATION | map ref 435A | EXISTING | 100 HODGEVILLE Rd, also services South Pointe & ... | COASTAL WATER CO (White Bluff)"
+
+Adjacent context:
+- SOUTHERN COMFORT ESTATES | 319-6 | PROPOSED
+- SOUTHERN PINE PLANTATION | 370C | EXISTING | WELLS
+
+INTERPRETATION: Southern Hills Plantation is served by a private community water
+utility "Coastal Water Co" (associated with White Bluff), system point at 100 Hodgeville Rd.
+This is NOT an individual on-lot well and NOT an individual shared well between two homes;
+it is a centrally-operated community water system. Parcel map prefix 435A matches Parcel
+ID 0435A084. Needs PWSID confirmation in EPA SDWIS / GA EPD.
