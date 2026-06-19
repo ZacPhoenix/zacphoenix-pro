@@ -1,63 +1,97 @@
 # 01 — Public Records (Tax, Deed, Permits, Septic, Zoning)
 
 **Property:** 426 Peachtree Drive, Rincon, GA 31326 · Parcel **0435A084** · Effingham County
-**Pulled:** 2026-06-18
+**Pulled:** 2026-06-18 · **Updated 2026-06-19 with the full qPublic property record (buyer-supplied PDF).**
 
-> Access note: The authoritative county systems (qPublic assessor portal, building-permit
-> portal) and the state deed index (GSCCCA) **block automated access** (HTTP 403 / login /
-> JS-gated). Items below that could not be machine-pulled are marked **UNAVAILABLE** with a
-> ready-to-send request or call script in **07-human-actions.md**. Nothing here is invented.
+> Access note: Most of this section is now **VERIFIED** from the official qPublic property
+> record card for parcel 0435A084 (saved to `sources/`). Items still requiring the underlying
+> documents (deed instruments, permit file, septic file) remain **UNAVAILABLE** with a
+> ready-to-send request in **07-human-actions.md**. Nothing here is invented.
 
-## A0. Confirmed parcel identity — VERIFIED (qPublic pull, 2026-06-18)
+## A0. Parcel identity & assessment — VERIFIED (qPublic record, last data upload 2026-06-18)
 
 | Field | Value |
 |---|---|
-| Owner of record | **SHIELDS, EDISON AND JENNIFER** |
-| MBL | **435A-84** (= Parcel 0435A084) ✓ |
-| Zoning | **R-1 (single-family residential)** — see §E |
-| Deed | **Book 2808, Page 544** |
-| Plat | **B104 E** |
-| Water (county field) | **"UNKNOWN"** — county left blank; does not contradict the regulated community-water finding in `03-water-system.md` |
-| Building Type code | 16125 (assessor code; meaning not decoded) |
-| Year built / Lot area / Occupancy | blank on the pulled record |
+| Owner of record | **SHIELDS, EDISON AND JENNIFER** (no homestead currently) |
+| Parcel / Account (Realkey) | **0435A084 / 16125** |
+| Legal | **.48 AC LOT 84**, Neighborhood 0435A (Southern Hills) |
+| Tax class | **R3-Residential** (tax only) · **Zoning R-1** (see §E) |
+| Tax District | **01-County (District 01)** |
+| **Millage Rate** | **29.526 mills** (VERIFIED total for this parcel — replaces earlier ~24 estimate) |
+| Acres | 0.48 |
+| Deed / Plat | **Book 2808, Page 544** / Plat **B104 E** |
+| Water (county field) | **"UNKNOWN"** — left blank; does not contradict community-water finding (`03`) |
+| Style / Heated SqFt | One Family / **2,194 SF** (main house only) |
+| Year Built | **2001** (listing said 2002) |
+| Construction | Brick veneer · **Slab perimeter** · Sheetrock · Cent Heat/AC |
+| Roof | **Fiberglass (asphalt) — original 2001** → see roof note in §C |
+| Baths / Plumbing | **3 full baths**, **9 "plumbing extras"** (high — consistent with extra kitchen/bath fixtures) |
+| Bedrooms (assessor) | 0 (assessor often leaves blank; listing markets 4bd) |
 
-## A. Assessment & taxes
+## A. Assessment, valuation & taxes — VERIFIED
 
-| Item | Status | Value / Note |
+| Item | 2026 | 2025 |
 |---|---|---|
-| Assessed value (40% of FMV) | **UNAVAILABLE** | qPublic blocked (403). Pull parcel 0435A084 record / use qPublic tax estimator. |
-| Fair market value (assessor) | **UNAVAILABLE** | Same. |
-| 2025 millage (unincorporated) | **ESTIMATED** | ~**24 mills** total: county ~5.596 + school ~18.45 (Trisha Cook coastal-GA tax guide, secondary). County 2025 millage staff report saved but the PT35 rate table is image-only — numbers not machine-readable. |
-| Effective tax rate | **ESTIMATED** | ~0.96% of FMV (24 mills × 40%). Secondary sources cite 0.94–1.03%. |
-| Homestead exemption | **VERIFIED (program terms)** | Standard Effingham homestead: **$4,000 off county** assessed + **$2,000 off school** assessed for owner-occupants. Buyer is owner-occupant → eligible (must file by Apr 1). |
-| Est. annual tax @ $459,900 w/ homestead | **ESTIMATED** | **~$4,364/yr (~$364/mo)** — math in `financial_model.py` (`annual_property_tax`). Treat as planning figure until the real bill/assessed value is pulled. |
-| Neighborhood data point | secondary | NeighborWho lists avg property tax on Peachtree Dr ≈ **$2.6k/yr** (likely reflects lower assessed values / older basis than a $459,900 purchase; a post-sale reassessment typically raises it). |
+| Land value | $75,000 | $75,000 |
+| + Improvement value | $311,932 | $283,181 |
+| + **Accessory value** | $26,146 | $26,146 |
+| = **Total FMV (assessor)** | **$413,078** | $384,327 |
+| Assessed (40% of FMV) | ~$165,231 | ~$153,731 |
 
-Sources: `https://qpublic.schneidercorp.com/Application.aspx?App=EffinghamCountyGA` (blocked),
-`https://trishacook.com/blog/understanding-property-taxes-in-coastal-georgia`,
-`sources/effingham-2025-millage-staff-report.pdf`,
-`https://dor.georgia.gov/local-government-services/digest-compliance/property-tax-millage-rates`.
+**Accessory breakdown (VERIFIED):** Home site above average **$12,950** + **GARAGE $13,196**
+= $26,146. *(The detached building is carried entirely as a **garage** — see §C/§E.)*
 
-> **Note on reassessment:** GA reassesses near sale price. Budget property tax off the
-> **purchase price** (model does this), not the seller's current (lower) assessed value.
+**Property tax (now on VERIFIED 29.526 mills):**
+- **Current owner** (no homestead, FMV $413,078): assessed $165,231 × 0.029526 ≈ **$4,879/yr**.
+  *(NeighborWho's ~$2.6k figure was stale/low.)*
+- **Buyer go-forward** (GA resets FMV toward sale price; with owner-occupant homestead):
+  - @ $459,900 → **~$5,254/yr (~$438/mo)** ESTIMATED
+  - @ $440,000 → ~$5,019/yr (~$418/mo)
+  - @ $435,000 → ~$4,960/yr (~$413/mo)
+- Homestead (VERIFIED terms): $4,000 off county + $2,000 off school assessed; **buyer must
+  file** (current owners have none). Math in `financial_model.py`.
 
-## B. Deed & sale history — **PARTIAL** (refs VERIFIED; documents still to pull)
+Source: qPublic property record, parcel 0435A084 (saved `sources/qpublic-report-0435A084-2026-06-19.pdf`).
 
-- **Vesting deed: Book 2808, Page 544** · **Plat: B104 E** · Owners **Edison & Jennifer
-  Shields** (VERIFIED via qPublic). Use these to pull the actual instruments on GSCCCA.
-- Still **UNAVAILABLE** (need the documents themselves): prior sale price/date, open
-  liens/security deeds/UCC, and any recorded **water-service covenant / shared-well or
-  utility easement** and **HOA covenants (CC&Rs)** for Southern Hills Plantation. **GSCCCA**
-  real-estate index (free login): `https://search.gsccca.org` — pull Deed Book 2808/544 and
-  Plat B104 E. See 07.
+> **Note on reassessment:** GA reassesses near sale price. The model budgets tax off the
+> **purchase price** (~$413–438/mo), not the seller's current lower assessed value.
 
-## C. Permits — **UNAVAILABLE** (Tier-1 red flags #1 & #5)
+## B. Deed & sale history — **PARTIAL** (sale history VERIFIED; deed instruments still to pull)
+
+**Sale history (VERIFIED — qPublic):**
+
+| Date | Price | Note |
+|---|---|---|
+| **9/2/2022** | **$427,000** | Current owners (Shields) purchased — most recent arm's-length sale |
+| 1/8/2016 | $0 | Non-arm's-length transfer (quitclaim/family/refi) |
+| 5/30/2002 | $190,000 | Original sale (new construction) |
+
+> **Valuation anchor:** Owners paid **$427,000 in Sept 2022** and now list at **$459,900**
+> (+$32,900 / +7.7% in ~3.5 yrs). Assessor 2026 FMV is **$413,078** — i.e., the **list is
+> ~$47k above the assessor's value** and the officially-recognized improvements do **not**
+> include the apartment (see §E). Reinforces the appraisal-gap analysis in `04` / `05`.
+
+- **Vesting deed: Book 2808, Page 544** · **Plat: B104 E** (VERIFIED refs). Pull the actual
+  instruments on **GSCCCA** (`https://search.gsccca.org`) for: open liens/security deeds, and
+  any recorded **water-service covenant / shared-well or utility easement** and **HOA
+  covenants (CC&Rs)** for Southern Hills Plantation. — documents still **UNAVAILABLE**; see 07.
+
+## C. Permits — **UNAVAILABLE on file, but strong "garage-only" signal** (Tier-1 #1 & #5)
+
+> **Key new evidence (VERIFIED):** The qPublic **Permits module shows "No data,"** and the
+> assessor carries the detached building **purely as a GARAGE** — sketch shows **"04 Garage
+> 528 SF" + "15 Add'l Garage 264 SF"** (~792 SF total) with **zero heated square feet** and an
+> accessory value of only **$13,196**. The home's heated area (2,194 SF) is the **main house
+> only**. In other words, **the county does not recognize the apartment as living space.**
+> That is exactly what an **unpermitted garage-to-apartment conversion** looks like on the
+> record. Treat the conversion as **presumed unpermitted until the building file proves
+> otherwise.**
 
 | Question | Status | Where |
 |---|---|---|
-| Is the **24×30 detached garage → apartment** conversion permitted (building, electrical, plumbing for kitchenette + full bath)? | **UNAVAILABLE** | Effingham County Building & Code Enforcement permit history for 0435A084. |
-| Was the structure permitted as a garage only, or as a dwelling/accessory unit? | **UNAVAILABLE** | Same. |
-| **Roof** — any reroof permit (age clue)? | **UNAVAILABLE** | Same + assessor "year built / effective year" + a roofer's certification. House built **2002**; if original architectural shingles, roof is **~24 yrs old → likely at/over end of life** (VA appraiser may require a roof cert / remaining-life statement). |
+| Garage→apartment conversion permitted (bldg/elec/plumbing for kitchen + full bath)? | **UNAVAILABLE — presumed NO** | Effingham Building & Code Enforcement file for 0435A084. |
+| Permitted as garage only, or as dwelling/accessory unit? | **Assessor = garage only** | Confirm in permit file. |
+| **Roof** — original or reroofed? | **VERIFIED original 2001** | Roof dates to **2001 build = ~25 yrs old → at/over typical asphalt-shingle life.** No reroof permit seen. Expect a VA appraiser to require a **roof certification / remaining-life statement**; budget replacement (~$12–20k) as a near-term capital item or negotiation point. |
 
 **Online check first:** Effingham permits run through the **OpenGov portal —
 `https://effinghamcountyga.portal.opengov.com/`** (search address / parcel 0435A084). Also
@@ -82,6 +116,9 @@ and the legality of any rental/in-law use.
 Why it matters: A septic system permitted for, say, 4 bedrooms may be **overloaded** if the
 apartment's kitchen/bath effectively add a 5th-bedroom-equivalent load. GA EH approval is
 needed to legally connect added fixtures. VA appraisal may condition on EH sign-off.
+**Corroborating detail:** the assessor lists **9 "plumbing extras"** on the main card — a high
+count consistent with the apartment's added kitchen + bath fixtures, which raises the question
+of whether those fixtures were ever permitted onto the septic system.
 Action: open-records request to Effingham County Environmental Health (07).
 
 ## E. Zoning & home-occupation — **PARTIAL** (Tier-1 red flag #5)
@@ -89,7 +126,7 @@ Action: open-records request to Effingham County Environmental Health (07).
 | Question | Status | Where / finding |
 |---|---|---|
 | Zoning class of 0435A084 | **VERIFIED** | **R-1 (single-family residential)** per qPublic. |
-| Are **accessory dwelling units / second kitchens** allowed; can the apartment be rented? | **LEANS NO — confirm with P&Z** | Effingham allows up to 2 units/lot incl. one ADU **but that provision carries a 5-acre minimum** (rural/AR table: 50-ft setbacks, 5 ac). Subject lot is **0.48 ac in R-1**, so it almost certainly does not qualify. County defines single-family as **"a single set of kitchen facilities"** — a detached unit with its own kitchen reads as a 2nd dwelling unit. Get the R-1-specific ADU rule from P&Z. |
+| Are **accessory dwelling units / second kitchens** allowed; can the apartment be rented? | **LEANS NO — confirm with P&Z** | Effingham allows up to 2 units/lot incl. one ADU **but that provision carries a 5-acre minimum** (rural/AR table: 50-ft setbacks, 5 ac). Subject lot is **0.48 ac in R-1**, so it almost certainly does not qualify. County defines single-family as **"a single set of kitchen facilities"** — a detached unit with its own kitchen reads as a 2nd dwelling unit. **The assessor's own record (garage, not a dwelling — §C) is consistent with the unit never having been approved.** Get the R-1-specific ADU rule from P&Z. |
 | Home-occupation rules (if buyer works from home) | **UNAVAILABLE** | County zoning ordinance, Article V/VI. |
 
 Sources: Effingham zoning ordinance (Municode `library.municode.com/ga/effingham_county`,

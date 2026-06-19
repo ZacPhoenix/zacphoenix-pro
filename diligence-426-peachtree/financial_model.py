@@ -26,11 +26,11 @@ FINANCE_FUNDING_FEE = True                       # rolled into loan (not paid ca
 
 # Property tax (GA): assessed = 40% of fair market value, then x millage.
 ASSESSMENT_RATIO = 0.40
-MILLAGE          = 0.024     # ESTIMATED ~24 mills (Effingham ~5.596 county + ~18.45 school)
-HOMESTEAD_COUNTY = 4_000     # $ off county assessed (owner-occupied)
-HOMESTEAD_SCHOOL = 2_000     # $ off school assessed
-USE_PRICE_AS_FMV = True      # until assessor FMV is VERIFIED, proxy FMV = purchase price
-TAX_OVERRIDE_ANNUAL = None   # set to a $ number if VERIFIED tax bill is obtained
+MILLAGE          = 0.029526  # VERIFIED 2026 total, Tax District 01-County (qPublic, parcel 0435A084)
+HOMESTEAD_COMBINED = 6_000   # ~$4k county + $2k school off assessed (owner-occupied); ESTIMATED credit
+USE_PRICE_AS_FMV = True      # buyer's FMV resets toward purchase price after sale
+TAX_OVERRIDE_ANNUAL = None   # set to a $ number to force a known tax bill
+ASSESSOR_FMV_2026 = 413_078  # VERIFIED reference (current assessor value, pre-sale)
 
 # Insurance (annual $). Range 2,500-3,500; mid used for run-rate.
 INSURANCE_LOW, INSURANCE_MID, INSURANCE_HIGH = 2_500, 3_000, 3_500
@@ -66,20 +66,12 @@ def loan_amount(price, down):
     fee = base * FUNDING_FEE_RATE if FINANCE_FUNDING_FEE else 0.0
     return base + fee, base, fee
 
-def annual_property_tax(price):
+def annual_property_tax(fmv):
     if TAX_OVERRIDE_ANNUAL is not None:
         return TAX_OVERRIDE_ANNUAL
-    fmv = price if USE_PRICE_AS_FMV else price
     assessed = fmv * ASSESSMENT_RATIO
-    county_taxable = max(0, assessed - HOMESTEAD_COUNTY)
-    school_taxable = max(0, assessed - HOMESTEAD_SCHOOL)
-    # split millage ~ county 5.596 / school 18.45 of the ~24 total (approx components)
-    county_mills, school_mills = 0.005596, 0.01845
-    other = MILLAGE - (county_mills + school_mills)   # any residual (fire/IDA/state)
-    tax = (county_taxable * county_mills
-           + school_taxable * school_mills
-           + assessed * max(0, other))
-    return tax
+    taxable = max(0, assessed - HOMESTEAD_COMBINED)   # owner-occupied
+    return taxable * MILLAGE
 
 def remaining_balance(loan, annual_rate_pct, months_elapsed, term_years=TERM_YEARS):
     r = annual_rate_pct / 100 / 12
@@ -141,7 +133,7 @@ def main():
           f" | Millage: {MILLAGE*1000:.2f} mills | Appreciation: {APPRECIATION_ANNUAL*100:.0f}%/yr")
     t = annual_property_tax(PRICES[0])
     print(f"Est. annual property tax @ {money(PRICES[0])} (w/ homestead): {money(t)}  "
-          f"(=40% x price x ~24 mills, less homestead)")
+          f"(=40% x price x 29.526 mills, less homestead)")
     print()
 
     # ---- Base case detail

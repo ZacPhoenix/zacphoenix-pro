@@ -1,6 +1,6 @@
 # 04 — Comps & Valuation
 
-**Subject:** 426 Peachtree Drive, Rincon, GA 31326 · 2,195 sqft · 4bd/3ba · built 2002 ·
+**Subject:** 426 Peachtree Drive, Rincon, GA 31326 · 2,194 sqft (heated, main house) · 4bd/3ba · built 2001 (assessor; listing says 2002) ·
 0.48 ac · brick · slab · 1.5 story · detached 24×30 garage-apartment · paid-off solar
 **List:** $459,900 → **$209.50/sqft** (main house only)
 **Pulled:** 2026-06-18
@@ -34,11 +34,25 @@ is stale; not used for valuation. `https://www.byowner.com/southern-hills-planta
 - The premium is being asked for non-$/sqft attributes: **0.48-ac lot, all-brick, paid-off
   solar (eliminates most electric), and the detached 24×30 (~720 sqft) garage-apartment.**
 
+## Hard valuation anchors — VERIFIED (qPublic, 2026-06-19)
+
+| Anchor | Value | Implication |
+|---|---|---|
+| **Owners' purchase 9/2/2022** | **$427,000** | List is +$32.9k (+7.7%) over a ~3.5-yr-old arm's-length basis. |
+| **Assessor FMV 2026** | **$413,078** | List is **~$47k above** the county's market value. |
+| Assessor heated area | **2,194 SF** (main house only) | The detached unit adds **no** heated GLA on the record. |
+| Detached building on record | **GARAGE, $13,196 accessory** | County credits it ~$13k as a garage — **not** as an apartment/GLA. |
+
+These three independent figures ($427k prior sale, $413k assessor FMV, garage-only treatment
+of the rear building) all sit **well below the $459,900 list** and corroborate the comp read.
+
 ## Appraisal-gap assessment vs $459,900 — ESTIMATED
 
 The gap risk hinges on **how much contributory value a VA appraiser credits the detached
 garage-apartment and solar**, and that in turn hinges on the **permit/legality findings
-(see 01)**:
+(see 01)**. The new qPublic data pushes this toward the **unfavorable** case: the county
+itself records the structure as a **garage with zero heated area**, which is how a VA
+appraiser is likely to treat an unpermitted conversion:
 
 - **If the conversion is permitted** and counts as legitimate accessory living area + the
   solar is owned: appraiser may support value near list. Plausible appraised range
@@ -48,8 +62,10 @@ garage-apartment and solar**, and that in turn hinges on the **permit/legality f
   $/sqft-of-main-house + modest lot/solar adders. Plausible appraised range
   **~$420,000–$440,000**. Gap risk: **moderate–high ($20k–$40k).**
 
-**Working estimate of market value: ~$430,000–$455,000**, weighted toward the lower end
-until the permit status is confirmed.
+**Working estimate of market value: ~$427,000–$445,000**, anchored by the 2022 purchase
+($427k) and assessor FMV ($413k) and weighted toward the lower end given the garage-only
+recording of the rear building. A figure near list would require permit confirmation **and**
+strong recent comps.
 
 ### Why this matters for a $0-down VA buyer
 With $0 down + financed funding fee, the loan is **$469,788** (≈102.15% of price). If the
@@ -62,9 +78,9 @@ at assumed true values of $430k/$440k/$450k.
 
 | Offer | Rationale |
 |---|---|
-| **$435,000–$440,000** (target) | Aligns to comp-supported value for a 2002 home even with partial credit for solar/lot/apartment; protects a $0-down buyer from an appraisal-gap cash call. Matches the lower assumption set in the model (all-in ~$3,965–$4,149/mo). |
-| **up to ~$450,000** (stretch) | Justifiable **only** if (a) permits confirm the apartment is legal and (b) a CMA/appraisal supports it. |
-| **$459,900** (list) | Pay only with VERIFIED permitted apartment + appraisal at/above list, or accept gap-cash risk. The home is 45 DOM with one cut already — leverage favors the buyer. |
+| **$430,000–$440,000** (target) | Bracketed by the owners' 2022 purchase ($427k) and assessor FMV ($413k), with credit for ~3.5 yrs appreciation, lot, brick, and owned solar — but **no** premium for the garage-as-apartment. Protects a $0-down buyer from an appraisal-gap cash call. All-in ~$4,035–$4,220/mo (model). |
+| **up to ~$445,000** (stretch) | Justifiable **only** if (a) the permit file proves the apartment is legal living area and (b) a CMA/appraisal supports it. |
+| **$459,900** (list) | Not supported by the 2022 sale, the assessor FMV, or the garage-only recording. Pay only with a VERIFIED permitted apartment + appraisal at/above list, or accept gap-cash risk. 45 DOM + one cut = buyer leverage. |
 
 **Negotiation leverage:** 45 days on market + one price cut + unresolved permit/septic
 questions = room to negotiate price and/or seller-paid concessions (VA allows seller

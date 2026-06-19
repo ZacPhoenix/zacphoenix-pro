@@ -135,7 +135,7 @@ permits/septic records the seller holds (fastest path; the county requests above
 ## 07-G. Homeowners INSURANCE quote — inputs to give the agent (Tracker #14)
 
 Provide to 2–3 carriers (and ask each to quote with **owned roof-age** once known):
-- Address: 426 Peachtree Drive, Rincon, GA 31326; **built 2002**; **2,195 sqft**; **brick
+- Address: 426 Peachtree Drive, Rincon, GA 31326; **built 2001** (per assessor); **2,194 sqft** heated; **brick
   veneer**; **slab**; 1.5 story; 4bd/3ba.
 - **Detached 24×30 structure used as an apartment** (other-structures + liability; disclose
   any rental use — affects policy form).
