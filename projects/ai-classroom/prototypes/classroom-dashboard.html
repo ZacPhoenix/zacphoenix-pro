@@ -1,0 +1,781 @@
+<title>Lumen · Classroom Insight (Prototype)</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ground:      #f6f5f1;
+    --surface:     #fffefb;
+    --surface-2:   #f1efe9;
+    --ink:         #1a1c1b;
+    --ink-2:       #55574f;
+    --muted:       #8a8b82;
+    --line:        #e4e2da;
+    --line-strong: #cfccc1;
+    --accent:      #2f7d6b;
+    --accent-ink:  #245e51;
+    --accent-wash: #e6f0ec;
+    --data:        #2f7d6b;
+    --good:        #0ca30c;
+    --warning:     #b6820b;
+    --serious:     #c9601f;
+    --critical:    #c23636;
+    --good-wash:   #e5f3e5;
+    --warning-wash:#f6efdc;
+    --serious-wash:#f7e9df;
+    --critical-wash:#f7e2e2;
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(20,22,20,.04), 0 6px 20px rgba(20,22,20,.05);
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground:      #101312;
+      --surface:     #181c1a;
+      --surface-2:   #20241f;
+      --ink:         #f1f3ef;
+      --ink-2:       #b7bab0;
+      --muted:       #8b8d82;
+      --line:        #2a2f2b;
+      --line-strong: #3a403a;
+      --accent:      #4fb89f;
+      --accent-ink:  #6fcbb4;
+      --accent-wash: #17302a;
+      --data:        #4fb89f;
+      --good:        #22b84a;
+      --warning:     #e6b53c;
+      --serious:     #ec835a;
+      --critical:    #e56b6b;
+      --good-wash:   #16281a;
+      --warning-wash:#2c2612;
+      --serious-wash:#2e2015;
+      --critical-wash:#2e1919;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 22px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground:      #101312;
+    --surface:     #181c1a;
+    --surface-2:   #20241f;
+    --ink:         #f1f3ef;
+    --ink-2:       #b7bab0;
+    --muted:       #8b8d82;
+    --line:        #2a2f2b;
+    --line-strong: #3a403a;
+    --accent:      #4fb89f;
+    --accent-ink:  #6fcbb4;
+    --accent-wash: #17302a;
+    --data:        #4fb89f;
+    --good:        #22b84a;
+    --warning:     #e6b53c;
+    --serious:     #ec835a;
+    --critical:    #e56b6b;
+    --good-wash:   #16281a;
+    --warning-wash:#2c2612;
+    --serious-wash:#2e2015;
+    --critical-wash:#2e1919;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 22px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--ground); color: var(--ink);
+    font-family: var(--font); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3 { margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  button { font-family: inherit; cursor: pointer; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  /* ---- App shell ---- */
+  .app { max-width: 1120px; margin: 0 auto; padding: 0 20px 64px; }
+  .topbar {
+    position: sticky; top: 0; z-index: 30; background: var(--ground);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    padding: 14px 0; margin-bottom: 22px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+  .brand-mark {
+    width: 30px; height: 30px; border-radius: 8px; flex: none;
+    background: linear-gradient(150deg, var(--accent), var(--accent-ink));
+    display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 15px;
+  }
+  .brand-name { font-weight: 650; font-size: 15px; letter-spacing: -.01em; }
+  .brand-sub { font-size: 11.5px; color: var(--muted); margin-top: -2px; }
+  .badge-proto {
+    font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--accent-ink); background: var(--accent-wash);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    padding: 3px 8px; border-radius: 999px;
+  }
+  .seg {
+    display: inline-flex; background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 999px; padding: 3px;
+  }
+  .seg button {
+    border: 0; background: transparent; color: var(--ink-2);
+    font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+    display: inline-flex; align-items: center; gap: 7px; transition: all .15s ease;
+  }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+  .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .icon-btn {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font-size: 15px;
+  }
+  .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---- View header ---- */
+  .view-head { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .view-head h1 { font-size: 22px; font-weight: 680; }
+  .view-head .who { color: var(--ink-2); font-size: 13.5px; margin-top: 3px; }
+  .view-head .spacer { margin-left: auto; }
+
+  .lesson-toggle { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+  .chip-lesson {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink-2);
+    border-radius: 10px; padding: 8px 13px; font-size: 13px; font-weight: 600;
+    display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1.25; gap: 1px;
+    transition: all .15s ease;
+  }
+  .chip-lesson small { font-weight: 500; color: var(--muted); font-size: 11px; }
+  .chip-lesson[aria-pressed="true"] {
+    border-color: var(--accent); background: var(--accent-wash); color: var(--accent-ink);
+  }
+  .chip-lesson[aria-pressed="true"] small { color: var(--accent-ink); opacity: .8; }
+  .chip-lesson:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---- Cards & grid ---- */
+  .grid { display: grid; gap: 16px; }
+  .cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 18px;
+  }
+  .card h3 { font-size: 14.5px; font-weight: 660; display: flex; align-items: center; gap: 8px; }
+  .card .sub { color: var(--ink-2); font-size: 12.5px; margin-top: 3px; }
+  .span-2 { grid-column: span 2; }
+
+  /* stat tiles */
+  .tile .label { font-size: 12px; color: var(--ink-2); font-weight: 550; }
+  .tile .val { font-size: 30px; font-weight: 700; letter-spacing: -.02em; margin-top: 4px; }
+  .tile .val small { font-size: 15px; font-weight: 600; color: var(--muted); }
+  .delta { font-size: 12px; font-weight: 650; display: inline-flex; align-items: center; gap: 3px; margin-top: 6px; }
+  .delta.up { color: var(--good); }
+  .delta.down { color: var(--critical); }
+  .delta.flat { color: var(--muted); }
+
+  .muted { color: var(--muted); }
+  .divider { height: 1px; background: var(--line); margin: 14px 0; border: 0; }
+
+  /* legend / notes */
+  .note {
+    font-size: 12.5px; color: var(--ink-2); background: var(--surface-2);
+    border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; margin-top: 14px;
+    display: flex; gap: 9px;
+  }
+  .note b { color: var(--ink); font-weight: 640; }
+
+  /* flag cards */
+  .flag { border: 1px solid var(--line); border-left-width: 3px; border-radius: 10px; overflow: hidden; }
+  .flag + .flag { margin-top: 10px; }
+  .flag.critical { border-left-color: var(--critical); }
+  .flag.warning  { border-left-color: var(--warning); }
+  .flag.info     { border-left-color: var(--accent); }
+  .flag-head {
+    width: 100%; text-align: left; border: 0; background: transparent; color: inherit;
+    padding: 12px 14px; display: flex; align-items: center; gap: 12px;
+  }
+  .flag-head:hover { background: var(--surface-2); }
+  .flag-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .avatar {
+    width: 34px; height: 34px; border-radius: 9px; flex: none; display: grid; place-items: center;
+    font-weight: 700; font-size: 14px; background: var(--accent-wash); color: var(--accent-ink);
+  }
+  .flag-title { font-weight: 620; font-size: 13.5px; }
+  .flag-meta { font-size: 12px; color: var(--ink-2); }
+  .sev-pill {
+    margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: .03em;
+    padding: 3px 9px; border-radius: 999px; display: inline-flex; align-items: center; gap: 5px; white-space: nowrap;
+  }
+  .sev-pill.critical { color: var(--critical); background: var(--critical-wash); }
+  .sev-pill.warning  { color: var(--warning); background: var(--warning-wash); }
+  .sev-pill.info     { color: var(--accent-ink); background: var(--accent-wash); }
+  .chev { color: var(--muted); font-size: 12px; transition: transform .18s ease; }
+  .flag[data-open="true"] .chev { transform: rotate(90deg); }
+  .flag-body { display: none; padding: 2px 14px 15px 60px; }
+  .flag[data-open="true"] .flag-body { display: block; }
+  .evidence {
+    font-size: 12.5px; color: var(--ink-2); border-left: 2px solid var(--line-strong);
+    padding: 4px 0 4px 12px; margin: 8px 0; font-style: italic;
+  }
+  .evidence b { color: var(--ink); font-style: normal; }
+  .move { font-size: 12.5px; margin-top: 8px; }
+  .move b { color: var(--accent-ink); }
+  .sparkwrap { margin-top: 10px; }
+
+  /* self-coach rows */
+  .metric-row { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+  .metric-row .m-label { font-size: 12.5px; color: var(--ink-2); width: 118px; flex: none; }
+  .metric-row .m-val { font-size: 13px; font-weight: 650; width: 62px; flex: none; text-align: right; }
+  .bar-track { flex: 1; height: 9px; background: var(--surface-2); border-radius: 999px; overflow: hidden; display: flex; }
+  .bar-fill { height: 100%; background: var(--data); }
+  .bar-fill.alt { background: var(--line-strong); }
+  .nudge {
+    margin-top: 8px; font-size: 12.5px; background: var(--accent-wash); color: var(--accent-ink);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: 9px; padding: 10px 12px;
+  }
+  .nudge b { font-weight: 700; }
+
+  /* prose cards (parent) */
+  .prose-card { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--surface); }
+  .prose-card .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 7px;
+  }
+  .prose-card .tag.grow { color: var(--good); }
+  .prose-card .tag.watch { color: var(--serious); }
+  .prose-card p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+  .prose-card p b { color: var(--ink); font-weight: 620; }
+
+  .home-card {
+    border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--surface);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .home-card .emoji { font-size: 20px; flex: none; }
+  .home-card h4 { margin: 0 0 3px; font-size: 13.5px; font-weight: 640; }
+  .home-card p { margin: 0; font-size: 12.5px; color: var(--ink-2); }
+
+  .digest {
+    background: linear-gradient(150deg, var(--accent-wash), var(--surface));
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .digest h2 { font-size: 18px; font-weight: 660; }
+  .digest p { font-size: 13.5px; color: var(--ink-2); margin: 8px 0 0; max-width: 60ch; }
+
+  .privacy {
+    font-size: 12px; color: var(--ink-2); background: var(--surface-2);
+    border: 1px dashed var(--line-strong); border-radius: 10px; padding: 14px 16px; margin-top: 18px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .privacy b { color: var(--ink); }
+  .privacy a { color: var(--accent-ink); font-weight: 600; text-decoration: none; border-bottom: 1px solid; cursor: pointer; }
+
+  .section-label {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--muted); margin: 26px 0 10px;
+  }
+
+  /* chart tooltip */
+  #tt {
+    position: fixed; z-index: 60; pointer-events: none; opacity: 0; transition: opacity .1s;
+    background: var(--ink); color: var(--ground); font-size: 12px; padding: 6px 9px; border-radius: 7px;
+    box-shadow: var(--shadow); max-width: 220px; line-height: 1.4;
+  }
+  #tt b { color: #fff; }
+  :root[data-theme="dark"] #tt, :root:not([data-theme="light"]) #tt { color: #12140f; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #tt b { color:#000; } }
+
+  svg text { font-family: var(--font); }
+  .dot { cursor: pointer; }
+  .hbar rect.hit { cursor: pointer; }
+
+  @media (max-width: 860px) {
+    .cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .cols-2 { grid-template-columns: 1fr; }
+    .span-2 { grid-column: span 1; }
+  }
+  @media (max-width: 520px) {
+    .cols-4 { grid-template-columns: 1fr; }
+    .brand-sub { display: none; }
+  }
+  [hidden] { display: none !important; }
+</style>
+
+<div id="tt" role="status" aria-live="polite"></div>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">L</div>
+      <div>
+        <div class="brand-name">Lumen · Classroom Insight</div>
+        <div class="brand-sub">Engagement &amp; coaching signals from classroom transcripts</div>
+      </div>
+    </div>
+    <span class="badge-proto">Prototype</span>
+    <div class="seg" role="tablist" aria-label="Choose dashboard">
+      <button id="role-teacher" role="tab" aria-pressed="true" onclick="setRole('teacher')">👩‍🏫 Teacher</button>
+      <button id="role-parent" role="tab" aria-pressed="false" onclick="setRole('parent')">👪 Parent</button>
+    </div>
+    <button class="icon-btn" id="themeBtn" title="Toggle light / dark" aria-label="Toggle light or dark theme" onclick="toggleTheme()">◐</button>
+  </header>
+
+  <!-- ================= TEACHER ================= -->
+  <main id="view-teacher">
+    <div class="view-head">
+      <div>
+        <h1>Class overview</h1>
+        <div class="who">Room 5B · 8 students · week of Apr 14, 2026</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="lesson-toggle" role="group" aria-label="Lesson type">
+        <button class="chip-lesson" id="lt-math" aria-pressed="true" onclick="setLesson('math')">
+          Math <small>Direct instruction · Teacher 1</small>
+        </button>
+        <button class="chip-lesson" id="lt-science" aria-pressed="false" onclick="setLesson('science')">
+          Science <small>Hands-on lab · Teacher 3</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid cols-4" id="teacher-tiles"></div>
+
+    <div class="section-label">Reading the room</div>
+    <div class="grid cols-2">
+      <div class="card span-2" style="grid-column: auto;">
+        <h3>Participation isn't the whole story</h3>
+        <div class="sub">Each dot is a student in this lesson. Talking a lot ≠ learning a lot — the students top-left are quiet but sharp.</div>
+        <div id="scatter"></div>
+      </div>
+      <div class="card">
+        <h3>Who you called on</h3>
+        <div class="sub" id="callon-sub"></div>
+        <div id="callon"></div>
+      </div>
+    </div>
+
+    <div class="section-label">Where to look next</div>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Students to check in with</h3>
+        <div class="sub">Tap a card for the evidence and one suggested move. Insights, not verdicts.</div>
+        <div id="flags" style="margin-top:14px;"></div>
+      </div>
+      <div class="card">
+        <h3>Your teaching moves, this lesson</h3>
+        <div class="sub">Private to you — a mirror, not an evaluation.</div>
+        <div id="selfcoach" style="margin-top:14px;"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= PARENT ================= -->
+  <main id="view-parent" hidden>
+    <div class="view-head">
+      <div>
+        <h1>Student F · this week</h1>
+        <div class="who">Grade 5 · week of Apr 14, 2026 · shared by Room 5B</div>
+      </div>
+      <div class="spacer"></div>
+      <div class="seg" aria-label="Week">
+        <button aria-pressed="false" onclick="void 0">◀ Apr 7</button>
+        <button aria-pressed="true">Apr 14</button>
+      </div>
+    </div>
+
+    <div class="card digest">
+      <h2>A strong week for speaking up in discussions 🌱</h2>
+      <p>This week F was <b>most engaged in discussion-based lessons</b> — especially social
+      studies, where F used evidence to back up ideas and helped the class think about a hard
+      topic with real care. Math was <b>quieter and more frustrating</b> for F this week. That's
+      a pattern we're watching together, and there are small things you can do at home to help.</p>
+    </div>
+
+    <div class="section-label">What's going well &amp; what we're working on</div>
+    <div class="grid cols-2">
+      <div class="prose-card">
+        <span class="tag grow">▲ Strength · Discussion</span>
+        <p><b>F is a confident, thoughtful talker in discussions.</b> In social studies F picked a
+        point of view and supported it with details from the lesson, and even handled a sensitive
+        history topic with maturity. F's ideas often build on what a classmate just said.</p>
+      </div>
+      <div class="prose-card">
+        <span class="tag watch">● Growth area · Math</span>
+        <p><b>Math is where F gets discouraged.</b> When an answer comes back wrong, F tends to go
+        quiet and say things like "I'm just bad at this." The skills are coming along — it's the
+        confidence that dips. F's teacher is using "you haven't got it <i>yet</i>" language to help.</p>
+      </div>
+    </div>
+
+    <div class="grid cols-2" style="margin-top:16px;">
+      <div class="card">
+        <h3>Growing vocabulary</h3>
+        <div class="sub">Academic &amp; science words F used correctly, per week. Trending up 📈</div>
+        <div id="vocab"></div>
+      </div>
+      <div class="card">
+        <h3>Engagement by subject</h3>
+        <div class="sub">How involved F was across subjects this week — averaged, not any single day.</div>
+        <div id="subjbars"></div>
+      </div>
+    </div>
+
+    <div class="section-label">Try at home</div>
+    <div class="grid cols-2">
+      <div class="home-card">
+        <span class="emoji">🧊</span>
+        <div><h4>Ride the science excitement</h4><p>F loved the states-of-matter lab. Ask them to
+        show you "condensation" on a cold glass of water — where does the water come from?</p></div>
+      </div>
+      <div class="home-card">
+        <span class="emoji">💪</span>
+        <div><h4>Praise the effort, not "being smart"</h4><p>When math feels hard, try "I saw you
+        keep trying that" instead of "you're so smart." It helps F see mistakes as normal.</p></div>
+      </div>
+      <div class="home-card">
+        <span class="emoji">🗣️</span>
+        <div><h4>Let them be the teacher</h4><p>F explains ideas well out loud. Ask them to teach
+        <em>you</em> one thing from social studies this week — talking it through builds confidence.</p></div>
+      </div>
+      <div class="home-card">
+        <span class="emoji">📖</span>
+        <div><h4>Small math wins</h4><p>Cooking and dividing snacks are low-pressure fractions
+        practice. Keep it light — the goal is "math can feel okay," not drilling.</p></div>
+      </div>
+    </div>
+
+    <div class="privacy">
+      <span style="font-size:16px;">🔒</span>
+      <div>
+        <b>How this works.</b> Lumen turns classroom discussion into gentle, weekly summaries — you
+        see trends over time, never live recordings or single moments taken out of context. Only
+        F's own teachers and your family can see this page. Audio is not stored. You can
+        <a onclick="fakeLink()">see what's collected</a> or <a onclick="fakeLink()">opt out</a> any time.
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* ---------------- theme ---------------- */
+function toggleTheme(){
+  const r = document.documentElement;
+  const now = r.getAttribute('data-theme');
+  const dark = now ? now === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.setAttribute('data-theme', dark ? 'light' : 'dark');
+  rerender();
+}
+function cvar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+/* ---------------- role & lesson ---------------- */
+let role = 'teacher', lesson = 'math';
+function setRole(r){
+  role = r;
+  document.getElementById('view-teacher').hidden = r !== 'teacher';
+  document.getElementById('view-parent').hidden  = r !== 'parent';
+  document.getElementById('role-teacher').setAttribute('aria-pressed', r==='teacher');
+  document.getElementById('role-parent').setAttribute('aria-pressed', r==='parent');
+  rerender();
+}
+function setLesson(l){
+  lesson = l;
+  document.getElementById('lt-math').setAttribute('aria-pressed', l==='math');
+  document.getElementById('lt-science').setAttribute('aria-pressed', l==='science');
+  renderTeacher();
+}
+function fakeLink(){ alert('Prototype — this would open your family data & privacy controls.'); }
+
+/* ---------------- data (grounded in the 8 personas) ---------------- */
+const NAMES = {A:'Student A',B:'Student B',C:'Student C',D:'Student D',E:'Student E',F:'Student F',G:'Student G',H:'Student H'};
+
+const DATA = {
+  math: {
+    tiles: [
+      {label:'Class engagement', val:'54', unit:'/100', d:-6, dir:'down', hint:'below F&#39;s calmer weeks'},
+      {label:'Need a check-in', val:'3', unit:'', d:+1, dir:'down', hint:'F, C, G'},
+      {label:'You talked', val:'68', unit:'%', d:+4, dir:'down', hint:'vs student talk'},
+      {label:'Avg wait time', val:'1.2', unit:'s', d:-0.3, dir:'down', hint:'after a question'},
+    ],
+    // participation (talk) vs content quality
+    students: [
+      {id:'A', part:92, qual:88}, {id:'B', part:58, qual:72}, {id:'C', part:15, qual:82},
+      {id:'D', part:30, qual:40}, {id:'E', part:85, qual:64}, {id:'F', part:18, qual:34},
+      {id:'G', part:28, qual:55}, {id:'H', part:25, qual:44},
+    ],
+    callOn: [ ['A',24],['E',22],['B',14],['D',10],['H',8],['G',8],['C',6],['F',8] ],
+    flags: [
+      {id:'F', sev:'critical', title:'Student F — engagement dropping in math',
+       meta:'3rd week of decline',
+       evidence:'“I put three-fourths but it was wrong and I don&#39;t know why and then I just… stopped.”',
+       move:'Name the <b>mistake type</b>, not the child (“that&#39;s a read-the-endpoint slip, not a you-slip”). Give F a win early before frustration sets in.',
+       spark:[62,55,44,38,34]},
+      {id:'C', sev:'info', title:'Student C — quiet, but not disengaged',
+       meta:'low talk-time, high-quality work',
+       evidence:'Spoke twice all lesson — both answers correct and precise (“three cuts, four pieces”).',
+       move:'C&#39;s silence is <b>under-counting real engagement</b>. Verify with written work; use low-stakes, pre-warned invitations rather than cold calls.',
+       spark:[80,78,82,81,82]},
+      {id:'G', sev:'warning', title:'Student G — losing the thread when pace is fast',
+       meta:'engagement tracks scaffolding',
+       evidence:'“Number three took long time… I did not finish.” Kept up when given the sentence frame.',
+       move:'G rises with <b>visuals, sentence stems and wait time</b>. Pre-teach one key term; check understanding beyond “does everyone get it?”',
+       spark:[58,60,52,55,55]},
+    ],
+    selfCoach: {
+      talk:[['You',68],['Students',32]],
+      qmix:[['Open questions',30],['Closed questions',70]],
+      wait:'1.2s',
+      callSkew:'62% of your questions went to A, E and B.',
+      nudge:'Try a <b>10-second “everybody think” pause</b> before taking hands — it&#39;s the single move most likely to reach C, F and G.'
+    }
+  },
+  science: {
+    tiles: [
+      {label:'Class engagement', val:'78', unit:'/100', d:+9, dir:'up', hint:'hands-on lifts the room'},
+      {label:'Need a check-in', val:'1', unit:'', d:-2, dir:'up', hint:'C (quiet)'},
+      {label:'You talked', val:'45', unit:'%', d:-23, dir:'up', hint:'students led the lab'},
+      {label:'Avg wait time', val:'2.1', unit:'s', d:+0.9, dir:'up', hint:'after a question'},
+    ],
+    students: [
+      {id:'A', part:80, qual:90}, {id:'B', part:66, qual:78}, {id:'C', part:32, qual:85},
+      {id:'D', part:78, qual:72}, {id:'E', part:95, qual:80}, {id:'F', part:56, qual:70},
+      {id:'G', part:60, qual:75}, {id:'H', part:82, qual:76},
+    ],
+    callOn: [ ['E',26],['D',16],['A',14],['H',12],['B',10],['G',9],['F',7],['C',6] ],
+    flags: [
+      {id:'D', sev:'info', title:'Student D — fully switched on in the lab',
+       meta:'big jump from lecture lessons',
+       evidence:'“Our ice cup melted AND it got wet outside with no hole… so there&#39;s two things happening.”',
+       move:'This is D&#39;s <b>format</b>, not D&#39;s ceiling. Bank on hands-on entry points and carry that momentum into the next lecture lesson.',
+       spark:[30,34,40,72,78]},
+      {id:'C', sev:'info', title:'Student C — sharp again, still barely heard',
+       meta:'2 turns, both excellent',
+       evidence:'Noticed the drops formed only on the cold part of the can — the control in the experiment.',
+       move:'Same pattern as math: <b>observation quality is high, airtime is near-zero</b>. Give C a defined lab role so the contribution is visible.',
+       spark:[82,80,85,83,85]},
+      {id:'E', sev:'warning', title:'Student E — enthusiasm crowding others out',
+       meta:'26% of all airtime',
+       evidence:'Blurted the answer twice before quieter groups (G, C) could share the same finding.',
+       move:'Channel the energy: give E a <b>“hold your idea” role</b> or ask E to call on a peer. Protect think-time for the rest.',
+       spark:[88,90,86,94,95]},
+    ],
+    selfCoach: {
+      talk:[['You',45],['Students',55]],
+      qmix:[['Open questions',55],['Closed questions',45]],
+      wait:'2.1s',
+      callSkew:'More even — but E absorbed 26% of airtime by calling out.',
+      nudge:'Strong equity this lesson. One tweak: use a <b>“no-hands, my-pick” round</b> so E&#39;s excitement doesn&#39;t crowd out G and C.'
+    }
+  }
+};
+
+/* ---------------- helpers ---------------- */
+const svgNS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs){ const e=document.createElementNS(svgNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
+const tt = document.getElementById('tt');
+function showTT(html, x, y){ tt.innerHTML=html; tt.style.opacity=1; tt.style.left=Math.min(x+14, innerWidth-232)+'px'; tt.style.top=(y+14)+'px'; }
+function hideTT(){ tt.style.opacity=0; }
+
+/* ---------------- teacher tiles ---------------- */
+function renderTiles(){
+  const wrap = document.getElementById('teacher-tiles'); wrap.innerHTML='';
+  DATA[lesson].tiles.forEach(t=>{
+    const arrow = t.dir==='up' ? '▲' : t.dir==='down' ? '▼' : '—';
+    const dtxt = (t.d>0?'+':'') + t.d + (t.label==='Avg wait time'?'s':t.label==='You talked'||t.label==='Class engagement'?' pts':'');
+    const card = document.createElement('div');
+    card.className='card tile';
+    card.innerHTML = `<div class="label">${t.label}</div>
+      <div class="val tnum">${t.val}<small>${t.unit}</small></div>
+      <div class="delta ${t.dir}">${arrow} ${dtxt} <span class="muted" style="font-weight:500;">· ${t.hint}</span></div>`;
+    wrap.appendChild(card);
+  });
+}
+
+/* ---------------- scatter: participation x quality ---------------- */
+function renderScatter(){
+  const host = document.getElementById('scatter'); host.innerHTML='';
+  const W=host.clientWidth||620, H=300, m={t:14,r:16,b:38,l:44};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b;
+  const svg = el('svg',{viewBox:`0 0 ${W} ${H}`, width:'100%', height:H, role:'img',
+    'aria-label':'Scatter plot of participation versus contribution quality for each student'});
+  const x = v => m.l + v/100*iw;
+  const y = v => m.t + (1 - v/100)*ih;
+  const grid=cvar('--line'), axis=cvar('--muted'), data=cvar('--data');
+
+  // quadrant guides at 50/50
+  svg.appendChild(el('line',{x1:x(50),y1:m.t,x2:x(50),y2:m.t+ih,stroke:grid,'stroke-dasharray':'3 4'}));
+  svg.appendChild(el('line',{x1:m.l,y1:y(50),x2:m.l+iw,y2:y(50),stroke:grid,'stroke-dasharray':'3 4'}));
+  // axis lines
+  svg.appendChild(el('line',{x1:m.l,y1:m.t+ih,x2:m.l+iw,y2:m.t+ih,stroke:cvar('--line-strong')}));
+  svg.appendChild(el('line',{x1:m.l,y1:m.t,x2:m.l,y2:m.t+ih,stroke:cvar('--line-strong')}));
+
+  // quadrant labels
+  const qlab=(tx,ty,txt,anchor)=>{const t=el('text',{x:tx,y:ty,fill:axis,'font-size':10.5,'text-anchor':anchor}); t.textContent=txt; svg.appendChild(t);};
+  qlab(x(50)-6, m.t+12, 'quiet · but strong ideas ↑', 'end');
+  qlab(x(50)+6, m.t+12, 'engaged & vocal', 'start');
+  qlab(x(50)-6, m.t+ih-6, 'needs support', 'end');
+  qlab(x(50)+6, m.t+ih-6, 'vocal · lower quality', 'start');
+
+  // axis titles
+  const xt=el('text',{x:m.l+iw/2,y:H-6,fill:axis,'font-size':11,'text-anchor':'middle'}); xt.textContent='Participation  (how much they talked) →'; svg.appendChild(xt);
+  const yt=el('text',{x:-(m.t+ih/2),y:13,fill:axis,'font-size':11,'text-anchor':'middle',transform:'rotate(-90)'}); yt.textContent='Contribution quality →'; svg.appendChild(yt);
+
+  const flaggedSev = {}; DATA[lesson].flags.forEach(f=> flaggedSev[f.id]=f.sev);
+  DATA[lesson].students.forEach(s=>{
+    const cx=x(s.part), cy=y(s.qual);
+    const sev = flaggedSev[s.id];
+    const color = sev==='critical'?cvar('--critical'):sev==='warning'?cvar('--warning'):data;
+    const g = el('g',{class:'dot',tabindex:0,role:'listitem','aria-label':`${NAMES[s.id]}: participation ${s.part}, quality ${s.qual}`});
+    if(sev==='critical'||sev==='warning'){ g.appendChild(el('circle',{cx,cy,r:12,fill:'none',stroke:color,'stroke-width':1.5,opacity:.4})); }
+    g.appendChild(el('circle',{cx,cy,r:9,fill:color,stroke:cvar('--surface'),'stroke-width':2}));
+    const lab=el('text',{x:cx,y:cy+3.5,'text-anchor':'middle','font-size':10,'font-weight':700,fill:'#fff'}); lab.textContent=s.id;
+    g.appendChild(lab);
+    const move=(ev)=>{const p=ev.touches?ev.touches[0]:ev; showTT(`<b>${NAMES[s.id]}</b><br>Participation: ${s.part}/100<br>Quality: ${s.qual}/100${sev?'<br>⚑ flagged for check-in':''}`, p.clientX, p.clientY);};
+    g.addEventListener('mousemove',move); g.addEventListener('mouseleave',hideTT);
+    g.addEventListener('focus',()=>{const b=g.getBoundingClientRect();showTT(`<b>${NAMES[s.id]}</b><br>Participation: ${s.part}/100<br>Quality: ${s.qual}/100`,b.left,b.top);});
+    g.addEventListener('blur',hideTT);
+    svg.appendChild(g);
+  });
+  host.appendChild(svg);
+
+  const note=document.createElement('div'); note.className='note';
+  note.innerHTML = lesson==='math'
+    ? `<span>💡</span><div><b>Student C</b> sits top-left: barely spoke, yet every contribution was high quality. A talk-time-only metric would wrongly rate C as “disengaged.”</div>`
+    : `<span>💡</span><div>Notice <b>D and H</b> jump right in the hands-on lab — the same students who recede in lecture. Engagement is about <b>format</b>, not just the child.</div>`;
+  host.appendChild(note);
+}
+
+/* ---------------- call-on horizontal bars ---------------- */
+function renderCallOn(){
+  const host=document.getElementById('callon'); host.innerHTML='';
+  document.getElementById('callon-sub').textContent =
+    lesson==='math' ? 'Share of your questions, by student. A and E soak up most of it.'
+                    : 'Share of airtime, by student. More even — but E calls out a lot.';
+  const rows=DATA[lesson].callOn.slice().sort((a,b)=>b[1]-a[1]);
+  const max=Math.max(...rows.map(r=>r[1]));
+  const data=cvar('--data');
+  const wrap=document.createElement('div'); wrap.style.marginTop='12px';
+  rows.forEach(([id,pct])=>{
+    const row=document.createElement('div'); row.className='metric-row'; row.style.margin='9px 0';
+    row.innerHTML=`<div class="avatar" style="width:26px;height:26px;font-size:12px;border-radius:7px;">${id}</div>
+      <div class="bar-track" title="${NAMES[id]}: ${pct}%"><div class="bar-fill" style="width:${pct/max*100}%;background:${id==='F'||id==='C'||id==='G'?'var(--line-strong)':data}"></div></div>
+      <div class="m-val tnum" style="width:40px;">${pct}%</div>`;
+    wrap.appendChild(row);
+  });
+  host.appendChild(wrap);
+  const note=document.createElement('div'); note.className='note';
+  note.innerHTML=`<span>⚖️</span><div><b>Equity of voice.</b> Grey bars are the students you reached least — worth a deliberate invitation next lesson.</div>`;
+  host.appendChild(note);
+}
+
+/* ---------------- flags ---------------- */
+function sevIcon(s){ return s==='critical'?'⚠':s==='warning'?'●':'ℹ'; }
+function sevWord(s){ return s==='critical'?'Check in':s==='warning'?'Watch':'FYI'; }
+function renderFlags(){
+  const host=document.getElementById('flags'); host.innerHTML='';
+  DATA[lesson].flags.forEach((f,i)=>{
+    const div=document.createElement('div'); div.className='flag '+f.sev; div.dataset.open=i===0?'true':'false';
+    div.innerHTML=`
+      <button class="flag-head" aria-expanded="${i===0}" onclick="toggleFlag(this)">
+        <span class="avatar">${f.id}</span>
+        <span>
+          <span class="flag-title">${f.title}</span><br>
+          <span class="flag-meta">${f.meta}</span>
+        </span>
+        <span class="sev-pill ${f.sev}">${sevIcon(f.sev)} ${sevWord(f.sev)}</span>
+        <span class="chev">▶</span>
+      </button>
+      <div class="flag-body">
+        <div class="evidence">${f.evidence}</div>
+        <div class="move">↳ <b>Try:</b> ${f.move}</div>
+        <div class="sparkwrap" data-spark='${JSON.stringify(f.spark)}' data-sev="${f.sev}"></div>
+      </div>`;
+    host.appendChild(div);
+  });
+  host.querySelectorAll('.sparkwrap').forEach(drawSpark);
+}
+function toggleFlag(btn){
+  const f=btn.closest('.flag'); const open=f.dataset.open==='true';
+  f.dataset.open=(!open).toString(); btn.setAttribute('aria-expanded',(!open).toString());
+}
+function drawSpark(host){
+  const vals=JSON.parse(host.dataset.spark); const sev=host.dataset.sev;
+  const W=150,H=34,pad=3; const max=Math.max(...vals),min=Math.min(...vals);
+  const x=i=>pad+i/(vals.length-1)*(W-2*pad);
+  const y=v=>pad+(1-(v-min)/((max-min)||1))*(H-2*pad);
+  const color= sev==='critical'?cvar('--critical'):sev==='warning'?cvar('--warning'):cvar('--data');
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':'5-week trend'});
+  let d=''; vals.forEach((v,i)=> d+=(i?'L':'M')+x(i)+' '+y(v)+' ');
+  svg.appendChild(el('path',{d:`${d} L ${x(vals.length-1)} ${H} L ${x(0)} ${H} Z`,fill:color,opacity:.10}));
+  svg.appendChild(el('path',{d,fill:'none',stroke:color,'stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  svg.appendChild(el('circle',{cx:x(vals.length-1),cy:y(vals[vals.length-1]),r:3.2,fill:color}));
+  const cap=document.createElement('span'); cap.style.cssText='font-size:11px;color:var(--muted);margin-left:8px;';
+  cap.textContent='5-week trend';
+  host.appendChild(svg); host.appendChild(cap); host.style.display='flex'; host.style.alignItems='center';
+}
+
+/* ---------------- self-coach ---------------- */
+function renderSelfCoach(){
+  const host=document.getElementById('selfcoach'); host.innerHTML='';
+  const c=DATA[lesson].selfCoach;
+  const dualBar=(pairs)=>{
+    const total=pairs.reduce((s,p)=>s+p[1],0);
+    return `<div class="bar-track" style="height:11px;">
+      <div class="bar-fill" style="width:${pairs[0][1]/total*100}%"></div>
+      <div class="bar-fill alt" style="width:${pairs[1][1]/total*100}%"></div></div>`;
+  };
+  host.innerHTML=`
+    <div class="metric-row"><div class="m-label">Talk balance</div>${dualBar(c.talk)}<div class="m-val tnum">${c.talk[0][1]}/${c.talk[1][1]}</div></div>
+    <div style="font-size:11px;color:var(--muted);margin:-6px 0 10px 130px;">You vs students</div>
+    <div class="metric-row"><div class="m-label">Question type</div>${dualBar(c.qmix)}<div class="m-val tnum">${c.qmix[0][1]}%</div></div>
+    <div style="font-size:11px;color:var(--muted);margin:-6px 0 10px 130px;">Open vs closed · open questions in colour</div>
+    <div class="metric-row"><div class="m-label">Avg wait time</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.min(parseFloat(c.wait)/3*100,100)}%"></div></div>
+      <div class="m-val tnum">${c.wait}</div></div>
+    <div style="font-size:11px;color:var(--muted);margin:-6px 0 12px 130px;">${c.callSkew}</div>
+    <hr class="divider">
+    <div class="nudge">🎯 <b>Try next:</b> ${c.nudge}</div>`;
+}
+
+/* ---------------- parent charts ---------------- */
+function renderVocab(){
+  const host=document.getElementById('vocab'); if(!host) return; host.innerHTML='';
+  const vals=[3,4,4,6,5,7,8,9]; const labels=['Feb','','','Mar','','','Apr',''];
+  const W=host.clientWidth||480,H=200,m={t:12,r:14,b:26,l:26}; const iw=W-m.l-m.r,ih=H-m.t-m.b;
+  const max=10; const x=i=>m.l+i/(vals.length-1)*iw; const y=v=>m.t+(1-v/max)*ih;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H,role:'img','aria-label':'Weekly vocabulary growth, trending upward'});
+  const data=cvar('--data');
+  [0,5,10].forEach(g=>{ svg.appendChild(el('line',{x1:m.l,y1:y(g),x2:m.l+iw,y2:y(g),stroke:cvar('--line')}));
+    const t=el('text',{x:m.l-6,y:y(g)+3,'text-anchor':'end','font-size':10,fill:cvar('--muted')}); t.textContent=g; svg.appendChild(t);});
+  labels.forEach((l,i)=>{ if(l){const t=el('text',{x:x(i),y:H-8,'text-anchor':'middle','font-size':10,fill:cvar('--muted')}); t.textContent=l; svg.appendChild(t);} });
+  let d=''; vals.forEach((v,i)=> d+=(i?'L':'M')+x(i)+' '+y(v)+' ');
+  svg.appendChild(el('path',{d:`${d} L ${x(vals.length-1)} ${m.t+ih} L ${x(0)} ${m.t+ih} Z`,fill:data,opacity:.10}));
+  svg.appendChild(el('path',{d,fill:'none',stroke:data,'stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'}));
+  vals.forEach((v,i)=>{
+    const g=el('g',{class:'dot',tabindex:0,'aria-label':`Week ${i+1}: ${v} words`});
+    g.appendChild(el('circle',{cx:x(i),cy:y(v),r:i===vals.length-1?4.5:3,fill:data,stroke:cvar('--surface'),'stroke-width':2}));
+    const mv=(ev)=>{const p=ev.touches?ev.touches[0]:ev; showTT(`<b>${v} words</b> used correctly`,p.clientX,p.clientY);};
+    g.addEventListener('mousemove',mv); g.addEventListener('mouseleave',hideTT);
+    svg.appendChild(g);
+  });
+  host.appendChild(svg);
+}
+function renderSubjBars(){
+  const host=document.getElementById('subjbars'); if(!host) return; host.innerHTML='';
+  const rows=[['Social studies',82],['Science',68],['English (ELA)',58],['Math',34]];
+  const data=cvar('--data'); const wrap=document.createElement('div'); wrap.style.marginTop='14px';
+  rows.forEach(([name,v])=>{
+    const row=document.createElement('div'); row.className='metric-row';
+    const faint = v<40;
+    row.innerHTML=`<div class="m-label" style="width:120px;">${name}</div>
+      <div class="bar-track" style="height:12px;" title="${name}: ${v}/100"><div class="bar-fill" style="width:${v}%;background:${faint?'var(--serious)':data}"></div></div>
+      <div class="m-val tnum">${v}</div>`;
+    wrap.appendChild(row);
+  });
+  host.appendChild(wrap);
+  const note=document.createElement('div'); note.className='note';
+  note.innerHTML=`<span>🧭</span><div>F thrives in <b>discussion-heavy subjects</b> and dips in math — a strength to lean on and a spot to gently support.</div>`;
+  host.appendChild(note);
+}
+
+/* ---------------- render orchestration ---------------- */
+function renderTeacher(){ renderTiles(); renderScatter(); renderCallOn(); renderFlags(); renderSelfCoach(); }
+function renderParent(){ renderVocab(); renderSubjBars(); }
+function rerender(){ if(role==='teacher') renderTeacher(); else renderParent(); }
+
+window.addEventListener('resize', ()=>{ clearTimeout(window._rz); window._rz=setTimeout(rerender,150); });
+renderTeacher();
+</script>
