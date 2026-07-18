@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quarterly Life Review</title>
+<style>
+  :root {
+    --bg-1: #fff4e6;
+    --bg-2: #ffd8a8;
+    --bg-3: #ffb347;
+    --ink: #22160f;
+    --muted: #5c493e;
+    --card: rgba(255, 252, 247, 0.92);
+    --line: rgba(102, 47, 0, 0.12);
+    --orange: #ff7a00;
+    --orange-deep: #d95c00;
+    --sun: #ffb703;
+    --cyan: #12b5ff;
+    --pink: #ff4db8;
+    --green: #54e38e;
+    --purple: #8b6cff;
+    --shadow: 0 18px 50px rgba(102, 47, 0, 0.16);
+    --shadow-sm: 0 8px 22px rgba(102, 47, 0, 0.10);
+    --radius-xl: 30px;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(255,255,255,0.65), transparent 30%),
+      radial-gradient(circle at 85% 12%, rgba(255, 77, 184, 0.12), transparent 24%),
+      radial-gradient(circle at 15% 85%, rgba(18, 181, 255, 0.10), transparent 26%),
+      linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%);
+    background-attachment: fixed;
+  }
+  .grain {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    opacity: 0.08;
+    background-image: radial-gradient(rgba(0,0,0,0.35) 0.5px, transparent 0.5px);
+    background-size: 7px 7px; mix-blend-mode: multiply;
+  }
+  .wrap { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 2.2rem 1.4rem 5rem; }
+
+  /* ---------- Header ---------- */
+  header { padding: 1rem 0 1.6rem; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.7); border: 1px solid var(--line);
+    padding: 0.35rem 0.85rem; border-radius: 999px;
+    font-size: 0.82rem; font-weight: 600; color: var(--orange-deep);
+    box-shadow: var(--shadow-sm); backdrop-filter: blur(6px);
+  }
+  .kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(84,227,142,0.25); }
+  h1 {
+    font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.05; margin: 0.9rem 0 0.5rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, var(--orange-deep), var(--pink) 55%, var(--purple));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .sub { color: var(--muted); font-size: 1.05rem; max-width: 60ch; }
+
+  /* ---------- Progress bar ---------- */
+  .status {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    padding: 1.1rem 1.3rem; margin: 1.6rem 0; box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(8px);
+  }
+  .ring { --pct: 0; width: 62px; height: 62px; flex: none; border-radius: 50%;
+    background: conic-gradient(var(--green) calc(var(--pct) * 1%), rgba(102,47,0,0.08) 0);
+    display: grid; place-items: center; transition: background .5s ease; }
+  .ring span { width: 46px; height: 46px; border-radius: 50%; background: var(--card);
+    display: grid; place-items: center; font-weight: 800; font-size: 0.95rem; }
+  .status .txt { flex: 1 1 220px; }
+  .status .txt strong { font-size: 1.02rem; }
+  .status .txt p { color: var(--muted); font-size: 0.9rem; margin-top: 0.15rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+  button {
+    font-family: inherit; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    border: 1px solid var(--line); background: rgba(255,255,255,0.75); color: var(--ink);
+    padding: 0.55rem 0.95rem; border-radius: 999px; transition: transform .12s ease, box-shadow .12s ease, background .12s;
+  }
+  button:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  button.primary { background: linear-gradient(120deg, var(--orange), var(--orange-deep)); color: #fff; border-color: transparent; }
+  button:active { transform: translateY(0); }
+
+  /* ---------- Area cards ---------- */
+  .areas { display: grid; gap: 1.1rem; }
+  .card {
+    --accent: var(--orange);
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm); overflow: hidden; backdrop-filter: blur(8px);
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .card:hover { box-shadow: var(--shadow); }
+  .card-head {
+    display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.3rem; cursor: pointer;
+    position: relative;
+  }
+  .card-head::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--accent); }
+  .emoji { font-size: 1.7rem; width: 52px; height: 52px; flex: none; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--accent) 16%, white); border-radius: 15px; }
+  .card-head h2 { font-size: 1.22rem; letter-spacing: -0.01em; }
+  .card-head .tag { color: var(--muted); font-size: 0.85rem; }
+  .head-right { margin-left: auto; display: flex; align-items: center; gap: 0.8rem; }
+  .pill { font-size: 0.78rem; font-weight: 700; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, white); padding: 0.25rem 0.6rem; border-radius: 999px; }
+  .chev { transition: transform .25s ease; color: var(--muted); }
+  .card.open .chev { transform: rotate(180deg); }
+
+  .card-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .card.open .card-body { max-height: 1600px; }
+  .qwrap { padding: 0 1.3rem 1.2rem; display: grid; gap: 1rem; }
+  .q label { display: block; font-weight: 600; margin-bottom: 0.4rem; font-size: 0.98rem; }
+  .q .avoid { color: var(--pink); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; margin-right: 0.4rem; }
+  textarea {
+    width: 100%; font-family: inherit; font-size: 0.96rem; color: var(--ink); line-height: 1.55;
+    border: 1.5px solid var(--line); border-radius: var(--radius-md); padding: 0.8rem 0.9rem;
+    background: rgba(255,255,255,0.65); resize: vertical; min-height: 74px; transition: border-color .15s, box-shadow .15s;
+  }
+  textarea:focus { outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+  textarea.filled { border-color: color-mix(in srgb, var(--green) 60%, var(--line)); background: rgba(238,255,244,0.6); }
+
+  /* ---------- Footer ---------- */
+  .footnote { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 2.4rem; }
+  .footnote a { color: var(--orange-deep); }
+  .saved-flash {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--ink); color: #fff; padding: 0.6rem 1.1rem; border-radius: 999px; font-size: 0.85rem;
+    opacity: 0; pointer-events: none; transition: all .3s ease; z-index: 20;
+  }
+  .saved-flash.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ---------- Confetti ---------- */
+  .confetti { position: fixed; top: -10px; width: 10px; height: 14px; z-index: 30; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="wrap">
+  <header>
+    <span class="kicker"><span class="dot"></span> Next check-in: <span id="nextRun">—</span></span>
+    <h1>Quarterly Life Review</h1>
+    <p class="sub">Ninety honest minutes, four times a year. The questions most people avoid until it's too late — answered while there's still time to change the answer. Everything saves to this browser automatically.</p>
+  </header>
+
+  <div class="status">
+    <div class="ring" id="ring"><span id="ringTxt">0%</span></div>
+    <div class="txt">
+      <strong id="quarterLabel">Loading…</strong>
+      <p id="progressMsg">Open an area and start where it stings a little.</p>
+    </div>
+    <div class="actions">
+      <button onclick="expandAll(true)">Expand all</button>
+      <button onclick="expandAll(false)">Collapse all</button>
+      <button class="primary" onclick="exportMarkdown()">⬇ Export</button>
+      <button onclick="resetQuarter()">Reset</button>
+    </div>
+  </div>
+
+  <div class="areas" id="areas"></div>
+
+  <p class="footnote">
+    Private by design — answers live only in this browser (localStorage), nothing is uploaded.<br>
+    Export to Markdown when you want to keep a record or feed it to Claude for a deeper read.
+  </p>
+</div>
+
+<div class="saved-flash" id="flash">Saved ✓</div>
+
+<script>
+/* ---------- The life areas: colorful, punchy, "the questions you avoid" ---------- */
+const AREAS = [
+  { id: 'goals', emoji: '🎯', title: 'Goals', tag: 'What actually moved', accent: 'var(--orange)', qs: [
+    { avoid: true,  t: "What actually moved this quarter — not what I planned?" },
+    { avoid: false, t: "What am I calling a priority but never touch?" },
+    { avoid: true,  t: "If I finish only ONE thing next quarter, what has to be it?" },
+  ]},
+  { id: 'health', emoji: '🌿', title: 'Health', tag: 'Body & energy', accent: 'var(--green)', qs: [
+    { avoid: false, t: "How's my energy, honestly — the number I'd give a doctor?" },
+    { avoid: true,  t: "What am I doing to my body I'd be embarrassed to admit?" },
+    { avoid: false, t: "One habit that would change everything. Am I doing it?" },
+  ]},
+  { id: 'relationships', emoji: '❤️', title: 'Relationships', tag: 'Family & friends', accent: 'var(--pink)', qs: [
+    { avoid: true,  t: "Who did I neglect this quarter?" },
+    { avoid: false, t: "Who deserves a real thank-you I still haven't sent?" },
+    { avoid: true,  t: "Am I present with people, or just around them?" },
+  ]},
+  { id: 'personal', emoji: '☀️', title: 'Personal Life', tag: 'Joy & the ordinary', accent: 'var(--sun)', qs: [
+    { avoid: false, t: "What did I do purely for joy — no payoff attached?" },
+    { avoid: true,  t: "What am I tolerating that I shouldn't be?" },
+    { avoid: false, t: "What does a genuinely good ordinary day look like right now?" },
+  ]},
+  { id: 'legacy', emoji: '🏛️', title: 'Legacy & Rules', tag: 'The long game', accent: 'var(--cyan)', qs: [
+    { avoid: true,  t: "If this were my last quarter, would I be proud of it?" },
+    { avoid: false, t: "What do I want to be known for — and am I building it?" },
+    { avoid: true,  t: "What rule do I keep breaking on myself?" },
+  ]},
+];
+
+/* ---------- Quarter helpers ---------- */
+function currentQuarter(d = new Date()) {
+  const q = Math.floor(d.getMonth() / 3) + 1;
+  return { q, year: d.getFullYear(), key: `${d.getFullYear()}-Q${q}` };
+}
+function nextRunDate(d = new Date()) {
+  // Fires 1st of Jan/Apr/Jul/Oct
+  const months = [0, 3, 6, 9];
+  const year = d.getFullYear();
+  for (const m of months) {
+    const cand = new Date(year, m, 1);
+    if (cand > d) return cand;
+  }
+  return new Date(year + 1, 0, 1);
+}
+const QINFO = currentQuarter();
+const STORE_KEY = `life-review:${QINFO.key}`;
+
+/* ---------- State ---------- */
+let answers = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+let celebrated = false;
+
+function totalQuestions() { return AREAS.reduce((n, a) => n + a.qs.length, 0); }
+function filledCount() { return Object.values(answers).filter(v => (v || '').trim().length > 0).length; }
+
+/* ---------- Render ---------- */
+function render() {
+  document.getElementById('quarterLabel').textContent = `Q${QINFO.q} ${QINFO.year} review`;
+  document.getElementById('nextRun').textContent = nextRunDate().toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+
+  const container = document.getElementById('areas');
+  container.innerHTML = '';
+  AREAS.forEach((area, ai) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.setProperty('--accent', area.accent);
+    const done = area.qs.filter((_, qi) => (answers[`${area.id}.${qi}`] || '').trim()).length;
+
+    const head = document.createElement('div');
+    head.className = 'card-head';
+    head.innerHTML = `
+      <div class="emoji">${area.emoji}</div>
+      <div>
+        <h2>${area.title}</h2>
+        <div class="tag">${area.tag}</div>
+      </div>
+      <div class="head-right">
+        <span class="pill" data-pill="${area.id}">${done}/${area.qs.length}</span>
+        <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>`;
+    head.onclick = () => card.classList.toggle('open');
+
+    const body = document.createElement('div');
+    body.className = 'card-body';
+    const qwrap = document.createElement('div');
+    qwrap.className = 'qwrap';
+    area.qs.forEach((q, qi) => {
+      const key = `${area.id}.${qi}`;
+      const qEl = document.createElement('div');
+      qEl.className = 'q';
+      const val = answers[key] || '';
+      qEl.innerHTML = `
+        <label>${q.avoid ? '<span class="avoid">Avoid</span>' : ''}${q.t}</label>
+        <textarea data-key="${key}" placeholder="Type honestly…" class="${val.trim() ? 'filled' : ''}">${escapeHtml(val)}</textarea>`;
+      qwrap.appendChild(qEl);
+    });
+    body.appendChild(qwrap);
+    card.appendChild(head);
+    card.appendChild(body);
+    if (ai === 0) card.classList.add('open');
+    container.appendChild(card);
+  });
+
+  container.querySelectorAll('textarea').forEach(t => {
+    t.addEventListener('input', onInput);
+  });
+  updateProgress();
+}
+
+function onInput(e) {
+  const key = e.target.dataset.key;
+  answers[key] = e.target.value;
+  e.target.classList.toggle('filled', e.target.value.trim().length > 0);
+  save();
+  updatePills();
+  updateProgress();
+}
+
+let flashTimer;
+function save() {
+  localStorage.setItem(STORE_KEY, JSON.stringify(answers));
+  const flash = document.getElementById('flash');
+  flash.classList.add('show');
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(() => flash.classList.remove('show'), 1100);
+}
+
+function updatePills() {
+  AREAS.forEach(area => {
+    const done = area.qs.filter((_, qi) => (answers[`${area.id}.${qi}`] || '').trim()).length;
+    const pill = document.querySelector(`[data-pill="${area.id}"]`);
+    if (pill) pill.textContent = `${done}/${area.qs.length}`;
+  });
+}
+
+function updateProgress() {
+  const total = totalQuestions();
+  const filled = filledCount();
+  const pct = Math.round((filled / total) * 100);
+  const ring = document.getElementById('ring');
+  ring.style.setProperty('--pct', pct);
+  document.getElementById('ringTxt').textContent = pct + '%';
+  const msg = document.getElementById('progressMsg');
+  if (pct === 0) msg.textContent = "Open an area and start where it stings a little.";
+  else if (pct < 40) msg.textContent = `${filled} of ${total} answered. Momentum beats perfection.`;
+  else if (pct < 100) msg.textContent = `${filled} of ${total} answered. Don't skip the ones marked "Avoid."`;
+  else { msg.textContent = "All answered. This is the quarter you didn't dodge. 🎉"; if (!celebrated) { celebrate(); celebrated = true; } }
+  if (pct < 100) celebrated = false;
+}
+
+/* ---------- Actions ---------- */
+function expandAll(open) {
+  document.querySelectorAll('.card').forEach(c => c.classList.toggle('open', open));
+}
+function resetQuarter() {
+  if (!confirm(`Clear all answers for Q${QINFO.q} ${QINFO.year}? This can't be undone.`)) return;
+  answers = {}; celebrated = false;
+  localStorage.removeItem(STORE_KEY);
+  render();
+}
+function exportMarkdown() {
+  let md = `# Quarterly Life Review — Q${QINFO.q} ${QINFO.year}\n\n_Exported ${new Date().toLocaleDateString()}_\n\n`;
+  AREAS.forEach(area => {
+    md += `## ${area.emoji} ${area.title}\n\n`;
+    area.qs.forEach((q, qi) => {
+      const a = (answers[`${area.id}.${qi}`] || '').trim();
+      md += `**${q.t}**\n\n${a ? a : '_(unanswered)_'}\n\n`;
+    });
+  });
+  const blob = new Blob([md], { type: 'text/markdown' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url; link.download = `life-review-Q${QINFO.q}-${QINFO.year}.md`;
+  link.click(); URL.revokeObjectURL(url);
+}
+
+/* ---------- Confetti ---------- */
+function celebrate() {
+  const colors = ['#ff7a00', '#ff4db8', '#12b5ff', '#54e38e', '#ffb703', '#8b6cff'];
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random() * 100 + 'vw';
+    c.style.background = colors[i % colors.length];
+    c.style.transform = `rotate(${Math.random() * 360}deg)`;
+    c.style.borderRadius = Math.random() > 0.5 ? '2px' : '50%';
+    document.body.appendChild(c);
+    const dur = 2200 + Math.random() * 1500;
+    c.animate([
+      { top: '-10px', opacity: 1 },
+      { top: '100vh', opacity: 0.9, transform: `translateX(${(Math.random()-0.5)*300}px) rotate(${Math.random()*720}deg)` }
+    ], { duration: dur, easing: 'cubic-bezier(.2,.6,.4,1)' });
+    setTimeout(() => c.remove(), dur);
+  }
+}
+
+/* ---------- Utils ---------- */
+function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+render();
+</script>
+</body>
+</html>
