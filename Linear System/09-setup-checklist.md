@@ -36,7 +36,9 @@ Check the boxes as you go.
 
 - [ ] Connect a harness to the **stock Linear MCP** and confirm read/create/move
       works. ([08](08-linear-mcp-setup.md))
-- [ ] Create a Linear **OAuth app / bot actor** for agents. ([08](08-linear-mcp-setup.md), fix 2)
+- [ ] Create a Linear **OAuth app / bot actor** for agents — step-by-step in
+      [`scripts/README.md`](scripts/README.md) (uses `actor=app`, no extra seat).
+      ([08](08-linear-mcp-setup.md), fix 2)
 - [ ] Stand up (or configure) a **custom MCP** authenticated as that app, with:
   - [ ] `get_issue` returning full context (comments + sub-issues + PRs). (fix 3)
   - [ ] `update_issue_description_patch` (diffs only; protects Verifications). (fix 1)

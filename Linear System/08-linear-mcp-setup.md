@@ -63,13 +63,16 @@ identity** — a Linear OAuth app / bot actor, not your personal token. Then:
   [07](07-human-escalation-standard.md)), you actually get notified.
 - The audit trail is trustworthy — you can tell agent actions from yours.
 
-Setup outline:
+Setup outline (full step-by-step + helper script:
+[`scripts/README.md`](scripts/README.md)):
 
-1. Create a Linear **OAuth application** (or use an app/bot actor) for your
-   agents in Linear settings.
-2. Authenticate the **custom MCP server** as that app, not as your user.
-3. Point all agent harnesses at the app-authenticated MCP server.
-4. Keep *your* personal access for your own Linear use in the app/mobile.
+1. Create a Linear **OAuth application** for your agents in Linear settings.
+2. Mint an access token with **`actor=app`** so actions are attributed to the
+   app — this does **not** consume a paid seat (unlike inviting a bot user).
+   Use [`scripts/linear-app-token.mjs`](scripts/linear-app-token.mjs).
+3. Authenticate a **self-hosted MCP server** with that app token, not your user.
+4. Point all agent harnesses at the app-authenticated MCP server.
+5. Keep *your* personal access for your own Linear use on laptop + mobile.
 
 ### 3. Minor ergonomics — a fuller `get_issue`
 
