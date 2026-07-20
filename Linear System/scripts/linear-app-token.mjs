@@ -61,14 +61,14 @@ const server = http.createServer(async (req, res) => {
   if (error) {
     res.writeHead(400).end(`Authorization failed: ${error}`);
     console.error("Authorization failed:", error);
-    server.close();
-    process.exit(1);
+    shutdown(1);
+    return;
   }
   if (returnedState !== state) {
     res.writeHead(400).end("State mismatch — aborting.");
     console.error("State mismatch — possible CSRF. Aborting.");
-    server.close();
-    process.exit(1);
+    shutdown(1);
+    return;
   }
 
   try {
@@ -104,10 +104,17 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(500).end("Token exchange failed — see terminal.");
     console.error("Token exchange failed:", e.message);
   } finally {
-    server.close();
-    process.exit(0);
+    shutdown(0);
   }
 });
+
+// Close the HTTP server before exiting, so Node doesn't abort with a libuv
+// "handle is closing" assertion on Windows when exiting mid-close.
+function shutdown(code) {
+  server.close(() => process.exit(code));
+  // Fallback in case a lingering keep-alive socket delays close().
+  setTimeout(() => process.exit(code), 500).unref();
+}
 
 server.listen(PORT, () => {
   console.log("\n1) Open this URL in your browser and approve:\n");
