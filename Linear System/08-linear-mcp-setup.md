@@ -6,6 +6,11 @@
 This chapter covers connecting agents to Linear and the three tweaks that were
 "just enough to replace their MCP server with our own."
 
+> **Already built for this workspace.** A working self-hosted MCP with all three
+> fixes lives in [`linear-mcp/`](linear-mcp/), the token minter in
+> [`scripts/`](scripts/), and a full step-by-step + troubleshooting guide (Windows
+> and macOS) in [`agent-identity-runbook.md`](agent-identity-runbook.md).
+
 ## Start with the stock Linear MCP
 
 Linear ships an official MCP server, and it works really well for most of this

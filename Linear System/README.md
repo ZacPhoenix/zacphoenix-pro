@@ -42,6 +42,7 @@ Read them in order the first time; after that use them as reference.
 | [`06-agent-session-lifecycle.md`](06-agent-session-lifecycle.md) | Forcing completion: agent sessions, hooks, closeout |
 | [`07-human-escalation-standard.md`](07-human-escalation-standard.md) | How agents should ask *you* for help without wasting your time |
 | [`08-linear-mcp-setup.md`](08-linear-mcp-setup.md) | Linear MCP, agent identity, and the three interface fixes |
+| [`agent-identity-runbook.md`](agent-identity-runbook.md) | Revisit-later runbook: OAuth app + token + self-hosted MCP, Windows **and** macOS, with troubleshooting |
 | [`09-setup-checklist.md`](09-setup-checklist.md) | Do-this-in-order checklist to stand the whole thing up |
 | [`templates/`](templates/) | Copy-paste ticket template, workstream doc, hooks, agent rules |
 | [`prompts/`](prompts/) | Ready-to-paste prompts for intake, workstream updates, escalations |
