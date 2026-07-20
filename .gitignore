@@ -1,0 +1,8 @@
+# Local Claude Code / MCP config — machine-specific paths and secrets.
+# Keep this out of git; use Linear System/linear-mcp/mcp.example.json as the template.
+.mcp.json
+.env
+.env.*
+
+# Node
+node_modules/
