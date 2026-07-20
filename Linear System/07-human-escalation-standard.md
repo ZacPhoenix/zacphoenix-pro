@@ -46,7 +46,7 @@ they're even involved. Concretely:
 
 An escalation is not a chat message. It is:
 
-- The ticket marked **Blocked**.
+- The ticket moved to the **Blocked** status.
 - A **formal escalation** written to this standard, attached to the ticket and
   assigned to you (as *you*, because the agent has its own identity — see
   [08](08-linear-mcp-setup.md), so notifications actually reach you).
@@ -92,5 +92,5 @@ Before raising a human escalation:
 - Assume the human is busy and context-free. Strip all jargon.
 - State the precise unblock condition.
 - Make sure all other unblocked work in this batch keeps going.
-- Mark the ticket Blocked and assign the escalation to the human.
+- Move the ticket to the Blocked status and assign the escalation to the human.
 ```

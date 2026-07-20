@@ -11,9 +11,10 @@ backstop for when these rules aren't enough.
 
 - **Team:** Zac Phoenix (`ZAC`)
 - **Statuses:** Triage → Backlog → Todo → In Progress → In Review → Done
-  (+ Canceled, Duplicate). A ticket that can't proceed gets the **`blocked`**
-  label and a formal escalation.
-- **Labels:** `source:human-capture`, `source:agent`, `blocked`.
+  (+ **Blocked**, Canceled, Duplicate). A ticket that can't proceed is moved to
+  the **Blocked** status and gets a formal escalation.
+- **Labels:** `source:human-capture`, `source:agent`, `blocked` (the `blocked`
+  label is now redundant with the Blocked status — prefer the status).
 - **Root outcome project:** `Foundation`. Every outcome tree rolls up here (or
   another root project/initiative).
 - **Agent sessions** are recorded in the `Sessions` project (metadata +
@@ -39,13 +40,13 @@ You may not consider work finished until ALL of these are true:
 6. **Tick every Verification checkbox** in each ticket (all Automated, Manual,
    Visual). You may not close a ticket while any box is unchecked, and you may
    not delete or rewrite checkboxes to get around this.
-7. **Mark every ticket Done or blocked.** No ticket left In Progress.
+7. **Mark every ticket Done or Blocked.** No ticket left In Progress.
 8. **Upload a transcript** of this session to its `Sessions` record.
 9. **Mark the agent session Complete.**
 
-If you cannot finish, add the **`blocked`** label, raise a **human escalation**
-to the standard below, and stop cleanly. Blocked + escalation is the only
-acceptable alternative to Done.
+If you cannot finish, move the ticket to the **Blocked** status, raise a **human
+escalation** to the standard below, and stop cleanly. Blocked + escalation is the
+only acceptable alternative to Done.
 
 **Interactive waiver:** if this session worked no ticket (e.g. you answered
 codebase questions), request a closeout **waiver** instead, stating why no
@@ -92,7 +93,7 @@ and know very little** about the code or why they're involved.
 - **Make it two minutes, not fifteen.** Pre-fill everything.
 - **State the exact unblock condition.**
 - **Keep all other unblocked work moving** so minimal work remains once resolved.
-- Add the `blocked` label, write the escalation per
+- Move the ticket to **Blocked**, write the escalation per
   [`Linear System/prompts/human-escalation.md`](Linear%20System/prompts/human-escalation.md),
   and assign it to the human so they're notified.
 

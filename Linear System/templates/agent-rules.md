@@ -28,13 +28,13 @@ session you must:
 6. **Tick every Verification checkbox** in each ticket (all Automated, Manual,
    Visual). You may not close a ticket while any box is unchecked, and you may
    not delete or rewrite checkboxes to get around this.
-7. **Mark every ticket Closed or Blocked.** No ticket left In Progress.
+7. **Mark every ticket Done or Blocked.** No ticket left In Progress.
 8. **Upload a transcript** of this session for root-cause analysis.
 9. **Mark the agent session Complete.**
 
-If you cannot finish, mark the ticket **Blocked** and raise a **human
-escalation** to the standard below. Blocked + escalation is the only acceptable
-alternative to Done.
+If you cannot finish, move the ticket to the **Blocked** status and raise a
+**human escalation** to the standard below. Blocked + escalation is the only
+acceptable alternative to Done.
 
 **Interactive waiver:** if this session worked no ticket (e.g. you answered
 codebase questions), request a closeout **waiver** instead, stating why no
@@ -83,7 +83,7 @@ and know very little** about the code, the problem, or why they're involved.
 - **State the exact unblock condition.**
 - **Keep all other unblocked work moving** so minimal work remains once the human
   resolves it.
-- Mark the ticket **Blocked**, write the escalation to
+- Move the ticket to the **Blocked** status, write the escalation to
   [`../prompts/human-escalation.md`](../prompts/human-escalation.md), and assign
   it to the human (you have your own identity, so they'll be notified).
 
