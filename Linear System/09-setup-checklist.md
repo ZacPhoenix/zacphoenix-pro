@@ -39,12 +39,14 @@ Check the boxes as you go.
 - [ ] Create a Linear **OAuth app / bot actor** for agents — step-by-step in
       [`scripts/README.md`](scripts/README.md) (uses `actor=app`, no extra seat).
       ([08](08-linear-mcp-setup.md), fix 2)
-- [ ] Stand up (or configure) a **custom MCP** authenticated as that app, with:
-  - [ ] `get_issue` returning full context (comments + sub-issues + PRs). (fix 3)
-  - [ ] `update_issue_description_patch` (diffs only; protects Verifications). (fix 1)
-  - [ ] No full-overwrite description tool. (fix 1)
-- [ ] Point **all** harnesses (Claude Code, Codex, Cursor, Antigravity) at the
-      app-authenticated MCP. ([08](08-linear-mcp-setup.md))
+- [x] Stand up (or configure) a **custom MCP** authenticated as that app —
+      [`linear-mcp/`](linear-mcp/) (dependency-free Node, stdio), with:
+  - [x] `get_issue` returning full context (comments + sub-issues + verif summary). (fix 3)
+  - [x] `patch_issue_description` (diffs only; protects Verifications). (fix 1)
+  - [x] No full-overwrite description tool. (fix 1)
+- [ ] Set `LINEAR_APP_TOKEN` and point **each** harness (Claude Code, Codex,
+      Cursor, Antigravity) at the app MCP — see
+      [`linear-mcp/README.md`](linear-mcp/README.md). ([08](08-linear-mcp-setup.md))
 
 ## Phase 4 — Rules & hooks (30–60 min)
 

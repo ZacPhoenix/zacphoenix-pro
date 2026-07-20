@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "linear-app": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\zaclu\\zacphoenix-pro\\Linear System\\linear-mcp\\index.mjs"
+      ],
+      "env": {
+        "LINEAR_APP_TOKEN": "${LINEAR_APP_TOKEN}"
+      }
+    }
+  }
+}
