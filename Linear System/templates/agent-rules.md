@@ -40,6 +40,17 @@ acceptable alternative to Done.
 codebase questions), request a closeout **waiver** instead, stating why no
 ticket applies.
 
+## Skills-first & compounding
+
+- **Skills-first.** Before hand-rolling logic, look for a skill that covers the
+  task and apply it. Only write bespoke code when no skill fits. Craft skills
+  live in the repo (`.claude/skills/`) and are versioned with the code.
+- **Capture the compound (part of "done").** Before closeout, if this ticket
+  revealed a reusable pattern, capture it as a **new or improved skill** (or a
+  rule / verification pattern) and commit it alongside the work. Prefer improving
+  an existing skill over adding a new one. See
+  [`../10-skills-and-compounding.md`](../10-skills-and-compounding.md).
+
 ## Tickets are outcome-named and tree-shaped
 
 - Name every ticket after the **outcome** (target state in the world), never the

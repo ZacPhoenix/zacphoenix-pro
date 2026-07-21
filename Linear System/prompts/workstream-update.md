@@ -41,6 +41,8 @@ Do these steps:
    - 3–5 segments, each a SELF-CONTAINED prompt for one agent that includes:
        * the ticket link(s) and the outcome,
        * the code area it owns and the areas it must NOT touch,
+       * skills-first: apply a matching skill from .claude/skills/ before
+         hand-rolling, and capture the compound at closeout,
        * a reminder to follow the completion contract + escalation standard,
        * "this session is unsupervised but monitored".
 

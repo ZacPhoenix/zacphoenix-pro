@@ -22,7 +22,10 @@ who's affected, what breaks without it, how it connects to a larger outcome.>
 <OPTIONAL. Fill this in ONLY when you have a specific opinion, constraint, or
 gotcha to inject. Otherwise write "Implementer's discretion — choose the best
 approach given the code." Do not over-constrain: the implementing agent has the
-code in front of it and you probably don't.>
+code in front of it and you probably don't.
+Skills-first: name any skill the implementer should apply (e.g. a craft skill in
+.claude/skills/); if none, the implementer still checks for a matching skill
+before hand-rolling.>
 
 ## Verifications
 <Authored to the minimal-testing standard. An agent is BLOCKED from closing this

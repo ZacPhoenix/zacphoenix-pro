@@ -70,6 +70,19 @@ only acceptable alternative to Done.
 codebase questions), request a closeout **waiver** instead, stating why no
 ticket applies.
 
+## Skills-first & compounding
+
+- **Skills-first.** Before hand-rolling logic, look for a skill that covers the
+  task and apply it. Only write bespoke code when no skill fits. Craft skills
+  (e.g. TypeScript/testing procedures) live in [`.claude/skills/`](.claude/skills/)
+  and are versioned with the code.
+- **Capture the compound (part of "done").** Before closeout, if this ticket
+  revealed a reusable pattern, capture it as a **new or improved skill** (or a
+  CLAUDE.md rule / verification pattern) and commit it alongside the work. Prefer
+  improving an existing skill over adding a new one. Every batch should leave the
+  factory a little more capable — see
+  [`Linear System/10-skills-and-compounding.md`](Linear%20System/10-skills-and-compounding.md).
+
 ## Tickets are outcome-named and tree-shaped
 
 - Name every ticket after the **outcome** (target state in the world), never the
