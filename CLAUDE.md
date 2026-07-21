@@ -7,6 +7,24 @@ contract every agent, in every harness (Claude Code, Codex, Cursor,
 Antigravity), must follow. Hooks in `Linear System/templates/hooks/` are the
 backstop for when these rules aren't enough.
 
+## How we work — everything runs through Linear
+
+- **All work is a Linear ticket.** There is no work that isn't tracked. Before
+  writing code, find or create the ticket that names the outcome. If asked to do
+  something in chat, turn it into a ticket (or drop it in **Triage**) first.
+- **Reach Linear through the `linear-app` MCP** — self-hosted, and it acts as the
+  **agent app identity, not the human**. Use it to read the backlog, register
+  your session, create tickets, move status, comment, and edit descriptions
+  (via `patch_issue_description` only — never a wholesale overwrite).
+- **Every session starts** by reading your available/assigned tickets in Linear,
+  registering an agent session, and marking tickets In Progress. **Every session
+  ends** by satisfying the completion contract below.
+- **Where it lives:** system overview in
+  [`Linear System/README.md`](Linear%20System/README.md); the MCP + identity
+  setup, wiring, and troubleshooting in
+  [`Linear System/agent-identity-runbook.md`](Linear%20System/agent-identity-runbook.md)
+  (server at `Linear System/linear-mcp/`).
+
 ## Linear workspace facts
 
 - **Team:** Zac Phoenix (`ZAC`)
@@ -99,10 +117,8 @@ and know very little** about the code or why they're involved.
 
 ## Identity
 
-Act as **yourself** (your agent identity), not as the human. Assignments,
-comments, and status changes should be attributable to you.
-
----
-
-New to this system? Read [`Linear System/README.md`](Linear%20System/README.md)
-and follow [`Linear System/09-setup-checklist.md`](Linear%20System/09-setup-checklist.md).
+Act as **yourself** (the agent app identity), not as the human — this is what the
+`linear-app` MCP enforces. Assignments, comments, and status changes must be
+attributable to the app, so the human is notified and the audit trail is clean.
+If Linear actions appear as the human, stop and check the MCP wiring
+([`Linear System/agent-identity-runbook.md`](Linear%20System/agent-identity-runbook.md)).
