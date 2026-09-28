@@ -73,9 +73,9 @@ export default {
       lead: "Six mechanisms explain most of the model behavior you will ever debug.",
       bites: [
         ["Instructions", "System prompt, messages, and tool results all become tokens in one context. Training makes some sources more authoritative, but nothing enforces it. A rule with its reason generalizes better than a bare rule, because the model can apply the reason to cases you never listed."],
-        ["Completion", "A base model continues documents. A chat model is a base model plus post-training plus a chat template that encodes roles as special tokens. Chat is still next-token prediction. Current Claude models reject assistant prefill, so shape responses with structured outputs instead."],
+        ["Completion", "A base model continues documents. A chat model is a base model plus post-training plus a chat template that encodes roles as special tokens. Chat is still next-token prediction. Claude models from 4.6 on reject assistant prefill, so shape responses with structured outputs instead."],
         ["Tokenization (BPE)", "Byte-pair encoding turns text into subword token IDs, so the model never sees letters. That is why counting letters or reversing strings can fail. Tokenizers change between versions: Claude models since Opus 4.7 produce up to about 35% more tokens for the same text."],
-        ["Prediction", "The last layer emits logits, softmax turns them into probabilities, and one token is sampled. Current Claude models reject `temperature` and `top_p`, and effort controls depth instead. Identical requests can still differ, because server-side batching changes floating-point order."],
+        ["Prediction", "The last layer emits logits, softmax turns them into probabilities, and one token is sampled. Opus 4.7 and later, Sonnet 5, and Fable reject `temperature` and `top_p`, and effort controls depth instead. Identical requests can still differ, because server-side batching changes floating-point order."],
         ["Attention", "Each token forms query, key, and value vectors. Attention compares the current query with every earlier key and blends the matching values. Stored keys and values form the KV cache, so prompt caching needs an exact prefix: change one early byte and everything after it recomputes."],
         ["Instruction following", "Learned in post-training: supervised examples, then preference optimization (RLHF, Constitutional AI), then reinforcement learning with verifiable rewards such as passing tests. Each stage leaves habits. Human preference breeds sycophancy. Test-based rewards can breed reward hacking, like special-casing a test."],
       ],
@@ -304,7 +304,7 @@ export default {
         "Counting needs more context window than the request has",
       ],
       answer: 0,
-      why: "Byte-pair encoding turns the word into a few multi-letter chunks, so counting depends on recalled spelling. Temperature is not the cause, and current Claude models reject it anyway. Asking the model to spell the word first, or to use code, fixes it.",
+      why: "Byte-pair encoding turns the word into a few multi-letter chunks, so counting depends on recalled spelling. Temperature is not the cause, and newer Claude models reject it anyway. Asking the model to spell the word first, or to use code, fixes it.",
     },
     {
       id: "q3",
@@ -343,7 +343,7 @@ export default {
         "Ask for JSON in the system prompt and retry on parse errors",
       ],
       answer: 1,
-      why: "Constrained decoding guarantees output that parses against your schema. Opus 5.5 rejects forced tool choice with a 400, and current Claude models reject assistant prefill. Prompting plus retries works but wastes calls and still fails sometimes.",
+      why: "Constrained decoding guarantees output that parses against your schema. Opus 5.5 rejects forced tool choice with a 400, and Claude 4.6 and later reject assistant prefill. Prompting plus retries works but wastes calls and still fails sometimes.",
     },
     {
       id: "q6",

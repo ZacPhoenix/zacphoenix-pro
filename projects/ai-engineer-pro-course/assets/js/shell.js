@@ -1,6 +1,6 @@
 // Page chrome shared by every page: top bar, nav, focus timer, settings, footer, shortcuts.
 
-import { course, h, url, icon, toast, $ } from './core.js'
+import { course, h, url, dayUrl, inline, icon, toast, loadAllDays, $, $$ } from './core.js'
 import * as store from './store.js'
 
 const NAV = [
@@ -30,6 +30,7 @@ export async function mountShell({ page, week = null, width = 'wrap' } = {}) {
   const timerBtn = h('button', { class: 'icon-btn timer', type: 'button', title: 'Focus timer. Click to start or pause, double-click to reset. Shortcut: T' })
   const themeBtn = h('button', { class: 'icon-btn', type: 'button', title: 'Toggle light or dark', 'aria-label': 'Toggle theme' })
   const settingsBtn = h('button', { class: 'icon-btn', type: 'button', title: 'Settings and progress file', 'aria-label': 'Settings', html: icon('gear') })
+  const searchBtn = h('button', { class: 'icon-btn', type: 'button', title: 'Search the course. Shortcut: / or Cmd+K', 'aria-label': 'Search', html: icon('search'), onclick: () => openSearch() })
   const extra = h('div', { class: 'tools', id: 'page-tools' })
 
   const topbar = h(
@@ -40,7 +41,7 @@ export async function mountShell({ page, week = null, width = 'wrap' } = {}) {
       { class: 'wrap topbar-inner' },
       h('a', { class: 'brand', href: url('index.html') }, h('span', { class: 'brand-mark', text: 'AE' }), h('span', {}, course.title, ' ', h('small', { text: 'Pro course' }))),
       nav,
-      h('div', { class: 'tools' }, extra, timerBtn, themeBtn, settingsBtn),
+      h('div', { class: 'tools' }, extra, searchBtn, timerBtn, themeBtn, settingsBtn),
     ),
   )
 
@@ -53,7 +54,7 @@ export async function mountShell({ page, week = null, width = 'wrap' } = {}) {
       'div',
       { class: 'wrap row' },
       h('span', { id: 'storage-line' }),
-      h('span', { html: 'Shortcuts: <kbd>T</kbd> timer · <kbd>,</kbd> settings · <kbd>F</kbd> focus mode on day pages' }),
+      h('span', { html: 'Shortcuts: <kbd>/</kbd> search · <kbd>T</kbd> timer · <kbd>,</kbd> settings · <kbd>F</kbd> focus mode on day pages' }),
     ),
   )
   app.append(topbar, main, footer, settingsDialog())
@@ -91,8 +92,16 @@ export async function mountShell({ page, week = null, width = 'wrap' } = {}) {
   initTimer(timerBtn)
 
   document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault()
+      openSearch()
+      return
+    }
     if (e.metaKey || e.ctrlKey || e.altKey || isTyping(e)) return
-    if (e.key === ',') {
+    if (e.key === '/') {
+      e.preventDefault()
+      openSearch()
+    } else if (e.key === ',') {
       e.preventDefault()
       openSettings()
     } else if (e.key === 't' || e.key === 'T') {
@@ -114,6 +123,103 @@ export function effectiveTheme() {
   const t = store.get()?.settings?.theme || 'system'
   if (t !== 'system') return t
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
+/* ---------- Search (press / or Cmd+K anywhere) ---------- */
+
+let searchIndex = null
+
+async function buildIndex() {
+  if (searchIndex) return searchIndex
+  const days = await loadAllDays()
+  const items = []
+  for (const d of course.days) {
+    const c = days.get(d.n)
+    if (!c) continue
+    for (const s of c.sections) {
+      items.push({ day: d.n, anchor: `step-sec-${s.id}`, title: s.title, where: `Day ${d.n} · ${d.title}`, text: s.lead, kind: 'Section' })
+      for (const [term, body] of s.bites) items.push({ day: d.n, anchor: `step-sec-${s.id}`, title: term, where: `Day ${d.n} · ${s.title}`, text: body, kind: 'Bite' })
+    }
+    for (const [term, def] of c.glossary || []) items.push({ day: d.n, anchor: 'glossary', title: term, where: `Day ${d.n} · Glossary`, text: def, kind: 'Term' })
+    for (const t of c.tasks) items.push({ day: d.n, anchor: `task-${t.id}`, title: t.title, where: `Day ${d.n} · Practice`, text: t.goal, kind: 'Task' })
+  }
+  searchIndex = items.map((it) => ({ ...it, hay: `${it.title} ${it.text}`.toLowerCase().replace(/[`*]/g, '') }))
+  return searchIndex
+}
+
+function searchDialog() {
+  const dlg = h('dialog', { class: 'modal search-modal', id: 'search-dialog', 'aria-label': 'Search the course' })
+  const input = h('input', { class: 'field', type: 'search', placeholder: 'Search bites, terms, and tasks', 'aria-label': 'Search' })
+  const list = h('div', { class: 'search-results', role: 'listbox' })
+  let active = 0
+  const paint = async () => {
+    const q = input.value.trim().toLowerCase()
+    const idx = await buildIndex()
+    list.innerHTML = ''
+    if (q.length < 2) {
+      list.append(h('p', { class: 'muted small', style: { padding: '8px 4px' }, text: 'Type at least two characters. Enter opens the top result.' }))
+      return
+    }
+    const words = q.split(/\s+/)
+    const scored = idx
+      .map((it) => {
+        if (!words.every((w) => it.hay.includes(w))) return null
+        const t = it.title.toLowerCase()
+        const score = (t === q ? 50 : 0) + (t.includes(q) ? 20 : 0) + (it.kind === 'Term' ? 6 : it.kind === 'Section' ? 4 : 0) - it.hay.indexOf(words[0]) / 1000
+        return { it, score }
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 30)
+    if (!scored.length) {
+      list.append(h('p', { class: 'muted small', style: { padding: '8px 4px' }, text: 'No matches.' }))
+      return
+    }
+    active = 0
+    scored.forEach(({ it }, i) => {
+      list.append(
+        h(
+          'a',
+          { class: `search-hit${i === 0 ? ' is-active' : ''}`, href: `${dayUrl(it.day)}#${it.anchor}`, role: 'option' },
+          h('span', { class: 'kicker', text: `${it.kind} · ${it.where}` }),
+          h('b', { html: inline(it.title) }),
+          h('span', { class: 'small ink-2', html: inline(it.text.length > 160 ? `${it.text.slice(0, 157)}...` : it.text) }),
+        ),
+      )
+    })
+  }
+  input.addEventListener('input', paint)
+  input.addEventListener('keydown', (e) => {
+    const hits = $$('.search-hit', list)
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault()
+      if (!hits.length) return
+      hits[active]?.classList.remove('is-active')
+      active = (active + (e.key === 'ArrowDown' ? 1 : hits.length - 1)) % hits.length
+      hits[active].classList.add('is-active')
+      hits[active].scrollIntoView({ block: 'nearest' })
+    } else if (e.key === 'Enter' && hits[active]) {
+      e.preventDefault()
+      location.href = hits[active].href
+    }
+  })
+  dlg.addEventListener('click', (e) => e.target === dlg && dlg.close())
+  dlg.append(h('div', { class: 'modal-b', style: { gap: '10px' } }, input, list))
+  dlg._input = input
+  dlg._paint = paint
+  return dlg
+}
+
+export function openSearch() {
+  let dlg = document.getElementById('search-dialog')
+  if (!dlg) {
+    dlg = searchDialog()
+    document.body.append(dlg)
+  }
+  if (!dlg.open) dlg.showModal()
+  dlg._input.focus()
+  dlg._input.select()
+  dlg._paint()
 }
 
 /* ---------- Settings dialog ---------- */

@@ -902,3 +902,10 @@ select.field { max-width: 100%; min-width: 0; text-overflow: ellipsis; }
 .diagram.is-wide::after { content: "Scroll sideways to see the whole diagram"; display: block; font-size: 0.72rem; color: var(--muted); margin-top: 6px; position: sticky; left: 0; }
 .timeline h3 a { text-decoration: none; }
 .timeline h3 a:hover { text-decoration: underline; }
+
+/* Search */
+dialog.search-modal { width: min(680px, calc(100vw - 24px)); margin-top: 10vh; }
+.search-results { display: grid; gap: 4px; max-height: 60vh; overflow-y: auto; }
+.search-hit { display: grid; gap: 3px; padding: 10px 12px; border-radius: 11px; text-decoration: none; color: var(--ink); border: 1px solid transparent; }
+.search-hit:hover, .search-hit.is-active { background: var(--surface-2); border-color: var(--line); }
+.search-hit .kicker { font-size: 0.68rem; }

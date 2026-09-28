@@ -259,6 +259,7 @@ const paths = {
   download: '<path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/>',
   upload: '<path d="M12 21V9m0 0-4 4m4-4 4 4M4 3h16"/>',
   flame: '<path d="M12 2s5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5.5 1-8.5z"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
 }
 
 export function icon(name, cls = '') {

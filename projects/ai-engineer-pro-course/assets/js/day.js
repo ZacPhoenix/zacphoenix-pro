@@ -77,7 +77,9 @@ async function start() {
   await renderDiagrams(main)
   const scrollKey = `aep.scroll.${n}`
   if (location.hash) {
-    document.getElementById(location.hash.slice(1))?.scrollIntoView()
+    const target = document.getElementById(location.hash.slice(1))
+    if (target?.tagName === 'DETAILS') target.open = true
+    target?.scrollIntoView()
   } else if (!focusPref) {
     let y = 0
     try {
@@ -408,7 +410,7 @@ function resourcesCard() {
   const gloss = content.glossary?.length
     ? h(
         'details',
-        { class: 'deeper', style: { marginTop: '14px' } },
+        { class: 'deeper', id: 'glossary', style: { marginTop: '14px' } },
         h('summary', {}, h('span', { class: 'plus-one', text: 'Aa' }), h('span', { text: `Glossary for today (${content.glossary.length})` }), h('span', { class: 'chev', html: icon('chev') })),
         h('div', { class: 'deeper-body' }, h('dl', { class: 'gloss-list' }, content.glossary.map(([t, d]) => h('div', { class: 'gloss-item' }, h('dt', { html: inline(t) }), h('dd', { html: inline(d) }))))),
       )
