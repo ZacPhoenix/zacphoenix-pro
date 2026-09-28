@@ -40,8 +40,14 @@ claude -p "What is the latest released version of the npm package vite? State yo
 npm view vite version
 ```
 
-Did the harness search the web on the first run? How did the answer change once search was removed?
-Repeat in Codex and note whether it searched.
+```bash
+codex exec "What is the latest released version of the npm package vite? State your confidence and your knowledge cutoff."
+codex --search exec "What is the latest released version of the npm package vite? State your confidence and your knowledge cutoff."
+codex -c 'web_search="disabled"' exec "What is the latest released version of the npm package vite? State your confidence and your knowledge cutoff."
+```
+
+Codex defaults to cached web search. `--search` switches to live search, and it must come before `exec`.
+Which runs searched? How did each answer change once search was removed? What does that say about blaming the model for a stale answer?
 
 ## 4. Structured output
 

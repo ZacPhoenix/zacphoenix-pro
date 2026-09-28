@@ -405,7 +405,7 @@ export default {
       steps: [
         "Run `claude -p \"Explain byte-pair encoding in two sentences\" --output-format json | jq '{result, usage, total_cost_usd}'`.",
         "Run the exact same command again and compare `usage`. The shared prefix should now appear as cache reads.",
-        "Run `codex exec \"Explain byte-pair encoding in two sentences\"` and compare the answer itself, not only the tokens.",
+        "Run `codex exec --skip-git-repo-check \"Explain byte-pair encoding in two sentences\"` (the flag lets Codex run outside a git repo) and compare the answer itself, not only the tokens.",
         "Write one line in your notes: which number surprised you, and why.",
       ],
       done: "You can point at input, output, and cache-read token counts for one request and explain why the second run cost less.",
