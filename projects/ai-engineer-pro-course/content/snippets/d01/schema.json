@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "concept": { "type": "string" },
+    "one_line_definition": { "type": "string" },
+    "why_it_matters": { "type": "string" },
+    "common_failure": { "type": "string" },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] }
+  },
+  "required": ["concept", "one_line_definition", "why_it_matters", "common_failure", "confidence"],
+  "additionalProperties": false
+}

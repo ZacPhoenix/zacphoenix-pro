@@ -1,0 +1,6 @@
+# Personal progress stays on your machine. Export it from Settings to back it up or move it.
+data/progress.json
+data/progress.json.*.tmp
+data/backups/
+node_modules/
+.DS_Store
