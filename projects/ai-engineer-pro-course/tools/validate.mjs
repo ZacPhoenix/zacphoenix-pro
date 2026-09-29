@@ -186,6 +186,7 @@ async function validateDay(meta) {
   if (quiz.length < 6 || quiz.length > 12) err(tag, `quiz has ${quiz.length} questions (need 6 to 12)`)
   const qids = new Set()
   let longestIsAnswer = 0
+  let shortestIsAnswer = 0
   const perSection = {}
   quiz.forEach((q, i) => {
     const where = `${tag} quiz ${q.id || i}`
@@ -204,6 +205,7 @@ async function validateDay(meta) {
     }
     const opts = (q.options || []).map((o) => o.length)
     if (opts.length && opts.indexOf(Math.max(...opts)) === q.answer && opts.filter((l) => l === Math.max(...opts)).length === 1) longestIsAnswer++
+    if (opts.length && opts.indexOf(Math.min(...opts)) === q.answer && opts.filter((l) => l === Math.min(...opts)).length === 1) shortestIsAnswer++
     styleCheck(where, [q.q, ...(q.options || []), q.why || ''])
     if ((q.options || []).some((o) => /all of the above|none of the above/i.test(o))) err(where, 'no "all/none of the above" options')
   })
@@ -211,6 +213,7 @@ async function validateDay(meta) {
   if (finals < 2) err(tag, `only ${finals} final-round questions (need at least 2 without a section)`)
   for (const [sid, count] of Object.entries(perSection)) if (count > 2) warn(tag, `section ${sid} has ${count} quick checks (1 is ideal)`)
   if (quiz.length && longestIsAnswer / quiz.length > 0.5) warn(tag, `correct option is the longest in ${longestIsAnswer}/${quiz.length} questions (a guessable tell)`)
+  if (quiz.length && shortestIsAnswer / quiz.length > 0.35) warn(tag, `correct option is the shortest in ${shortestIsAnswer}/${quiz.length} questions (a guessable tell)`)
 
   // Tasks
   const tasks = Array.isArray(c.tasks) ? c.tasks : []

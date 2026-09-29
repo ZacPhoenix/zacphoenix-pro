@@ -1,0 +1,95 @@
+# .github/workflows/triage-schedule.yml
+# Unattended Triage on weekdays at 06:17 UTC, plus a manual button.
+# One-time setup: gh secret set ANTHROPIC_API_KEY, gh variable set TRIAGE_ENABLED --body true,
+# gh label create forge:proposals, gh label create forge:escalation
+name: triage-schedule
+
+on:
+  schedule:
+    - cron: '17 6 * * 1-5' # odd minute: GitHub can delay or drop runs queued at the top of the hour
+  workflow_dispatch:
+    inputs:
+      budget_usd:
+        description: Run budget in USD
+        required: false
+        default: '2'
+
+permissions:
+  contents: write # push the proposals branch
+  pull-requests: write # open the proposals PR
+  issues: write # open or comment on the escalation issue
+
+concurrency:
+  group: triage-schedule
+  cancel-in-progress: false # never kill a run mid-batch to start another
+
+jobs:
+  triage:
+    # Kill switch before any compute: runs only while this repository variable is 'true'.
+    if: vars.TRIAGE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20 # wall-clock cap, independent of the dollar budget
+    env:
+      FORGE_MODEL_MAIN: ${{ vars.FORGE_MODEL_MAIN || 'claude-opus-5' }}
+      FORGE_MODEL_FAST: ${{ vars.FORGE_MODEL_FAST || 'claude-haiku-4-5' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # Backpressure: produce no new proposals while the last batch still waits for review.
+      - name: Check for unreviewed proposals
+        id: gate
+        run: echo "open=$(gh pr list --label forge:proposals --state open --json number --jq 'length')" >> "$GITHUB_OUTPUT"
+
+      - name: Restore checkpoint
+        if: steps.gate.outputs.open == '0'
+        uses: actions/cache/restore@v4
+        with:
+          path: state/
+          key: triage-state-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: triage-state-
+
+      - name: Run Triage unattended
+        if: steps.gate.outputs.open == '0'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }} # only this step sees the key
+          BUDGET_USD: ${{ inputs.budget_usd || '2' }} # inputs go through env, never straight into the script
+        run: npm run triage -- --scheduled --budget-usd "$BUDGET_USD" --daily-cap-usd 5
+
+      # always() also runs after a timeout or a cancel, so a killed run still saves its checkpoint.
+      - name: Save checkpoint
+        if: always() && steps.gate.outputs.open == '0'
+        uses: actions/cache/save@v4
+        with:
+          path: state/
+          key: triage-state-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Keep traces
+        if: always() && steps.gate.outputs.open == '0'
+        uses: actions/upload-artifact@v4
+        with:
+          name: triage-traces-${{ github.run_id }}
+          path: traces/
+          if-no-files-found: ignore
+
+      # PRs opened with GITHUB_TOKEN do not trigger other workflows, so required checks will not start.
+      # Close and reopen the PR yourself to run them, or use a GitHub App token.
+      - name: Propose results as a PR
+        if: always() && steps.gate.outputs.open == '0'
+        run: |
+          if [ -z "$(git status --porcelain -- data/triage/)" ]; then exit 0; fi
+          branch="forge/triage-${{ github.run_id }}"
+          git config user.name "forge-bot"
+          git config user.email "forge-bot@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data/triage/
+          git commit -m "Triage proposals from scheduled run ${{ github.run_id }}"
+          git push origin "$branch"
+          gh pr create --label forge:proposals \
+            --title "Triage proposals (run ${{ github.run_id }})" \
+            --body "Unattended run. Merge, then review each proposal in the Inbox. Checkpoint and traces are in the run artifacts."

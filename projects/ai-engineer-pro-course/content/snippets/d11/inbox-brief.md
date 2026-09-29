@@ -31,7 +31,7 @@ A reviewer clears the day's proposals in one sitting and decides each one withou
 |---|---|---|---|
 | A1 | One reviewer works the queue at a time | open | Ask: will anyone else review? |
 | A2 | Most edits change severity, labels, or the title | unverified | Count edited fields in the prototypes |
-| A3 | Triage output is immutable once written | confirmed | results.jsonl is append-only |
+| A3 | Triage only appends. The latest results.jsonl line per id wins | confirmed | loadResults in src/tools/inbox.ts (Day 6) |
 | A4 | Raw feedback is short enough to show inline | unverified | Measure the longest item in data/inbox/ |
 | A5 | 30 seconds per decision is realistic | unverified | Time five decisions per prototype |
 

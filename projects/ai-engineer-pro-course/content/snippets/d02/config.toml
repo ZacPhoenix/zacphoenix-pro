@@ -1,0 +1,14 @@
+# .codex/config.toml: project config for Codex, committed with the repo.
+# Codex ignores this file until you trust the folder (the first-run prompt).
+# Precedence: session flags (-c, -s, -m) beat this file, and this file beats
+# your profile files (~/.codex/NAME.config.toml) and ~/.codex/config.toml.
+
+approval_policy = "on-request"    # the model asks before it leaves the sandbox
+sandbox_mode = "workspace-write"  # edits inside the repo only
+web_search = "cached"             # the default since Jan 2026, stated so it is reviewable
+
+[sandbox_workspace_write]
+network_access = false            # so npm install needs your approval, as in Claude Code
+
+# Inside the workspace, .git, .codex, and .agents stay read-only even in
+# workspace-write, so commits and skill edits need your approval.
