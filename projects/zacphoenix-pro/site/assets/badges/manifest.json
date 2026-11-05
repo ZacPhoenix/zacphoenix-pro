@@ -1,0 +1,100 @@
+[
+  {
+    "slug": "pmi-certified-professional-in-managing-ai-pmi-cpmai",
+    "name": "PMI Certified Professional in Managing AI (PMI-CPMAI)™",
+    "img": "https://images.credly.com/images/16c92e16-d413-42e1-8729-358e5f7f0001/blob",
+    "issued": "2026-07-10",
+    "expires": "2029-07-10"
+  },
+  {
+    "slug": "project-management-professional-pmp",
+    "name": "Project Management Professional (PMP)®",
+    "img": "https://images.credly.com/images/731e7ef4-9b0c-4d7b-ab65-23cc699c0aa3/blob",
+    "issued": "2025-05-21",
+    "expires": "2028-05-21"
+  },
+  {
+    "slug": "wicked-problem-solving-practitioner",
+    "name": "Wicked Problem Solving Practitioner",
+    "img": "https://images.credly.com/images/5a9dd083-c118-486c-8ad9-3a1bf65ba8fd/WPSPractitioner.png",
+    "issued": "2025-03-04",
+    "expires": null
+  },
+  {
+    "slug": "pmi-agile-certified-practitioner-pmi-acp",
+    "name": "PMI Agile Certified Practitioner (PMI-ACP)®",
+    "img": "https://images.credly.com/images/884f1605-f439-4b0d-ba7c-76a921266d45/blob",
+    "issued": "2025-02-21",
+    "expires": "2028-02-21"
+  },
+  {
+    "slug": "certified-associate-in-project-management-capm",
+    "name": "Certified Associate in Project Management (CAPM)®",
+    "img": "https://images.credly.com/images/80c95f74-dcf0-43fc-a437-053a598feb05/blob",
+    "issued": "2024-12-20",
+    "expires": "2027-12-20"
+  },
+  {
+    "slug": "prosci-integrating-agile-and-change-management",
+    "name": "Prosci® Integrating Agile and Change Management",
+    "img": "https://images.credly.com/images/c01cc7eb-743e-48e1-86de-5616f99dee1b/blob",
+    "issued": "2023-12-08",
+    "expires": null
+  },
+  {
+    "slug": "generative-ai-overview-for-project-managers",
+    "name": "Generative AI Overview for Project Managers",
+    "img": "https://images.credly.com/images/f5c094f4-e07c-44e0-b685-4ffd8980fd53/blob",
+    "issued": "2023-11-29",
+    "expires": null
+  },
+  {
+    "slug": "disciplined-agile-senior-scrum-master-dassm",
+    "name": "Disciplined Agile Senior Scrum Master (DASSM)",
+    "img": "https://images.credly.com/images/7f24336c-35e8-4fb9-8d48-0636ee850323/DA_Senior_Scrum_Master_Badge.png",
+    "issued": "2023-11-22",
+    "expires": "2025-11-22"
+  },
+  {
+    "slug": "prosci-certified-change-practitioner",
+    "name": "Prosci® Certified Change Practitioner",
+    "img": "https://images.credly.com/images/387f4b79-c8ce-43c2-a651-615d7ced6407/blob",
+    "issued": "2023-11-16",
+    "expires": null
+  },
+  {
+    "slug": "enterprise-design-thinking-practitioner",
+    "name": "Enterprise Design Thinking Practitioner",
+    "img": "https://images.credly.com/images/bc08972c-3c7d-4b99-82a0-c94bcca36674/Badges_v8-07_Practitioner.png",
+    "issued": "2023-06-28",
+    "expires": null
+  },
+  {
+    "slug": "disciplined-agile-scrum-master-dasm",
+    "name": "Disciplined Agile Scrum Master (DASM)",
+    "img": "https://images.credly.com/images/e6e687e2-5845-4bb8-86fe-9ce867b9165a/DA_Scrum_Master_Badge.png",
+    "issued": "2023-08-07",
+    "expires": "2025-08-07"
+  },
+  {
+    "slug": "certified-safe-6-scrum-master",
+    "name": "Certified SAFe® 6 Scrum Master",
+    "img": "https://images.credly.com/images/441384f8-8b0a-4e7f-94bd-966496a10fd9/image.png",
+    "issued": "2023-03-24",
+    "expires": "2025-03-24"
+  },
+  {
+    "slug": "certified-safe-5-product-owner-product-manager",
+    "name": "Certified SAFe® 5 Product Owner/Product Manager",
+    "img": "https://images.credly.com/images/b3a49033-792c-43a8-8d56-bc67f28f85c1/cert_mark_POPM_badge_large_300px.png",
+    "issued": "2023-03-05",
+    "expires": "2025-03-05"
+  },
+  {
+    "slug": "certified-safe-5-lean-portfolio-manager",
+    "name": "Certified SAFe® 5 Lean Portfolio Manager",
+    "img": "https://images.credly.com/images/3650f17d-2601-475b-b757-d4170cf26894/cert_mark_LPM_badge_large_300px.png",
+    "issued": "2023-03-05",
+    "expires": "2025-03-05"
+  }
+]
